@@ -4,30 +4,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { cn } from '@/lib/utils';
 import { FolderPlus, HandCoins, MessageSquare, UserPlus } from 'lucide-react';
 import React from 'react'
+import { steps } from '../constants';
 
 const HowItWorks = () => {
-  const steps = [
-    {
-      title: "Create Your Account",
-      desc: "Sign up and join our growing freelance community.",
-      icon: <UserPlus className='mb-4 block' />
-    },
-    {
-      title: "Add Your Skills or Project",
-      desc: "Show your expertise or post a project that needs talent.",
-      icon: <FolderPlus className='mb-4 block text-peach' />
-    },
-    {
-      title: "Connect with Clients or Freelancers",
-      desc: "Chat, collaborate, and find the right match for your goals.",
-      icon: <MessageSquare className='mb-4 block' />
-    },
-    {
-      title: "Start Working & Get Paid",
-      desc: "Deliver great work and receive your earnings securely.",
-      icon: <HandCoins className='mb-4 block' />
-    },
-  ];
+  ;
 
   return (
     <section className='mt-10'>
@@ -45,14 +25,14 @@ const HowItWorks = () => {
           return <Card className={cn(softBg[i])}>
             <CardHeader>
               <CardTitle>
-                  <span className={[
-                    "text-teal",
-                    "text-sky",
-                    "text-rose",
-                    "text-peach",
-                  ][i]}>
-                    {icon}
-                  </span>
+                <span className={[
+                  "text-teal",
+                  "text-sky",
+                  "text-rose",
+                  "text-peach",
+                ][i]}>
+                  {icon}
+                </span>
                 {title}
               </CardTitle>
             </CardHeader>

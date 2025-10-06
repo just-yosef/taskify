@@ -1,6 +1,5 @@
-import { Header } from '@/app/(shared)/_components'
 import React from 'react'
-import { HeroSection, HowItWorks, JoinToUs } from '../../_components'
+import { Features, HeroSection, HowItWorks, JoinToUs, Testimonials } from '../../_components'
 
 const page = () => {
     return (
@@ -8,6 +7,8 @@ const page = () => {
             <HeroSection />
             <HowItWorks />
             <JoinToUs />
+            <Features />
+            <Testimonials />
         </>
     )
 }

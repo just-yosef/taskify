@@ -175,22 +175,24 @@
 }
 
 .bg-teal-soft {
-  background-color: color-mix(in srgb, var(--color-teal) 15%, transparent);
+  background-color: color-mix(in srgb, var(--color-teal) 10%, transparent);
 }
 
 .bg-sky-soft {
-  background-color: color-mix(in srgb, var(--color-sky) 15%, transparent);
+  background-color: color-mix(in srgb, var(--color-sky) 10%, transparent);
 }
 
 .bg-rose-soft {
-  background-color: color-mix(in srgb, var(--color-rose) 15%, transparent);
+  background-color: color-mix(in srgb, var(--color-rose) 10%, transparent);
 }
 
 .bg-peach-soft {
-  background-color: color-mix(in srgb, var(--color-peach) 15%, transparent);
+  background-color: color-mix(in srgb, var(--color-peach) 10%, transparent);
 }
 
-
+.border-blue {
+  border: 1px solid var(--color-blue);
+}
 .container-body {
-  @apply p-[15px] px-[2vw]
+  @apply max-sm:p-[10px] py-3 px-[10vw]
 }
