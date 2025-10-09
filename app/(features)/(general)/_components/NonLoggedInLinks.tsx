@@ -20,34 +20,31 @@ const NonLoggedInLinks = () => {
                 {publicLinks.map((lnk) => (
                     <Link
                         key={lnk.href}
-                        href={lnk.href}
+                        href={{ pathname: lnk.href }}
                         className="text-gray-700 hover:text-blue-600 transition"
                     >
                         {lnk.label}
                     </Link>
                 ))}
-                <Button asChild variant="outline">
-                    <Link href="/signup" >Signup</Link>
-                </Button>
-                <Button asChild variant="sky">
-                    <Link href="/signin">Signin</Link>
+                <Button asChild variant="teal">
+                    <Link href="/signin">Login</Link>
                 </Button>
             </section>
             <Button
                 size="icon"
                 variant="borderTeal"
-                className="sm:hidden"
+                className="sm:hidden border-teal "
                 onClick={() => setOpen(!open)}
             >
                 {open ? <X /> : <Menu />}
             </Button>
 
             {open && (
-                <div className="absolute right-0 mt-2 w-[calc(100vw-30px)] flex flex-col bg-white border rounded-lg shadow-md sm:hidden">
+                <div className="absolute right-0 mt-2 w-[calc(100vw-30px)] flex flex-col bg-white border rounded-lg shadow-md sm:hidden overflow-hidden border-teal">
                     {publicLinks.map((lnk) => (
                         <Link
                             key={lnk.href}
-                            href={lnk.href}
+                            href={{ pathname: lnk.href }}
                             onClick={() => setOpen(false)}
                             className="px-4 py-2 text-gray-700 hover:bg-gray-100"
                         >
