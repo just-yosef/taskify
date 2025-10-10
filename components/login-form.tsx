@@ -21,13 +21,23 @@ import { SigninInput } from "@/app/(features)/(general)/types"
 import { ErrorMessage } from "@/app/(features)/(general)/(signin)/_components"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { loginSchema } from "@/app/(features)/(general)/(signin)/(schemas)"
+import { AxiosError } from "axios"
+import { toast } from "sonner"
+import { Toast } from "@/app/(shared)/_components"
 
 export function LoginForm({ switchMode, className }: { switchMode: () => void; className?: string }) {
   const { handleSubmit, register, formState: { errors } } = useForm<SigninInput>({
     resolver: zodResolver(loginSchema)
   })
   const { mutate, isPending } = useMutation({ mutationFn: login })
-  const onSubmit = (data: SigninInput) => mutate(data)
+  const onSubmit = (data: SigninInput) => mutate(data, {
+    onSuccess(data) {
+      toast.custom(() => <Toast status="success" message={data?.message!} />)
+    },
+    onError(error, variables, onMutateResult, context) {
+      toast.custom(() => <Toast status="error" message={(((error as AxiosError).response?.data as { error: string }).error)} />)
+    },
+  })
   const { email, password } = errors
   return (
     <div className={cn("flex flex-col gap-6", className)}>
@@ -41,7 +51,7 @@ export function LoginForm({ switchMode, className }: { switchMode: () => void; c
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
-                <Input id="email" type="email" {...register("email")}  />
+                <Input id="email" type="email" {...register("email")} />
                 {email && <ErrorMessage error={email} />}
               </Field>
               <Field>
@@ -55,7 +65,7 @@ export function LoginForm({ switchMode, className }: { switchMode: () => void; c
                   </a>
                 </div>
                 <Input id="password" type="password" {...register("password")} required />
-                  {password && <ErrorMessage error={password} />}
+                {password && <ErrorMessage error={password} />}
 
               </Field>
               <Field>

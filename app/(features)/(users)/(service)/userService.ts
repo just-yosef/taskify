@@ -1,13 +1,14 @@
 import axios from "axios";
-import { AuthResponse, IUser, SigninInput, SignupFormData, SignupInput } from "../types";
+import { AuthResponse, IUser, SigninInput, SignupFormData, SignupInput } from "../../(general)/types";
+import { api } from "../../(general)/constants";
 
 
 export const login = async (credentials: SigninInput): Promise<AuthResponse> => {
-    const loginResonse = await axios.post("/login", credentials);
+    const loginResonse = await api.post("/login", credentials);
     return loginResonse.data
 }
 
 export const signup = async (credentials: SignupFormData): Promise<SignupInput> => {
-    const loginResonse = await axios.post("/signup", credentials);
+    const loginResonse = await api.post("/signup", credentials);
     return loginResonse.data
 }
