@@ -5,7 +5,7 @@ import NonLoggedInLinks from "./NonLoggedInLinks"
 const Header = () => {
     return (
         <>
-            <header className="container-body flex items-center justify-between">
+            <header className="container-body flex items-center justify-between sticky inset-0 bg-white border-teal !border-t-transparent !border-r-transparent !border-l-transparent">
                 <Logo />
                 <NonLoggedInLinks />
             </header>

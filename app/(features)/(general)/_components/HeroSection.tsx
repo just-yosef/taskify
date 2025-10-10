@@ -1,7 +1,7 @@
 import React from 'react'
 import workImg from "../_assets/imgs/work-stress-XRGKF28WN7-w600.jpg"
 import Image from 'next/image'
-import { BodyContainer, TitleSection } from '@/app/(shared)/_components'
+import { TitleSection } from '@/app/(shared)/_components'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 const HeroSection = () => {
@@ -20,7 +20,7 @@ const HeroSection = () => {
                         </Button>
                     </section>
                     <Image
-                    className='max-lg:w-full object-cover'
+                        className='max-lg:w-full object-cover'
                         width={600}
                         height={300}
                         alt='work'

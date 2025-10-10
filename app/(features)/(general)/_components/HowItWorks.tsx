@@ -1,5 +1,4 @@
 import { TitleSection } from '@/app/(shared)/_components'
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { cn } from '@/lib/utils';
 import { FolderPlus, HandCoins, MessageSquare, UserPlus } from 'lucide-react';
@@ -7,8 +6,6 @@ import React from 'react'
 import { steps } from '../constants';
 
 const HowItWorks = () => {
-  ;
-
   return (
     <section className='mt-10'>
       <TitleSection text='How It Works' />
@@ -20,9 +17,8 @@ const HowItWorks = () => {
             "bg-rose-soft",
             "bg-peach-soft",
           ]
-
           const Icon = icon
-          return <Card className={cn(softBg[i])}>
+          return <Card key={icon + desc} className={cn(softBg[i], softBg[i].replace("bg", "border").split("-").slice(0, 2).join("-"))}>
             <CardHeader>
               <CardTitle>
                 <span className={[
