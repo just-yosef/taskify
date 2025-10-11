@@ -11,7 +11,6 @@ const NonLoggedInLinks = () => {
         { label: "About", href: "/about" },
         { label: "Features", href: "/features" },
         { label: "Contact", href: "/contact" },
-
     ];
 
     return (
