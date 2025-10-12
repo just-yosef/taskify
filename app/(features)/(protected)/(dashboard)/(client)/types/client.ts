@@ -4,6 +4,7 @@ export interface Offer {
   projectTitle: string;
   price: number;
   duration: number;
+  specialization: string;
 }
 
 export interface OfferItemProps {
@@ -24,18 +25,4 @@ export interface Message {
 export interface MessageItemProps {
   message: Message;
   onReply?: (id: string) => void;
-}
-export interface Project {
-  id: number;
-  title: string;
-  status: string;
-  variant?: string;
-  author: string;
-  remaining: string;
-}
-
-export interface ProjectItemProps {
-  project: Project;
-  onView?: (id: number) => void;
-  showButton?: boolean;
 }

@@ -1,6 +1,7 @@
 import ClientMessages from "./ClientMessages";
 import ClientOffers from "./ClientOffers";
 import EmptyStateResource from "./EmptyStateResource";
+import OfferDetails from "./OfferDetails";
 import OpenProjects from "./OpenProjects";
 import ProjectItem from "./ProjectItem";
 import StatsGrid from "./StatsCard";
@@ -11,4 +12,5 @@ export {
   ClientMessages,
   ProjectItem,
   EmptyStateResource,
+  OfferDetails,
 };

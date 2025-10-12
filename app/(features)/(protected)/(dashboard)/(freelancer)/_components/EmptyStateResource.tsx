@@ -1,14 +1,6 @@
-import React, { JSX } from "react";
 import { Button } from "@/components/ui/button";
+import { EmptyStateResourceProps } from "../../(shared)/types";
 
-interface EmptyStateResourceProps {
-  icon?: string;
-  title: string;
-  description?: string;
-  actionText?: string;
-  onAction?: () => void;
-  showAction?: boolean;
-}
 
 const EmptyStateResource: React.FC<EmptyStateResourceProps> = ({
   icon = "📂",
@@ -32,10 +24,10 @@ const EmptyStateResource: React.FC<EmptyStateResourceProps> = ({
 
       {showAction && (
         <Button
-          variant="sky"
+          variant="peach"
           size="sm"
           onClick={onAction}
-          className="transition-all mt-3"
+          className="transition-all"
         >
           {actionText} {title}
         </Button>

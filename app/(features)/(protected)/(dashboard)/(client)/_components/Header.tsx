@@ -4,12 +4,15 @@ import React from "react";
 import { clientNavLinks } from "../constants";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-const Header = () => {
+import { User } from "@/app/(features)/(users)/models";
+const Header = ({ userType }: { userType: "client" | "freelancer" }) => {
   return (
-      <header className="container-body flex items-center sticky inset-0 bg-white border-teal justify-between !border-t-transparent !border-r-transparent !border-l-transparent">
-        <Logo />
-        <section className="flex items-center gap-2 max-sm:hidden">
-          {clientNavLinks.map((item) => {
+    <header className="container-body flex items-center sticky inset-0 bg-white border-teal justify-between !border-t-transparent !border-r-transparent !border-l-transparent">
+      <Logo />
+      <section className="flex items-center gap-2 max-lg:hidden">
+        {clientNavLinks
+          .slice(0, userType !== "client" ? -1 : undefined)
+          .map((item) => {
             const Icon = item.icon;
             return (
               <Button
@@ -25,9 +28,9 @@ const Header = () => {
               </Button>
             );
           })}
-        </section>
-        <HeaderMobile links={clientNavLinks} />
-      </header>
+      </section>
+      <HeaderMobile links={clientNavLinks} />
+    </header>
   );
 };
 

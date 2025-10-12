@@ -1,5 +1,5 @@
 import React from "react";
-import type {  OfferItemProps } from "../types/client";
+import type { OfferItemProps } from "../types/client";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -8,8 +8,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import Link from "next/link";
 import { BadgeDollarSign, Clock2, Tag } from "lucide-react";
+import OfferDetails from "./OfferDetails";
+
 const OfferItem = ({
   offer,
   onAccept,
@@ -18,7 +19,7 @@ const OfferItem = ({
 }: OfferItemProps) => {
   if (!offer) return null;
   return (
-    <Card className="border-peach py-4">
+    <Card className="border-peach py-4 gap-4">
       <CardHeader>
         <span className="size-10 bg-peach-soft flex justify-center items-center rounded-full">
           <Tag className="text-peach" />
@@ -68,11 +69,7 @@ const OfferItem = ({
         )}
       </CardContent>
       <CardFooter>
-        <Button variant="peach" size="sm" className="font-[rubicRegular]" asChild>
-          <Link href={{ pathname: `/proposal/${offer.id}` }}>
-            Offer Details
-          </Link>
-        </Button>
+        <OfferDetails {...offer}  />
       </CardFooter>
     </Card>
   );

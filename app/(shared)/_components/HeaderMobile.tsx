@@ -17,7 +17,7 @@ const HeaderMobile = ({ links }: Props) => {
       <Button
         size="icon"
         variant="borderTeal"
-        className="sm:hidden border-teal"
+        className="lg:hidden border-teal"
         onClick={() => setOpen(!open)}
       >
         {open ? <X /> : <Menu />}

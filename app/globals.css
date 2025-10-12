@@ -328,5 +328,5 @@ body {
 }
 
 .container-body {
-  @apply max-sm:p-[10px] py-3 px-[10vw]
+  @apply max-lg:p-[10px] py-3 px-[10vw]
 }

@@ -1,10 +1,17 @@
+import {
+  FreelancerOverview,
+  Porposals,
+  Projects,
+} from "@/app/(features)/(protected)/(dashboard)/(freelancer)/_components";
+
 const page = () => {
-    return (
-        <div>
-            Dashboard Freelancer
+  return (
+    <>
+      <FreelancerOverview />
+      <Projects />
+      <Porposals />
+    </>
+  );
+};
 
-        </div>
-    )
-}
-
-export default page
+export default page;

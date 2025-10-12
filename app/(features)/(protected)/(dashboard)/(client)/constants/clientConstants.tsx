@@ -64,6 +64,7 @@ export const offers: Offer[] = [
     projectTitle: "Educational Mobile App",
     price: 250,
     duration: 5,
+    specialization: "Mobile App Developer (Flutter & React Native)",
   },
   {
     id: 2,
@@ -71,6 +72,7 @@ export const offers: Offer[] = [
     projectTitle: "Tourism Company Website",
     price: 400,
     duration: 7,
+    specialization: "Full-Stack Web Developer (Next.js & Node.js)",
   },
   {
     id: 3,
@@ -78,6 +80,7 @@ export const offers: Offer[] = [
     projectTitle: "E-commerce Dashboard UI",
     price: 320,
     duration: 6,
+    specialization: "UI/UX Designer (Figma & Tailwind CSS)",
   },
   {
     id: 4,
@@ -85,8 +88,10 @@ export const offers: Offer[] = [
     projectTitle: "Landing Page Redesign",
     price: 180,
     duration: 3,
+    specialization: "Frontend Developer (React & HTML/CSS)",
   },
 ];
+
 export const messages = [
   {
     id: "1",

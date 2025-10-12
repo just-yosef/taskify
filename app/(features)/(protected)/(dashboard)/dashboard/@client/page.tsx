@@ -5,16 +5,16 @@ import {
   ClientMessages,
   ClientOffers,
   OpenProjects,
-  StatsGrid,
 } from "@/app/(features)/(protected)/(dashboard)/(client)/_components";
+import { StatsGrid } from "@/app/(features)/(protected)/(dashboard)/(shared)/_components";
+
 import { stats } from "@/app/(features)/(protected)/(dashboard)/(client)/constants";
 
 const page = () => {
   return (
-    <div>
+    <>
       <TitleSection text="Overview" />
       <StatsGrid stats={stats} />
-
       <section>
         <TitleSection text="Open Projects" />
         <OpenProjects />
@@ -27,7 +27,7 @@ const page = () => {
         <TitleSection text="Latest Messages" />
         <ClientMessages />
       </section>
-    </div>
+    </>
   );
 };
 
