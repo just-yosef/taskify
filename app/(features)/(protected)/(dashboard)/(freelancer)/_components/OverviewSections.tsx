@@ -6,7 +6,7 @@ const OverviewSections = () => {
   return (
     <GridContainer>
       {stats.map(({ title, value }) => (
-        <StatCard title={title} value={value} />
+        <StatCard title={title} value={value} key={title + value} />
       ))}
     </GridContainer>
   );

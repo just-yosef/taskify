@@ -1,12 +1,12 @@
 import { LucideProps } from "lucide-react";
-import { ForwardRefExoticComponent, RefAttributes } from "react";
+import { ForwardRefExoticComponent, JSX, RefAttributes } from "react";
 
 interface NavLink {
   label_ar: string;
 
   label_en: string;
 
-  url: string;
+  url?: string;
 
   icon?: ForwardRefExoticComponent<
     Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
@@ -21,6 +21,7 @@ interface NavLink {
   value_key?: string;
 
   style?: string;
+  component?: React.ReactNode;
 }
 
 export type TopBarLinksArray = NavLink[];

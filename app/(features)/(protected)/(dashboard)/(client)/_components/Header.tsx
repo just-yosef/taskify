@@ -1,10 +1,16 @@
 "use client";
-import { HeaderMobile, Logo } from "@/app/(shared)/_components";
-import React from "react";
-import { clientNavLinks } from "../constants";
+import { HeaderMobile, Loader, Logo } from "@/app/(shared)/_components";
+import React, { lazy, Suspense } from "react";
+import { clientNavLinks, messages } from "../constants";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { User } from "@/app/(features)/(users)/models";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
 const Header = ({ userType }: { userType: "client" | "freelancer" }) => {
   return (
     <header className="container-body flex items-center sticky inset-0 bg-white border-teal justify-between !border-t-transparent !border-r-transparent !border-l-transparent">
@@ -16,15 +22,35 @@ const Header = ({ userType }: { userType: "client" | "freelancer" }) => {
             const Icon = item.icon;
             return (
               <Button
+                key={item.label_en}
                 asChild
                 variant="borderTeal"
                 size="sm"
                 className="font-[rubicRegular]"
               >
-                <Link href={{ pathname: item.url }}>
-                  {Icon ? <Icon size={18} /> : null}
-                  {item.label_en}
-                </Link>
+                {item.url ? (
+                  <Link href={{ pathname: item.url }}>
+                    {Icon ? <Icon size={18} /> : null}
+                    {item.label_en}
+                  </Link>
+                ) : (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="borderTeal">
+                        {Icon ? <Icon size={18} /> : null}
+                        {item.label_en}
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent
+                      align="end"
+                      className="w-[350px] relative min-h-[180px] max-h-[350px] pt-0 pb-4 border-teal px-0"
+                    >
+                      <Suspense fallback={<Loader />}>
+                        {item.component}
+                      </Suspense>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                )}
               </Button>
             );
           })}

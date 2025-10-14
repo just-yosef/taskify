@@ -8,6 +8,14 @@ import {
   Plus,
 } from "lucide-react";
 import { Offer } from "../types";
+import { lazy } from "react";
+// import { MessagesContent } from "../../(freelancer)/_components";
+const MessagesContent = lazy(
+  () => import("../../(freelancer)/_components/MessagesContent")
+);
+const Notifications = lazy(
+  () => import("../../(freelancer)/_components/Notifications")
+);
 export const clientNavLinks: TopBarLinksArray = [
   {
     label_ar: "لوحة التحكم",
@@ -19,18 +27,23 @@ export const clientNavLinks: TopBarLinksArray = [
   {
     label_ar: "الإشعارات",
     label_en: "Notifications",
-    url: "/notifications",
+    // url: "/notifications",
+    component: <Notifications />,
     icon: Bell,
     count_key: "notifications_count",
     type: "utility_indicator",
+    is_dropdown: true,
+
   },
   {
     label_ar: "الرسائل",
     label_en: "Messages",
-    url: "/messages",
+    // url: "/messages",
+    component: <MessagesContent />,
     icon: MessageCircle,
     count_key: "messages_count",
     type: "utility_indicator",
+    is_dropdown: true,
   },
   {
     label_ar: "الرصيد",
@@ -121,6 +134,7 @@ export const messages = [
     time: "Yesterday",
     isRead: false,
   },
+  
 ];
 
 export const projects = [

@@ -39,7 +39,7 @@ const Projects = () => {
             },
           ] as Project[]
         ).map((item) => (
-          <ProjectItem project={item} />
+          <ProjectItem project={item} key={item.author} />
         ))}
       </GridContainer>
     </>

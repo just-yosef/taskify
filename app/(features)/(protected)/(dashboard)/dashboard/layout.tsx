@@ -1,7 +1,6 @@
 "use client";
 import { BodyContainer } from "@/app/(shared)/_components";
 import Header from "../(client)/_components/Header";
-
 const layout = ({
   children,
   client,

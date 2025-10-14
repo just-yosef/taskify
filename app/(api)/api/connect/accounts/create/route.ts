@@ -18,9 +18,9 @@ export async function POST(req: NextRequest) {
     });
 
     const accountLink = await stripe.accountLinks.create({
-      account: "acct_1SHNaGQBNl9fqiDR",
-      refresh_url: `http://localhost:3000/reauth`,
-      return_url: `http://localhost:3000/onboarding-complete?account_id=${account.id}`,
+      account: "acct_1SHr778OoQWyX7Zk",
+      refresh_url: process.env.BASE_URL + "/reauth",
+      return_url: process.env.BASE_URL + "/success",
       type: "account_onboarding",
     });
     return NextResponse.json({

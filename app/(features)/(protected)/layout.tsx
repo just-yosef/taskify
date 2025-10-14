@@ -1,9 +1,3 @@
-const layout = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <>
-            {children}
-        </>
-    )
-}
-
-export default layout
+"use client";
+const layout = ({ children }: { children: React.ReactNode }) => children;
+export default layout;

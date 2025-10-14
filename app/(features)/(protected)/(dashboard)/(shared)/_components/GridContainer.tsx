@@ -8,9 +8,10 @@ const GridContainer = ({ distance = "sm", children }: Props) => {
   return (
     <div
       className={cn(
-        distance === "sm"
-          ? "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"
-          : "grid grid-cols-2 sm:grid-cols-3 gap-4"
+        distance === "wd"
+          ? "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+          : "grid grid-cols-2 md:grid-cols-3 gap-4",
+        "max-sm:grid-cols-1"
       )}
     >
       {children}
