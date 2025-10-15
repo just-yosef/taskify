@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap rounded-md text-sm font-medium transition-all font-[rubicRegular] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive capitalize",
+  "inline-flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap rounded-md text-sm font-medium transition-all font-[rubicRegular] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none  aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive capitalize",
   
   {
     variants: {
@@ -27,7 +27,7 @@ const buttonVariants = cva(
         rose: "bg-[#db5461] text-white hover:bg-[#c0414e]",
         peach: "bg-[#fea271] text-white hover:bg-[#f68a4d]",
         emerald:
-          "bg-[#38A3A5] text-white hover:bg-[#4C956C] active:bg-[#80ED99] focus-visible:ring-[#80ED99]/50",
+          "bg-[#38A3A5] text-white hover:bg-[#4C956C] focus-visible:ring-[#80ED99]/50",
         roseRed:
           "bg-[#CE4257] text-white hover:bg-[#b33a4c] active:bg-[#e6536b] focus-visible:ring-[#CE4257]/50",
       },

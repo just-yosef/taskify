@@ -24,14 +24,12 @@ const Projects = () => {
             {
               author: "asdasd",
               remaining: "5d",
-              status: "active",
+              status: "in_progress",
               title: "Building Dashboard",
               id: 2,
               variant: "sky",
             },
             {
-              author: "fasfas",
-              remaining: "5d",
               status: "active",
               title: "Building Dashboard",
               id: 3,
@@ -39,7 +37,18 @@ const Projects = () => {
             },
           ] as Project[]
         ).map((item) => (
-          <ProjectItem project={item} key={item.author} />
+          <ProjectItem
+            project={{
+              ...item,
+              variant:
+                item.status === "completed"
+                  ? "teal"
+                  : item.status === "in_progress"
+                  ? "peach"
+                  : "sky",
+            }}
+            key={item.clientId}
+          />
         ))}
       </GridContainer>
     </>

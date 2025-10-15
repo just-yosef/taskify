@@ -5,3 +5,6 @@ export { default as TitleSection } from "./TitleSection";
 export { default as Toast } from "./Toast";
 export { default as HeaderMobile } from "./HeaderMobile";
 export { default as Loader } from "./Loader";
+export { default as ErrorMessage } from "./ErrorMessage";
+export { default as PendingFormLabel } from "./PendingFormLabel";
+export { default as MoreButton } from "./MoreButton";

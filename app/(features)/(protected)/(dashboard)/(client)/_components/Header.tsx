@@ -13,7 +13,7 @@ import {
 
 const Header = ({ userType }: { userType: "client" | "freelancer" }) => {
   return (
-    <header className="container-body flex items-center sticky inset-0 bg-white border-teal justify-between !border-t-transparent !border-r-transparent !border-l-transparent">
+    <header className="container-body flex items-center sticky inset-0 bg-white border-teal justify-between !border-t-transparent !border-r-transparent !border-l-transparent z-[9999]">
       <Logo />
       <section className="flex items-center gap-2 max-lg:hidden">
         {clientNavLinks
@@ -43,7 +43,7 @@ const Header = ({ userType }: { userType: "client" | "freelancer" }) => {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent
                       align="end"
-                      className="w-[350px] relative min-h-[180px] max-h-[350px] pt-0 pb-4 border-teal px-0"
+                      className="w-[350px] relative min-h-[180px] max-h-[350px] pt-0 pb-4 border-teal px-0 mt-3"
                     >
                       <Suspense fallback={<Loader />}>
                         {item.component}

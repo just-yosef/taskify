@@ -10,9 +10,8 @@ const layout = ({
   client: React.ReactNode;
   freelancer: React.ReactNode;
 }) => {
-  const mode: "client" | "freelancer" = localStorage.getItem("user-role") as
-    | "client"
-    | "freelancer";
+  const mode: "client" | "freelancer" = "client";
+  localStorage.getItem("user-role") as "client" | "freelancer";
   return (
     <>
       <Header userType={mode} />

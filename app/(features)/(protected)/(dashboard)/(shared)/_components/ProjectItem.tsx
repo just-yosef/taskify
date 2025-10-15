@@ -22,7 +22,9 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
     <Card className={cn(`border-${project.variant} bg-white pt-3`)}>
       <CardHeader className="pb-2 p-0">
         <div className="flex items-center justify-between px-5">
-          <CardTitle className={cn(`text-base text-${project.variant} font-semibold`)}>
+          <CardTitle
+            className={cn(`text-base text-${project.variant} font-semibold`)}
+          >
             {project.title}
           </CardTitle>
           <Badge
@@ -37,19 +39,14 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
       <CardContent className="text-sm text-gray-500 space-y-1">
         <p>
           <span className="font-medium text-gray-700">By:</span>
-          {project.author}
+          {project.clientName}
         </p>
-        <p>{project.remaining}</p>
+        <p>{project.duration}</p>
       </CardContent>
 
       {showButton && (
         <CardFooter>
-          <Button
-            variant="emerald"
-            size="sm"
-            className="mt-1"
-            onClick={() => onView && onView(project.id)}
-          >
+          <Button variant="emerald" size="sm" className="mt-1">
             Show More
           </Button>
         </CardFooter>

@@ -3,6 +3,6 @@ export type {
   OfferItemProps,
   Message,
   MessageItemProps,
-  Project,
   ProjectItemProps,
 } from "./client";
+export type { ProjectInput } from "./project";

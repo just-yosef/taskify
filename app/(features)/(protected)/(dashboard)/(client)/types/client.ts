@@ -1,3 +1,5 @@
+import { Project } from "../../(shared)/types/project";
+
 export interface Offer {
   id: number;
   freelancerName: string;
@@ -25,4 +27,9 @@ export interface Message {
 export interface MessageItemProps {
   message: Message;
   onReply?: (id: string) => void;
+}
+export interface ProjectItemProps {
+  project: Project;
+  onView?: (id: number) => void;
+  showButton?: boolean;
 }

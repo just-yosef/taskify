@@ -1,0 +1,34 @@
+import { api } from "@/app/(features)/(general)/constants";
+import { ProjectInput } from "../types";
+const getProjects = async () => {
+  const res = await api.get("/projects");
+  return res.data;
+};
+
+const getProjectById = async (id: string) => {
+  const res = await api.get(`/projects?userId=${id}`);
+  return res.data;
+};
+
+const createProject = async (data: ProjectInput) => {
+  const res = await api.post("/projects", data);
+  return res.data;
+};
+
+const updateProject = async (id: string, data: Partial<ProjectInput>) => {
+  const res = await api.patch(`/projects/${id}`, data);
+  return res.data;
+};
+
+const deleteProject = async (id: string) => {
+  const res = await api.delete(`/projects/${id}`);
+  return res.data;
+};
+
+export {
+  getProjects,
+  getProjectById,
+  createProject,
+  updateProject,
+  deleteProject,
+};
