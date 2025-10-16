@@ -1,39 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# - Taskify
 
-## Getting Started
+A modern freelance marketplace built with **Next.js 14**, **TypeScript**, and **Stripe Connect**,  
+designed to connect **clients** and **freelancers** through a clean and scalable architecture.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## - Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### - Client Side
+- Client Dashboard with basic & stats  
+- View and manage projects  
+- Review freelancer offers  
+- Messaging & notifications (UI base)  
+- implement interactivity (ability client to create update delete projects its posts)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### - Freelancer Side
+- Freelancer Dashboard (in progress)  
+- View ongoing and completed projects  
+- Manage proposals and earnings  
+- Integration with Stripe Connect (Express accounts)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### - Payments
+- Integrated **Stripe Connect** flow:
+  - Create freelancer account
+  - Secure payments between clients and freelancers
+  - Platform fee system (commission support)
+- Supports **Test Mode** for sandbox transactions
 
-## Learn More
+### - Authentication
+- Sign up / Sign in using custom handlers  
+- Route protection for client and freelancer dashboards  
+- Toast notifications after auth actions  
+- using important 
+### - Routing Architecture
+The project uses the **Next.js App Router** with **Parallel Routes**  
+to handle multiple layouts and dashboards simultaneously (e.g., client and freelancer dashboards).  
 
-To learn more about Next.js, take a look at the following resources:
+This allows rendering different route trees in parallel — improving modularity and performance.  
+Example:  
+````
+app/
+ ├─ dashboard/
+ │   ├─ @client/
+ │   └─ @freelancer/
+````
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### - Public Pages
+- Homepage with:
+  - Hero section
+  - Features
+  - How it works
+  - Testimonials (fake data)
+  - Join us section
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## - Tech Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Layer | Tools |
+|-------|--------|
+| **Frontend** | Next.js 15 (App Router), React, TypeScript |
+| **UI/UX** | Tailwind CSS, shadcn/ui, Lucide Icons |
+| **Backend** | Next.js Route Handlers (API Routes) |
+| **Database** | mongoDB |
+| **Payments** | Stripe Connect (Express Connected Accounts) |
+| **Auth** | Custom logic  API routes |
+
+---
+
+## Avillable Images 
+### 1- Freelancer Page
+<p align="center">
+  <img src="https://res.cloudinary.com/dj4it3c61/image/upload/v1760458416/brave_screenshot_localhost_6_xjvxtn.png" width="600"/>
+</p>
+
+### 2- Client Page And Accept/Reject Porposal
+<p align="center">
+  <img src="https://res.cloudinary.com/dj4it3c61/image/upload/v1760458452/brave_screenshot_localhost_2_aovd4w.png" width="600"/>
+</p>
+
+### 3- Notifications/Messages
+<p align="center">
+  <img src="https://res.cloudinary.com/dj4it3c61/image/upload/v1760458415/brave_screenshot_localhost_5_ogsymp.png" height="300" width="300"/>
+   <img src="https://res.cloudinary.com/dj4it3c61/image/upload/v1760458415/brave_screenshot_localhost_4_l1nwhg.png" height="300" width="300"/>
+</p>
+
+### 4- (create, update, delete) project 
+#### **Create**
+<div>
+<img src="https://res.cloudinary.com/dj4it3c61/image/upload/v1760552255/brave_screenshot_localhost_9_jqgsuz.png" height="300" width="300"/>
+<div/>
+
+#### **Edit**
+   <img src="https://res.cloudinary.com/dj4it3c61/image/upload/v1760552256/brave_screenshot_localhost_10_a4uy9t.png" height="300" width="300"/>
+
+#### **Delete**
+ <img src="https://res.cloudinary.com/dj4it3c61/image/upload/v1760552256/brave_screenshot_localhost_7_udfjr2.png" height="300" width="500"/>
+
+## - Project Structure
 
 ```
 taskify
@@ -50,6 +115,10 @@ taskify
 │  │     │  ├─ confirm
 │  │     │  │  └─ route.ts
 │  │     │  └─ create
+│  │     │     └─ route.ts
+│  │     ├─ projects
+│  │     │  ├─ route.ts
+│  │     │  └─ [id]
 │  │     │     └─ route.ts
 │  │     ├─ signup
 │  │     │  └─ route.ts
@@ -105,12 +174,30 @@ taskify
 │  │  │  │  │  ├─ constants
 │  │  │  │  │  │  ├─ clientConstants.tsx
 │  │  │  │  │  │  └─ index.ts
+│  │  │  │  │  ├─ hooks
+│  │  │  │  │  │  ├─ getClientProjects.ts
+│  │  │  │  │  │  ├─ index.ts
+│  │  │  │  │  │  ├─ useaddNewProject.ts
+│  │  │  │  │  │  ├─ useRemoveProject.ts
+│  │  │  │  │  │  └─ useUpdateProject.ts
+│  │  │  │  │  ├─ model
+│  │  │  │  │  │  ├─ index.ts
+│  │  │  │  │  │  └─ project.model.ts
+│  │  │  │  │  ├─ schema
+│  │  │  │  │  │  ├─ AddProject.schema.ts
+│  │  │  │  │  │  └─ index.ts
+│  │  │  │  │  ├─ service
+│  │  │  │  │  │  ├─ index.ts
+│  │  │  │  │  │  └─ project.service.ts
 │  │  │  │  │  ├─ types
 │  │  │  │  │  │  ├─ client.ts
-│  │  │  │  │  │  └─ index.ts
+│  │  │  │  │  │  ├─ index.ts
+│  │  │  │  │  │  └─ project.ts
 │  │  │  │  │  └─ _components
+│  │  │  │  │     ├─ AddNewProject.tsx
 │  │  │  │  │     ├─ ClientMessages.tsx
 │  │  │  │  │     ├─ ClientOffers.tsx
+│  │  │  │  │     ├─ EditProject.tsx
 │  │  │  │  │     ├─ EmptyStateResource.tsx
 │  │  │  │  │     ├─ Header.tsx
 │  │  │  │  │     ├─ index.ts
@@ -125,21 +212,30 @@ taskify
 │  │  │  │  │  ├─ constants
 │  │  │  │  │  │  ├─ index.ts
 │  │  │  │  │  │  └─ main.ts
+│  │  │  │  │  ├─ types
+│  │  │  │  │  │  ├─ index.ts
+│  │  │  │  │  │  └─ main.ts
 │  │  │  │  │  └─ _components
 │  │  │  │  │     ├─ EmptyStateResource.tsx
 │  │  │  │  │     ├─ FreelancerOverview.tsx
 │  │  │  │  │     ├─ index.ts
+│  │  │  │  │     ├─ MessagesContent.tsx
+│  │  │  │  │     ├─ Notifications.tsx
 │  │  │  │  │     ├─ OpenProjects.tsx
 │  │  │  │  │     ├─ OverviewSections.tsx
 │  │  │  │  │     ├─ Porposals.tsx
 │  │  │  │  │     └─ Projects.tsx
 │  │  │  │  ├─ (shared)
+│  │  │  │  │  ├─ helpers
+│  │  │  │  │  │  ├─ getProjectVariant.ts
+│  │  │  │  │  │  └─ index.ts
 │  │  │  │  │  ├─ types
 │  │  │  │  │  │  ├─ index.ts
 │  │  │  │  │  │  ├─ main.ts
 │  │  │  │  │  │  └─ project.ts
 │  │  │  │  │  └─ _components
 │  │  │  │  │     ├─ GridContainer.tsx
+│  │  │  │  │     ├─ GridItem.tsx
 │  │  │  │  │     ├─ index.ts
 │  │  │  │  │     ├─ ProjectItem.tsx
 │  │  │  │  │     ├─ StatCard.tsx
@@ -170,9 +266,13 @@ taskify
 │  │  │  └─ ui.ts
 │  │  └─ _components
 │  │     ├─ BodyContainer.tsx
+│  │     ├─ ErrorMessage.tsx
 │  │     ├─ HeaderMobile.tsx
 │  │     ├─ index.ts
+│  │     ├─ Loader.tsx
 │  │     ├─ Logo.tsx
+│  │     ├─ MoreButton.tsx
+│  │     ├─ PendingFormLabel.tsx
 │  │     ├─ TitleSection.tsx
 │  │     └─ Toast.tsx
 │  ├─ css.css
@@ -181,7 +281,6 @@ taskify
 │  ├─ layout.tsx
 │  └─ [...catch]
 │     └─ page.tsx
-├─ CODEOWNERS
 ├─ components
 │  ├─ base
 │  │  └─ buttons
@@ -195,6 +294,7 @@ taskify
 │     ├─ card.tsx
 │     ├─ checkbox.tsx
 │     ├─ dialog.tsx
+│     ├─ dropdown-menu.tsx
 │     ├─ field.tsx
 │     ├─ input.tsx
 │     ├─ label.tsx
