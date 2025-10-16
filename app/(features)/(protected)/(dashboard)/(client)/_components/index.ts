@@ -7,6 +7,7 @@ import OfferDetails from "./OfferDetails";
 import OpenProjects from "./OpenProjects";
 import ProjectItem from "./ProjectItem";
 import StatsGrid from "./StatsCard";
+import UserActions from "./UserActions";
 export {
   StatsGrid,
   ClientOffers,
@@ -17,4 +18,5 @@ export {
   OfferDetails,
   AddNewProject,
   EditProject,
+  UserActions,
 };

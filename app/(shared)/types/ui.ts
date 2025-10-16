@@ -1,7 +1,7 @@
 import { LucideProps } from "lucide-react";
 import { ForwardRefExoticComponent, JSX, RefAttributes } from "react";
 
-interface NavLink {
+export interface NavLink {
   label_ar: string;
 
   label_en: string;
@@ -19,7 +19,7 @@ interface NavLink {
   count_key?: string;
 
   value_key?: string;
-
+  fitWidth?: boolean;
   style?: string;
   component?: React.ReactNode;
 }

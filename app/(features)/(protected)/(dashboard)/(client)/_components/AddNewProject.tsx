@@ -69,17 +69,15 @@ export default function AddNewProject() {
 
   return (
     <Dialog>
-      <section className="flex justify-end w-full mb-5">
+      <section className="flex justify-end w-full">
         <DialogTrigger asChild>
-          <Button variant="emerald">Add New Project</Button>
+          <Button variant="teal">Add New Project</Button>
         </DialogTrigger>
       </section>
-
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Add New Project</DialogTitle>
         </DialogHeader>
-
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
           <div>
             <Label htmlFor="title" className="mb-2 font-[rubicMedium]">
@@ -146,7 +144,7 @@ export default function AddNewProject() {
             </div>
           </div>
 
-          <Button disabled={isPending} type="submit">
+          <Button variant="teal" disabled={isPending} type="submit">
             <PendingFormLabel isSubmitting={isPending} action="Post" />
           </Button>
         </form>

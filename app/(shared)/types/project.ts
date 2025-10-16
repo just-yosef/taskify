@@ -12,12 +12,8 @@ export interface Project {
   clientName: string;
   variant?: ProjectStatus;
 }
+
 export type ProjectStatus = "open" | "in_progress" | "completed";
-export interface ProjectItemProps {
-  project: Project;
-  onView?: (id: number) => void;
-  showButton?: boolean;
-}
 
 export interface ProjectItemProps {
   project: Project;

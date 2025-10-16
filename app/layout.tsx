@@ -1,8 +1,9 @@
-"use client"
+"use client";
 import type { Metadata } from "next";
 import "./globals.css";
-import "@/lib/i18n"
+import "@/lib/i18n";
 import { Toaster } from "sonner";
+import { Header } from "./(shared)/_components";
 
 // export const metadata: Metadata = {
 //   title: "Create Next App",
@@ -16,9 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`antialiased`}
-      >
+      <body className={`antialiased`}>
         {children}
         <Toaster />
       </body>

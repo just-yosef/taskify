@@ -11,7 +11,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { ProjectItemProps } from "../types";
 import { MoreButton, PendingFormLabel } from "@/app/(shared)/_components";
-import { Edit, Trash } from "lucide-react";
 import { useDeleteProject } from "../hooks";
 import { toast } from "sonner";
 import EditProject from "./EditProject";

@@ -1,11 +1,13 @@
-import React from 'react'
+import React from "react";
+import { RecentJobs } from "../_components";
 
 const page = () => {
-    return (
-        <div>
-            Browse Jobs
-        </div>
-    )
-}
+  return (
+    <>
+      <RecentJobs />
+      Browse Jobs
+    </>
+  );
+};
 
-export default page
+export default page;
