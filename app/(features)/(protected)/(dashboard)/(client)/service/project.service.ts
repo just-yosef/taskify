@@ -1,12 +1,13 @@
 import { api } from "@/app/(features)/(general)/constants";
 import { ProjectInput } from "../types";
-const getProjects = async () => {
-  const res = await api.get("/projects");
+import { Project } from "@/app/(shared)/types";
+const getProjects = async (): Promise<Project[]> => {
+  const res = await api.get(`/projects`);
   return res.data;
 };
 
 const getProjectById = async (id: string) => {
-  const res = await api.get(`/projects?userId=${id}`);
+  const res = await api.get(`/projects/${id}`);
   return res.data;
 };
 

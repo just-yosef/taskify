@@ -11,5 +11,4 @@ const page = () => {
     </BodyContainer>
   );
 };
-
 export default page;

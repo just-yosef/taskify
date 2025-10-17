@@ -1,19 +1,25 @@
-import { projects } from "@/app/(features)/(protected)/(dashboard)/(client)/constants";
 import {
   GridContainer,
   JobItem,
   TitleSection,
 } from "@/app/(shared)/_components";
-import ProjectItem from "@/app/(shared)/_components/ProjectItem";
+import Link from "next/link";
 import React from "react";
+import { api } from "../../constants";
+import { Project } from "@/app/(shared)/types";
+import { getProjects } from "@/app/(features)/(protected)/(dashboard)/(client)/service";
 
-const RecentJobs = () => {
+const RecentJobs = async () => {
+
+  const data = await getProjects();
   return (
     <>
       <TitleSection text="Recent Jobs" />
       <GridContainer>
-        {projects.map((project) => (
-          <JobItem project={project} />
+        {data?.map((project) => (
+          <Link href={{ pathname: `/projects/${project._id}` }}>
+            <JobItem project={project} />
+          </Link>
         ))}
       </GridContainer>
     </>

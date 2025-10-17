@@ -15,7 +15,7 @@ interface Props<T extends link, K extends object> {
 function ToggleNavbarMobile<A extends {}>({ links }: Props<link, A>) {
   const [open, setOpen] = useState(false);
   return (
-    <DropdownMenu onOpenChange={setOpen} >
+    <DropdownMenu onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
         <Button
           size="icon"
