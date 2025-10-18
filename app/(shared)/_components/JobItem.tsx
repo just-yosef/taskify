@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -16,7 +15,6 @@ import { ArrowUpRight, Crown } from "lucide-react";
 
 const JobItem: React.FC<ProjectItemProps> = ({
   project,
-  onView,
   showButton = true,
 }) => {
   return (

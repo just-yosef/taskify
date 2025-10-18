@@ -1,4 +1,3 @@
-import { Separator } from "@/components/ui/separator";
 import Logo from "../../../(shared)/_components/Logo";
 import NonLoggedInLinks from "./NonLoggedInLinks";
 

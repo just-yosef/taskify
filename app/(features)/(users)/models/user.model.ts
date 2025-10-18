@@ -1,4 +1,4 @@
-import mongoose, { Document, Query } from "mongoose";
+import mongoose, { Document } from "mongoose";
 interface IUser extends Document {
   fullName: string;
   email: string;

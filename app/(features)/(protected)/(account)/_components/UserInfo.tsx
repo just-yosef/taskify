@@ -69,9 +69,9 @@ const UserInfo = async () => {
             </Button>
           </p>
           <div className="flex items-center gap-2 my-2">
-            {Object.keys(user.socialLinks).map((socialItem, i) => {
+            {Object.keys(user.socialLinks).map((socialItem) => {
               return (
-                <Button variant="secondary" asChild>
+                <Button variant="secondary" key={socialItem} asChild>
                   {/* @ts-ignore */}
                   <a href={user.socialLinks[socialItem]}>
                     {socialItem.toLowerCase() === "github" ? (

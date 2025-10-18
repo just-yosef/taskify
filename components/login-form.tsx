@@ -44,10 +44,10 @@ export function LoginForm({
   const onSubmit = (data: SigninInput) =>
     mutate(data, {
       onSuccess(data) {
-        toast.custom(() => <Toast status="success" message={data?.message!} />);
+        toast.custom(() => <Toast status="success" message={data.message!} />);
         redirect("/dashboard");
       },
-      onError(error, variables, onMutateResult, context) {
+      onError(error) {
         toast.custom(() => (
           <Toast
             status="error"

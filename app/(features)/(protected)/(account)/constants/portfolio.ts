@@ -1,4 +1,4 @@
-export default [
+export const fakePortfolio = [
   {
     _id: "1",
     title: "E-commerce Website",

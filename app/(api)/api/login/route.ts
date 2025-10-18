@@ -3,7 +3,6 @@ import jwt from "jsonwebtoken";
 import { connectDB } from "@/lib";
 import { UserModel } from "@/app/(features)/(users)/models";
 import { NextRequest, NextResponse } from "next/server";
-import { ResponseCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { setCookie } from "../../(helpers)";
 import { IUser } from "@/app/(features)/(general)/types";
 export async function POST(req: NextRequest) {

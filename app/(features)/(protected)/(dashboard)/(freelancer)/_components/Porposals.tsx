@@ -1,4 +1,3 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { GridContainer, GridItem } from "../../(shared)/_components";
 import { TitleSection } from "@/app/(shared)/_components";
 import { Proposal } from "../types";

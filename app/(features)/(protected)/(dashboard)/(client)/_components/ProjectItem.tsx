@@ -18,7 +18,6 @@ import { getProjectVariant } from "../../(shared)/helpers/getProjectVariant";
 
 const ProjectItem: React.FC<ProjectItemProps> = ({
   project,
-  onView,
   showButton = true,
 }) => {
   const getVariant = useCallback(getProjectVariant, []);

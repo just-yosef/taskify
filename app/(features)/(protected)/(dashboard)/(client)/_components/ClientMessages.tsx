@@ -2,6 +2,7 @@ import React from "react";
 import { messages } from "../constants";
 import MessageItem from "./MessageItem";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const ClientMessages: React.FC = () => {
   if (!messages || messages.length === 0) {
@@ -23,7 +24,7 @@ const ClientMessages: React.FC = () => {
       {messages.length > 3 && (
         <div className="flex justify-center">
           <Button size="lg" variant="sky" className="mt-2" asChild>
-            <a href="/messages">View All Messages</a>
+            <Link href="/messages">View All Messages</Link>
           </Button>
         </div>
       )}

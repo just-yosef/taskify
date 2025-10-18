@@ -4,7 +4,6 @@ import React from "react";
 import {
   ClientMessages,
   ClientOffers,
-  OpenProjects,
 } from "@/app/(features)/(protected)/(dashboard)/(client)/_components";
 import { StatsGrid } from "@/app/(features)/(protected)/(dashboard)/(shared)/_components";
 

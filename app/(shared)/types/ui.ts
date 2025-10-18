@@ -1,5 +1,5 @@
 import { LucideProps } from "lucide-react";
-import { ForwardRefExoticComponent, JSX, RefAttributes } from "react";
+import { ForwardRefExoticComponent, RefAttributes } from "react";
 
 export interface NavLink {
   label_ar: string;

@@ -1,19 +1,17 @@
-import { BodyContainer, Header } from '@/app/(shared)/_components'
-import { Metadata } from 'next'
+import { BodyContainer, Header } from "@/app/(shared)/_components";
+import { Metadata } from "next";
 interface Props {
-    children: React.ReactNode
+  children: React.ReactNode;
 }
 
-export const metadata: Metadata = { title: "الرئيسية" }
+export const metadata: Metadata = { title: "الرئيسية" };
 const layout = ({ children }: Props) => {
-    return (
-        <div>
-            <Header />
-            <BodyContainer>
-                {children}
-            </BodyContainer>
-        </div>
-    )
-}
+  return (
+    <div>
+      <Header />
+      <BodyContainer>{children}</BodyContainer>
+    </div>
+  );
+};
 
-export default layout
+export default layout;

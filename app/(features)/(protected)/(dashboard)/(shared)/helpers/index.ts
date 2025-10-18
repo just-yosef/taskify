@@ -1,1 +1,0 @@
-import { getProjectVariant } from "./getProjectVariant";

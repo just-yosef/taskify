@@ -1,7 +1,7 @@
 import { GridContainer, TitleSection } from "@/app/(shared)/_components";
 import React from "react";
-import { fakePortfolio } from "../constants";
 import PortfolioItem from "./PortfolioItem";
+import { fakePortfolio } from "../constants";
 
 const PortfolioSection = () => {
   return (

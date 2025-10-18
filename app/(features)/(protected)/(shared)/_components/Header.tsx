@@ -6,7 +6,7 @@ import {
 } from "../../(dashboard)/(client)/constants";
 import { HeaderItem } from "../../(dashboard)/(shared)/_components";
 import { UserActions } from "../../(dashboard)/(client)/_components/index";
-import { Bell, LogOut, MessageCircle } from "lucide-react";
+import { Bell, MessageCircle } from "lucide-react";
 import { Notifications } from "../../(dashboard)/(freelancer)/_components";
 import ToggleNavbarMobile from "@/app/(shared)/_components/ToggleNavbarMobile";
 import { freelancerLinks } from "../../(dashboard)/(freelancer)/constants";

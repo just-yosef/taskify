@@ -1,9 +1,9 @@
 "use client";
-import { logout } from "@/app/(features)/(protected)/(account)/account/(actions)";
+import { logout } from "@/app/(features)/(protected)/(account)/(actions)";
 import { Logout } from "@/app/(shared)/_components";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { LogOut, Settings, User2 } from "lucide-react";
+import { Settings, User2 } from "lucide-react";
 import Link from "next/link";
 import React, { useTransition } from "react";
 const MyAccount = () => {

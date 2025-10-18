@@ -9,7 +9,7 @@ export async function POST(request: Request) {
     // await stripe.accounts.update("acct_1SHqon7KyzWIYdjr", {
     //   external_account: "btok_us_verified",
     // });
-  
+
     const { payment_intent_id } = await request.json();
     const confirmed = await stripe.paymentIntents.confirm(
       payment_intent_id,

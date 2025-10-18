@@ -2,7 +2,6 @@ import {
   Bell,
   House,
   MessageCircle,
-  Plus,
   Settings,
   Wallet,
 } from "lucide-react";

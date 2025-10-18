@@ -34,7 +34,7 @@ const FreelancerSettings = () => {
           <EditSection>
             Skills:
             {["html", "css", "react", "nextjs", "node"].map((el) => (
-              <Badge variant="outline" className="text-teal ml-1">
+              <Badge variant="outline" className="text-teal ml-1" key={el}>
                 <Tag /> {el}
               </Badge>
             ))}

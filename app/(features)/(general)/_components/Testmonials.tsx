@@ -32,7 +32,7 @@ const Testimonials = () => (
                     className="p-6 rounded-2xl bg-card shadow-sm hover:shadow-md transition flex flex-col items-center text-center"
                 >
                     <Quote className="w-6 h-6 text-primary mb-3" />
-                    <p className="text-content-secondary italic mb-4">"{t.feedback}"</p>
+                    <p className="text-content-secondary italic mb-4">&rdquo;{t.feedback}&rdquo;</p>
                     <div className="mt-auto">
                         <h3 className="font-semibold text-foreground">{t.name}</h3>
                         <p className="text-sm text-muted-foreground">{t.role}</p>

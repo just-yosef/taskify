@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Stripe } from "stripe";
 
-export async function POST(req: NextRequest) {
+export async function POST() {
   try {
     const stripe = new Stripe(process.env.STRIPE_SECRET!, {
       apiVersion: "2025-09-30.clover",

@@ -1,3 +1,3 @@
 export { headerLinks } from "./main";
-export { default as fakePortfolio } from "./portfolio";
-export { default as fakeReviews } from "./reviews";
+export { fakePortfolio } from "./portfolio";
+export { fakeReviews } from "./reviews";

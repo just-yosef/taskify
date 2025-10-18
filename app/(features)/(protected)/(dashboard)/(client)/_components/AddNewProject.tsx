@@ -23,6 +23,7 @@ import { useRef } from "react";
 import { ProjectInput } from "../types";
 import { Label } from "@/components/ui/label";
 import { useQueryClient } from "@tanstack/react-query";
+import { Project } from "@/app/(shared)/types";
 
 export default function AddNewProject() {
   const { mutate, isPending } = useAddProject();
@@ -40,7 +41,14 @@ export default function AddNewProject() {
   });
   const dialog = useRef<HTMLButtonElement | null>(null);
   const queryClient = useQueryClient();
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: {
+    title: string;
+    description: string;
+    budgetMin: number;
+    budgetMax: number;
+    duration?: string | undefined;
+    category?: string | undefined;
+  }): void => {
     mutate(
       {
         ...data,

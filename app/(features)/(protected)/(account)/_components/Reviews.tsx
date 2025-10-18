@@ -1,7 +1,6 @@
 import { GridContainer, TitleSection } from "@/app/(shared)/_components";
 import React from "react";
 import { fakeReviews } from "../constants";
-import Image from "next/image";
 import { Star } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 type Review = {

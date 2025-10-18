@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export const getCookie = async <T>(key: string) =>
   (await cookies()).get(key)?.value as T;
-export const delCookie = async <T>(key: string) =>
+export const delCookie = async (key: string) =>
   (await cookies()).delete(key);
 
 interface Props {

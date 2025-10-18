@@ -1,6 +1,5 @@
 "use client";
 import ProjectItem from "./ProjectItem";
-import EmptyStateResource from "./EmptyStateResource";
 import { Button } from "@/components/ui/button";
 import AddNewProject from "./AddNewProject";
 import { useClientProjects } from "../hooks";

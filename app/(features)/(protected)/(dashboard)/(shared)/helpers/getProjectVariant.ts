@@ -1,4 +1,4 @@
-import { ProjectStatus } from "../types/project";
+import { ProjectStatus } from "../types";
 
 export const getProjectVariant = (
   status: ProjectStatus

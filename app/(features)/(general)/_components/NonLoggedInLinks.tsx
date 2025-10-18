@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
-import { UserActions } from "../../(protected)/(dashboard)/(client)/_components";
 
 const NonLoggedInLinks = () => {
   const [open, setOpen] = useState(false);

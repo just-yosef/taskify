@@ -15,7 +15,6 @@ import { ProjectItemProps } from "@/app/(features)/(protected)/(dashboard)/(shar
 
 const ProjectItem: React.FC<ProjectItemProps> = ({
   project,
-  onView,
   showButton = true,
 }) => {
   return (

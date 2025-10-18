@@ -1,7 +1,6 @@
 import { TitleSection } from '@/app/(shared)/_components'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { cn } from '@/lib/utils';
-import { FolderPlus, HandCoins, MessageSquare, UserPlus } from 'lucide-react';
 import React from 'react'
 import { steps } from '../constants';
 

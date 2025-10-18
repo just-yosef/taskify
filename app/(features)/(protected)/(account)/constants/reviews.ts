@@ -1,4 +1,4 @@
-export default [
+export const fakeReviews = [
   {
     id: "r1",
     clientName: "Sarah Ahmed",
