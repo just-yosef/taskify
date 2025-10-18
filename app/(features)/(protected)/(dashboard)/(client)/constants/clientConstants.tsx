@@ -104,7 +104,9 @@ export const offers: Offer[] = [
     specialization: "Frontend Developer (React & HTML/CSS)",
   },
 ];
-
+export const clientHeaderLinks = clientNavLinks.map((item) => {
+  return { href: item?.url, label: item.label_en };
+});
 export const messages = [
   {
     id: "1",
@@ -207,7 +209,7 @@ export const projects = [
     createdAt: "2025-10-01T08:15:00Z",
     clientName: "asdasd",
   },
-] satisfies Project[]
+] satisfies Project[];
 export const stats = [
   { title: "Posted Jobs", value: 5 },
   { title: "New Offers", value: 12 },

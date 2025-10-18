@@ -26,7 +26,7 @@ function ToggleNavbarMobile<A extends {}>({ links }: Props<link, A>) {
           {open ? <X /> : <Menu />}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="flex flex-col gap-2 w-[450px] mr-2 lg:hidden border-teal !border-[1px] ">
+      <DropdownMenuContent className="flex flex-col gap-2 w-[450px] mr-2 lg:hidden border-teal !border-[1px] z-[99990000] relative ">
         {links.map((lnk) => (
           <Link
             key={lnk.href}

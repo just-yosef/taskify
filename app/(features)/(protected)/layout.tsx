@@ -9,7 +9,7 @@ export default function layout({ children }: { children: ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
       <BodyContainer>
-        <Header />
+        {/* <Header /> */}
         {children}
       </BodyContainer>
     </QueryClientProvider>

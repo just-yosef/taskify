@@ -1,3 +1,3 @@
-import { stats } from "./main";
+import { stats, freelancerLinks } from "./main";
 
-export { stats };
+export { stats, freelancerLinks };

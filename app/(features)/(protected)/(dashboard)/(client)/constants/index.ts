@@ -4,4 +4,5 @@ export {
   messages,
   projects,
   stats,
+  clientHeaderLinks,
 } from "./clientConstants";

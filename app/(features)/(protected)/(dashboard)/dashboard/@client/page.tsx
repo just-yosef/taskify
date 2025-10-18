@@ -17,7 +17,7 @@ const page = () => {
       <StatsGrid stats={stats} />
       <section>
         <TitleSection text="Open Projects" />
-        <OpenProjects />
+        {/* <OpenProjects /> */}
       </section>
       <section>
         <TitleSection text="New Offers" />

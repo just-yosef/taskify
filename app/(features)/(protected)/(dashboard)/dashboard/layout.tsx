@@ -1,6 +1,5 @@
 "use client";
-import { BodyContainer } from "@/app/(shared)/_components";
-import Header from "../(client)/_components/Header";
+import Header from "../../(shared)/_components/Header";
 const layout = ({
   children,
   client,
@@ -10,15 +9,16 @@ const layout = ({
   client: React.ReactNode;
   freelancer: React.ReactNode;
 }) => {
-  const mode: "client" | "freelancer" = "client";
-  localStorage.getItem("user-role") as "client" | "freelancer";
+  const mode: "client" | "freelancer" = localStorage.getItem("user-role") as
+    | "client"
+    | "freelancer";
   return (
     <>
       <Header userType={mode} />
-      <BodyContainer>
+      <>
         {mode === "client" ? client : freelancer}
         {children}
-      </BodyContainer>
+      </>
     </>
   );
 };
