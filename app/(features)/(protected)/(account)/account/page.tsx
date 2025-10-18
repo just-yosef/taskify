@@ -1,11 +1,8 @@
 import React from "react";
 import { Settings, UserInfo } from "../_components";
-import { Header } from "../../(shared)/_components";
-
-const page = () => {
+const page = async () => {
   return (
     <>
-      <Header userType="client" />
       <UserInfo />
       <Settings />
     </>

@@ -1,7 +1,6 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import {
   AuthResponse,
-  IUser,
   SigninInput,
   SignupFormData,
   SignupInput,
@@ -15,7 +14,6 @@ export const login = async (
     "/login",
     credentials
   )) as AxiosResponse<AuthResponse>;
-  localStorage.setItem("user-role", loginResonse.data.user.role!);
   return loginResonse.data;
 };
 

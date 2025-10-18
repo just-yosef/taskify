@@ -1,6 +1,6 @@
-"use client";
+import { decodedUser } from "@/app/(shared)/helpers";
 import Header from "../../(shared)/_components/Header";
-const layout = ({
+const layout = async ({
   children,
   client,
   freelancer,
@@ -9,9 +9,7 @@ const layout = ({
   client: React.ReactNode;
   freelancer: React.ReactNode;
 }) => {
-  const mode: "client" | "freelancer" = localStorage.getItem("user-role") as
-    | "client"
-    | "freelancer";
+  const mode: "client" | "freelancer" = (await decodedUser()).role!;
   return (
     <>
       <Header userType={mode} />

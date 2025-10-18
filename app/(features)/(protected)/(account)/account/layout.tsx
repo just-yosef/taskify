@@ -1,15 +1,18 @@
+import { getCookie } from "@/app/(api)/(helpers)";
+import { IUser, userRoles } from "@/app/(features)/(general)/types";
 import React, { ReactNode } from "react";
-import { Header } from "../_components";
+import { Header } from "../../(shared)/_components";
 interface Props {
   children: ReactNode;
   client: ReactNode;
   freelancer: ReactNode;
 }
-const layout = ({ children, client, freelancer }: Props) => {
-  const role = "client";
+const layout = async ({ children, client, freelancer }: Props) => {
+  const role = await getCookie<IUser>("user");
   return (
     <>
-      {role === "client" ? client : freelancer}
+      <Header userType={role?.role!} />
+      {/* {role === "client" ? client : freelancer} */}
       {children}
     </>
   );

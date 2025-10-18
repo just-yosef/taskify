@@ -24,7 +24,7 @@ import { loginSchema } from "@/app/(features)/(general)/(signin)/(schemas)";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
 import { PendingFormLabel, Toast } from "@/app/(shared)/_components";
-
+import { redirect } from "next/navigation";
 
 export function LoginForm({
   switchMode,
@@ -45,6 +45,7 @@ export function LoginForm({
     mutate(data, {
       onSuccess(data) {
         toast.custom(() => <Toast status="success" message={data?.message!} />);
+        redirect("/dashboard");
       },
       onError(error, variables, onMutateResult, context) {
         toast.custom(() => (

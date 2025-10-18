@@ -31,7 +31,6 @@ const NonLoggedInLinks = () => {
         </Button>
       </section>
       <section className="flex gap-2">
-        <UserActions />
         <Button
           size="icon"
           variant="borderTeal"

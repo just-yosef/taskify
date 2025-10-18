@@ -3,7 +3,7 @@ interface IUser extends Document {
   fullName: string;
   email: string;
   password: string;
-  role: "client" | "freelancer" | "admin";
+  role: "client" | "freelancer";
   profile: {
     title: string;
     bio: string;
@@ -26,7 +26,7 @@ export interface User {
   fullName: string;
   email: string;
   password: string;
-  role: "client" | "freelancer" | "admin";
+  role: "client" | "freelancer";
   profile: {
     title: string;
     bio: string;

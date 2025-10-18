@@ -1,50 +1,91 @@
-"use client";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Check, Edit, Locate, Star, User, User2 } from "lucide-react";
-import React, { useMemo } from "react";
-import { fakeReviews } from "../constants";
+import {
+  Check,
+  Edit,
+  Github,
+  Link,
+  Linkedin,
+  Locate,
+  Star,
+  User,
+  User2,
+  X,
+} from "lucide-react";
+import React from "react";
 import { Button } from "@/components/ui/button";
+import { decodedUser } from "@/app/(shared)/helpers";
+import { cn } from "@/lib/utils";
+const UserInfo = async () => {
+  const user = await decodedUser();
+  console.log(user.socialLinks);
 
-const UserInfo = () => {
-  const avgRating = useMemo(
-    () =>
-      fakeReviews.reduce((ac, el) => +ac.toString() + el.rating, 1) /
-      fakeReviews.length,
-    []
-  );
   return (
     <>
-      <Separator className="my-5" />
-      <div className="min-h-[250px] flex items-center justify-center">
+      <div className="min-h-[250px] flex items-center justify-center my-10">
         <div className="flex flex-col gap-0.5 items-center">
           <User className="sm:size-24 size-20" opacity="30%" />
-          <h4 className="font-semibold font-[rubicRegular]">ABCD AAAa</h4>
+          <h4 className="font-semibold font-[rubicRegular]">{user.fullName}</h4>
           <div className="flex gap-1">
             <Badge variant="blue">
               <User2 size={25} />
-              New Client
+              {user.role === "freelancer" ? "New Saller" : "New Client"}
             </Badge>
             <Badge variant="outline">
               <Locate />
-              Egypt
+              {user.profile.location}
             </Badge>
             <Badge variant="outline" className="bg-yellow-300">
               <Star />
-              Rating
-              {avgRating}
+              Rating 4.8
             </Badge>
-            <Badge variant="outline" className="bg-green-700 text-white">
-              <Check size={22} />
-              Verifyed
+            <Badge
+              variant="outline"
+              className={cn(
+                user.isVerified ? "bg-green-700" : "bg-red-700",
+                "text-white"
+              )}
+            >
+              {user.isVerified ? (
+                <>
+                  <Check size={22} />
+                  Verifyed
+                </>
+              ) : (
+                <>
+                  <X size={22} />
+                  Not Verifyed
+                </>
+              )}
             </Badge>
           </div>
+          <Badge variant="outline" className="mt-1">
+            {user.profile.title}
+          </Badge>
           <p className="text-muted-foreground">
             no bio yet
             <Button size="icon-sm" variant="outline" className="m-2">
               <Edit size={8} />
             </Button>
           </p>
+          <div className="flex items-center gap-2 my-2">
+            {Object.keys(user.socialLinks).map((socialItem, i) => {
+              return (
+                <Button variant="secondary" asChild>
+                  {/* @ts-ignore */}
+                  <a href={user.socialLinks[socialItem]}>
+                    {socialItem.toLowerCase() === "github" ? (
+                      <Github />
+                    ) : socialItem.toLowerCase() === "linkedin" ? (
+                      <Linkedin />
+                    ) : (
+                      <Link />
+                    )}
+                  </a>
+                </Button>
+              );
+            })}
+          </div>
         </div>
       </div>
       <Separator />

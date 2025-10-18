@@ -1,6 +1,6 @@
 import axios from "axios"
 export const api = axios.create({
-    baseURL: `${process.env.BASE_URL}/api`,
+    baseURL: `${process.env.BASE_URL|| "http://localhost:3000"}/api`,
     withCredentials: true,
     headers: {
         "Content-Type": "application/json"
