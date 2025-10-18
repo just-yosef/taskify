@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { decodedUser, IsLoggedIn } from "./app/(shared)/helpers";
+import { IsLoggedIn } from "./app/(shared)/helpers";
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -13,5 +13,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard", "/account", "/signin"],
+  matcher: ["/dashboard", "/account"],
 };
