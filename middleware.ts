@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { IsLoggedIn } from "./app/(shared)/helpers";
-
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   // @ts-ignore
@@ -28,7 +27,6 @@ export async function middleware(request: NextRequest) {
   const origin = request.headers.get("origin") || "*";
   response.headers.set("Access-Control-Allow-Origin", origin);
   response.headers.set("Access-Control-Allow-Credentials", "true");
-  console.log("COOKIES, Middlware ", request.cookies.getAll());
 
   if (!pathname.startsWith("/api")) {
     const isLoggedin = await IsLoggedIn();
@@ -41,7 +39,6 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL("/dashboard", request.url));
     }
   }
-
   return response;
 }
 

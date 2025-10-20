@@ -11,7 +11,7 @@ const MessagesContent = () => {
       </h3>
       <section className="flex flex-col gap-1 px-1">
         {messages.map((el, i, a) => (
-          <>
+          <section key={el.time}>
             <div className="flex gap-3 mt-2 pl-2">
               <User />
               <div className="flex gap-2 flex-col leading-[1.2] text-sm">
@@ -22,7 +22,7 @@ const MessagesContent = () => {
               </div>
             </div>
             {i < a.length - 1 && <Separator className="my-2" />}
-          </>
+          </section>
         ))}
       </section>
     </>

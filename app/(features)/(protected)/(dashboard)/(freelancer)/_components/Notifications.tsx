@@ -16,7 +16,7 @@ const Notifications = () => {
       </h3>
       <section className="flex flex-col gap-1 px-1">
         {messages.map((el, i, a) => (
-          <>
+          <section key={el.time}>
             <div className="flex gap-3 mt-2 pl-2">
               <Bell />
               <div className="flex gap-2 flex-col relative leading-[1.2] text-sm pr-8">
@@ -42,7 +42,7 @@ const Notifications = () => {
               </div>
             </div>
             {i < a.length - 1 && <Separator className="my-2" />}
-          </>
+          </section>
         ))}
       </section>
     </>

@@ -17,6 +17,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { PendingFormLabel } from "@/app/(shared)/_components";
 import { loginAction } from "@/app/(features)/(general)/(signin)/(actions)";
+import { useTransition } from "react";
+import { redirect, useRouter } from "next/navigation";
+import { Info } from "lucide-react";
 
 export function LoginForm({
   switchMode,
@@ -25,8 +28,23 @@ export function LoginForm({
   switchMode: () => void;
   className?: string;
 }) {
+  const [isPending, transition] = useTransition();
+  const router = useRouter();
+  async function handleLoginAction(formData: FormData) {
+    transition(async () => {
+      try {
+        await loginAction(formData);
+        router.push("/dashboard");
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  }
   return (
     <div className={cn("flex flex-col gap-6", className)}>
+      <h3 className="p-3 font-[rubicMedium] bg-orange-100 rounded-lg border-orange-500 border-2 text-orange-500 font-semibold flex items-center gap-2">
+        <Info size={18} /> Use This Default Values Below For Testing
+      </h3>
       <Card className="border-teal">
         <CardHeader>
           <CardTitle>Login to your account</CardTitle>
@@ -35,11 +53,17 @@ export function LoginForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form action={loginAction}>
+          {/* @ts-ignore */}
+          <form action={handleLoginAction}>
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
-                <Input id="email" type="email" name="email" />
+                <Input
+                  id="email"
+                  type="email"
+                  name="email"
+                  defaultValue={"ahmed.mostafa@1example.com"}
+                />
               </Field>
               <Field>
                 <div className="flex items-center">
@@ -51,11 +75,17 @@ export function LoginForm({
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" name="password" required />
+                <Input
+                  id="password"
+                  type="password"
+                  name="password"
+                  defaultValue={"MyStrongPass123"}
+                  required
+                />
               </Field>
               <Field>
-                <Button type="submit" variant="teal">
-                  <PendingFormLabel isSubmitting={false} action="Login" />
+                <Button type="submit" variant="teal" disabled={isPending}>
+                  <PendingFormLabel isSubmitting={isPending} action="Login" />
                 </Button>
                 <Button variant="outline" type="button">
                   Login with Google

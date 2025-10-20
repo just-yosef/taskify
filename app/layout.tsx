@@ -1,7 +1,7 @@
 // "use client";
+// import "@/lib/i18n";
 // import type { Metadata } from "next";
 import "./globals.css";
-// import "@/lib/i18n";
 import { Toaster } from "sonner";
 import { Header } from "./(shared)/_components";
 // export const metadata: Metadata = {

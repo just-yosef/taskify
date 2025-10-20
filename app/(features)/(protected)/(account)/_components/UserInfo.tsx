@@ -18,8 +18,6 @@ import { decodedUser } from "@/app/(shared)/helpers";
 import { cn } from "@/lib/utils";
 const UserInfo = async () => {
   const user = await decodedUser();
-  console.log(user.socialLinks);
-
   return (
     <>
       <div className="min-h-[250px] flex items-center justify-center my-10">
@@ -33,7 +31,7 @@ const UserInfo = async () => {
             </Badge>
             <Badge variant="outline">
               <Locate />
-              {user.profile.location}
+              {user.profile?.location}
             </Badge>
             <Badge variant="outline" className="bg-yellow-300">
               <Star />
@@ -60,7 +58,7 @@ const UserInfo = async () => {
             </Badge>
           </div>
           <Badge variant="outline" className="mt-1">
-            {user.profile.title}
+            {user.profile?.title}
           </Badge>
           <p className="text-muted-foreground">
             no bio yet
@@ -68,24 +66,28 @@ const UserInfo = async () => {
               <Edit size={8} />
             </Button>
           </p>
-          <div className="flex items-center gap-2 my-2">
-            {Object.keys(user.socialLinks).map((socialItem) => {
-              return (
-                <Button variant="secondary" key={socialItem} asChild>
-                  {/* @ts-ignore */}
-                  <a href={user.socialLinks[socialItem]}>
-                    {socialItem.toLowerCase() === "github" ? (
-                      <Github />
-                    ) : socialItem.toLowerCase() === "linkedin" ? (
-                      <Linkedin />
-                    ) : (
-                      <Link />
-                    )}
-                  </a>
-                </Button>
-              );
-            })}
-          </div>
+          {Object.keys(user.socialLinks).length ? (
+            <div className="flex items-center gap-2 my-2">
+              {Object.keys(user.socialLinks).map((socialItem) => {
+                return (
+                  <Button variant="secondary" key={socialItem} asChild>
+                    {/* @ts-ignore */}
+                    <a href={user.socialLinks[socialItem]}>
+                      {socialItem.toLowerCase() === "github" ? (
+                        <Github />
+                      ) : socialItem.toLowerCase() === "linkedin" ? (
+                        <Linkedin />
+                      ) : (
+                        <Link />
+                      )}
+                    </a>
+                  </Button>
+                );
+              })}
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <Separator />

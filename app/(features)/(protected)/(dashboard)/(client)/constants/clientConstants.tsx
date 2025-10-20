@@ -8,13 +8,14 @@ import {
   Plus,
 } from "lucide-react";
 import { Offer } from "../types";
-import { lazy } from "react";
+
 import { Project } from "../../(shared)/types";
+import dynamic from "next/dynamic";
 // import { MessagesContent } from "../../(freelancer)/_components";
-const MessagesContent = lazy(
+const MessagesContent = dynamic(
   () => import("../../(freelancer)/_components/MessagesContent")
 );
-const Notifications = lazy(
+const Notifications = dynamic(
   () => import("../../(freelancer)/_components/Notifications")
 );
 export const clientNavLinks: TopBarLinksArray = [
