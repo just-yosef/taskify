@@ -1,3 +1,4 @@
+"use client";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,17 +15,8 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { useForm } from "react-hook-form";
-import { login } from "@/app/(features)/(users)/(service)";
-import { useMutation } from "@tanstack/react-query";
-import { SigninInput } from "@/app/(features)/(general)/types";
-import { ErrorMessage } from "@/app/(features)/(general)/(signin)/_components";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema } from "@/app/(features)/(general)/(signin)/(schemas)";
-import { AxiosError } from "axios";
-import { toast } from "sonner";
-import { PendingFormLabel, Toast } from "@/app/(shared)/_components";
-import { redirect } from "next/navigation";
+import { PendingFormLabel } from "@/app/(shared)/_components";
+import { loginAction } from "@/app/(features)/(general)/(signin)/(actions)";
 
 export function LoginForm({
   switchMode,
@@ -33,32 +25,6 @@ export function LoginForm({
   switchMode: () => void;
   className?: string;
 }) {
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm<SigninInput>({
-    resolver: zodResolver(loginSchema),
-  });
-  const { mutate, isPending } = useMutation({ mutationFn: login });
-  const onSubmit = (data: SigninInput) =>
-    mutate(data, {
-      onSuccess(data) {
-        toast.custom(() => <Toast status="success" message={data.message!} />);
-        redirect("/dashboard");
-      },
-      onError(error) {
-        toast.custom(() => (
-          <Toast
-            status="error"
-            message={
-              ((error as AxiosError).response?.data as { error: string }).error
-            }
-          />
-        ));
-      },
-    });
-  const { email, password } = errors;
   return (
     <div className={cn("flex flex-col gap-6", className)}>
       <Card className="border-teal">
@@ -69,12 +35,11 @@ export function LoginForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form action={loginAction}>
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
-                <Input id="email" type="email" {...register("email")} />
-                {email && <ErrorMessage error={email} />}
+                <Input id="email" type="email" name="email" />
               </Field>
               <Field>
                 <div className="flex items-center">
@@ -86,23 +51,17 @@ export function LoginForm({
                     Forgot your password?
                   </a>
                 </div>
-                <Input
-                  id="password"
-                  type="password"
-                  {...register("password")}
-                  required
-                />
-                {password && <ErrorMessage error={password} />}
+                <Input id="password" type="password" name="password" required />
               </Field>
               <Field>
-                <Button type="submit" variant="teal" disabled={isPending}>
-                  <PendingFormLabel isSubmitting={isPending} action="Login" />
+                <Button type="submit" variant="teal">
+                  <PendingFormLabel isSubmitting={false} action="Login" />
                 </Button>
                 <Button variant="outline" type="button">
                   Login with Google
                 </Button>
                 <FieldDescription className="text-center">
-                  Don&apos;t have an account?{" "}
+                  Don&apos;t have an account?
                   <span
                     className="underline cursor-pointer"
                     onClick={switchMode}
