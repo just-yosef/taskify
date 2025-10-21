@@ -1,4 +1,3 @@
-import { BodyContainer, Header } from "@/app/(shared)/_components";
 import { Metadata } from "next";
 interface Props {
   children: React.ReactNode;
@@ -6,12 +5,7 @@ interface Props {
 
 export const metadata: Metadata = { title: "الرئيسية" };
 const layout = ({ children }: Props) => {
-  return (
-    <div>
-      <Header />
-      <BodyContainer>{children}</BodyContainer>
-    </div>
-  );
+  return <>{children}</>;
 };
 
 export default layout;

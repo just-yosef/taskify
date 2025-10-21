@@ -1,16 +1,24 @@
-import React from 'react'
-import { Features, HeroSection, HowItWorks, JoinToUs, Testimonials } from '../../_components'
+import React, { Suspense } from "react";
 
+import dynamic from "next/dynamic";
+import { Loader } from "@/app/(shared)/_components";
+const Categories = dynamic(() => import("../../_components/Categories"));
+const Features = dynamic(() => import("../../_components/Features"));
+const HeroSection = dynamic(() => import("../../_components/HeroSection"));
+const HowItWorks = dynamic(() => import("../../_components/HowItWorks"));
+const JoinToUs = dynamic(() => import("../../_components/JoinToUs"));
+const Testimonials = dynamic(() => import("../../_components/Testmonials"));
 const page = () => {
-    return (
-        <>
-            <HeroSection />
-            <HowItWorks />
-            <JoinToUs />
-            <Features />
-            <Testimonials />
-        </>
-    )
-}
+  return (
+    <Suspense fallback={<Loader />}>
+      <HeroSection />
+      <HowItWorks />
+      <Categories />
+      <JoinToUs />
+      <Features />
+      <Testimonials />
+    </Suspense>
+  );
+};
 
-export default page
+export default page;

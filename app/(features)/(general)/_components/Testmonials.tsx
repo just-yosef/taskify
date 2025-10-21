@@ -24,7 +24,7 @@ const testimonials = [
 ];
 const Testimonials = () => (
     <section className="py-16 bg-secondary/30 ">
-        <TitleSection text="What Our Users Say" />
+        <TitleSection text="What Our Users Say" translationKey="whatOurUserSays" />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
             {testimonials.map((t) => (
                 <div

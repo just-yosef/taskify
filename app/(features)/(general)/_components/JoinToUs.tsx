@@ -9,7 +9,7 @@ const JoinToUs = () => {
 
     return (
         <section className="mt-10">
-            <TitleSection text="Join thousands of freelancers and entrepreneurs" />
+            <TitleSection text="Join thousands of freelancers and entrepreneurs" translationKey='JointhousandsOfFreelancersAndEntrepreneurs' />
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:w-[980px] mx-auto mt-6">
                 <div 

@@ -1,6 +1,7 @@
 import { decodedUser } from "@/app/(shared)/helpers";
 import Header from "../../(shared)/_components/Header";
 import { Metadata } from "next";
+import { BodyContainer } from "@/app/(shared)/_components";
 export const metadata: Metadata = { title: "لوحة التحكم" };
 const layout = async ({
   children,
@@ -14,11 +15,8 @@ const layout = async ({
   const mode: "client" | "freelancer" = (await decodedUser()).role!;
   return (
     <>
-      <Header userType={mode} />
-      <>
-        {mode === "client" ? client : freelancer}
-        {children}
-      </>
+      {mode === "client" ? client : freelancer}
+      {children}
     </>
   );
 };

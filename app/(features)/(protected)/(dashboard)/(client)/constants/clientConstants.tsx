@@ -106,7 +106,7 @@ export const offers: Offer[] = [
   },
 ];
 export const clientHeaderLinks = clientNavLinks.map((item) => {
-  return { href: item?.url, label: item.label_en };
+  return { href: item?.url, label: item.label_en, };
 });
 export const messages = [
   {

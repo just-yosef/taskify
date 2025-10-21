@@ -1,2 +1,3 @@
 import Header from "./Header";
-export { Header };
+import ToggleLanguge from "./ToggleLanguge";
+export { Header, ToggleLanguge };

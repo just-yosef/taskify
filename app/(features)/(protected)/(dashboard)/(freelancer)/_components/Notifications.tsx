@@ -1,3 +1,4 @@
+"use client";
 import { Separator } from "@/components/ui/separator";
 import { messages } from "../../(client)/constants";
 import { Bell, Edit, MoreHorizontal, Trash } from "lucide-react";
@@ -7,12 +8,19 @@ import {
   DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu";
 import { Button } from "@/components/ui/button";
-
+import { useTranslation } from "react-i18next";
+import arJson from "@/app/(lang)/ar.json";
+import { translateKeys } from "@/app/(shared)/helpers/translateWords";
+type detectNestedKeys<T> = keyof T;
 const Notifications = () => {
+  const { t } = useTranslation();
   return (
     <>
       <h3 className="border-b-solid sticky -top-0 left-0 z-[999] bg-white p-3 py-1 font-[rubicMedium] border-b-teal-500 border-2 border-transparent mb-3 pb-2">
-        All Notifications <span className="float-end">({messages.length})</span>
+        {t(
+          translateKeys<typeof arJson.general>("general.", "allNotifications")
+        )}
+        <span className="float-end">({messages.length})</span>
       </h3>
       <section className="flex flex-col gap-1 px-1">
         {messages.map((el, i, a) => (

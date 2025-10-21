@@ -5,7 +5,7 @@ import { features } from '../constants'
 const Features = () => {
     return (
         <section className='py-16'>
-            <TitleSection text='Features' />
+            <TitleSection text='Features' translationKey='features' />
             <section className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
                 {features.map(({ icon: Icon, title }) => (
                     <div

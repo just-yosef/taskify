@@ -12,3 +12,4 @@ export { default as GridContainer } from "./GridContainer";
 export { default as JobItem } from "./JobItem";
 export { default as Messages } from "./dropdowns/Messages";
 export { default as Logout } from "./Logout";
+export { default as WraningMessage } from "./WraningMessage";

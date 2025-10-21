@@ -1,3 +1,4 @@
+"use client";
 import { Loader } from "@/app/(shared)/_components";
 import { NavLink } from "@/app/(shared)/types";
 import { Button } from "@/components/ui/button";
@@ -7,14 +8,18 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
+import i18next from "i18next";
 import Link from "next/link";
 import React, { Suspense } from "react";
+import { useTranslation } from "react-i18next";
 interface Props {
   item: Partial<NavLink>;
   hiddenMobile?: boolean;
   className?: string;
 }
+
 const HeaderItem = ({ item, hiddenMobile, className }: Props) => {
+  const { t } = useTranslation();
   return (
     <Button
       key={item.label_en}
@@ -26,7 +31,7 @@ const HeaderItem = ({ item, hiddenMobile, className }: Props) => {
       {item.url ? (
         <Link href={{ pathname: item.url }}>
           {item.icon ? <item.icon size={18} /> : null}
-          {item.label_en}
+          {t(`nav.${item.label_en?.toLowerCase()}`)}
         </Link>
       ) : (
         <DropdownMenu>
@@ -39,7 +44,7 @@ const HeaderItem = ({ item, hiddenMobile, className }: Props) => {
               )}
             >
               {item.icon ? <item.icon size={18} /> : null}
-              {item.label_en}
+              {item.is_dropdown && t(`nav.${item.label_en!.toLowerCase()}`)}
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent
