@@ -20,6 +20,7 @@ interface Props {
 
 const HeaderItem = ({ item, hiddenMobile, className }: Props) => {
   const { t } = useTranslation();
+
   return (
     <Button
       key={item.label_en}
@@ -40,9 +41,19 @@ const HeaderItem = ({ item, hiddenMobile, className }: Props) => {
               variant="borderTeal"
               className={cn(
                 hiddenMobile ? "lg:hidden" : "",
-                "font-[rubicRegular]"
+                "font-[rubicRegular] relative"
               )}
             >
+              {item.notifications ? (
+                <span
+                  className={cn(
+                    "size-2.5 bg-teal flex rounded-full absolute",
+                    i18next.language === "ar"
+                      ? "-left-1 -top-1"
+                      : "-right-1 -top-1"
+                  )}
+                />
+              ) : null}
               {item.icon ? <item.icon size={18} /> : null}
               {item.is_dropdown && t(`nav.${item.label_en!.toLowerCase()}`)}
             </Button>

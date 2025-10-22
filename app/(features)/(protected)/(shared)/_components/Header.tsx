@@ -37,6 +37,7 @@ const Header = ({
             label_en: "",
             component: <Messages />,
             icon: MessageCircle,
+            notifications: 12,
           }}
         />
         <HeaderItem
@@ -46,6 +47,7 @@ const Header = ({
             label_en: "",
             component: <Notifications />,
             icon: Bell,
+            notifications: 0,
           }}
         />
         <UserActions />
