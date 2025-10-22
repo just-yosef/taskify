@@ -32,7 +32,8 @@ const HeaderItem = ({ item, hiddenMobile, className }: Props) => {
       {item.url ? (
         <Link href={{ pathname: item.url }}>
           {item.icon ? <item.icon size={18} /> : null}
-          {t(`nav.${item.label_en?.toLowerCase()}`)}
+          {/* {t(`nav.${item.label_en?.toLowerCase()}`)} */}
+          {item.label_en}
         </Link>
       ) : (
         <DropdownMenu>
@@ -55,7 +56,8 @@ const HeaderItem = ({ item, hiddenMobile, className }: Props) => {
                 />
               ) : null}
               {item.icon ? <item.icon size={18} /> : null}
-              {item.is_dropdown && t(`nav.${item.label_en!.toLowerCase()}`)}
+              {/* {item.is_dropdown && t(`nav.${item.label_en!.toLowerCase()}`)} */}
+              {item.label_en}
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent

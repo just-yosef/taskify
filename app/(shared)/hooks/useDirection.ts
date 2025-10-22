@@ -1,3 +1,4 @@
+"use client";
 import i18next from "i18next";
 import { useEffect, useState } from "react";
 
@@ -7,7 +8,8 @@ export function useDirection() {
   );
   useEffect(() => {
     console.log("change languge");
-    i18next.changeLanguage(i18next.language === "en" ? "ar" : "en");
-  }, [dir]);
+    setDir(i18next.language === "en" ? "rtl" : "ltr");
+    // i18next.changeLanguage(i18next.language === "en" ? "ar" : "en");
+  }, [i18next.language]);
   return { dir, setDir };
 }

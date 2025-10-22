@@ -1,21 +1,20 @@
-"use client";
-import "@/lib/i18n";
 import { Header } from "./(features)/(protected)/(shared)/_components";
 import { BodyContainer } from "./(shared)/_components";
-import "./globals.css";
 import { Toaster } from "sonner";
-import { useDirection } from "./(shared)/hooks/useDirection";
+import { getCookie } from "./(api)/(helpers)";
+import { IUser } from "./(features)/(general)/types";
+import "./globals.css";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { dir } = useDirection();
+  const user = await getCookie<IUser>("user");
   return (
     <html lang="en">
-      <body dir={dir}>
-        <Header userType="client" />
+      <body>
+        <Header userType={user?.role!} />
         <BodyContainer>{children}</BodyContainer>
         <Toaster />
       </body>

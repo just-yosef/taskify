@@ -1,3 +1,4 @@
+"use client";
 import { Logo, Logout, Messages } from "@/app/(shared)/_components";
 import React from "react";
 import {

@@ -12,12 +12,9 @@ import { useCallback } from "react";
 
 const ToggleLanguge = () => {
   const { dir, setDir } = useDirection();
-  const handelToggleLanguges = useCallback(
-    (val: "ar" | "en") => {
-      setDir(val === "ar" ? "rtl" : "ltr");
-    },
-    [dir]
-  );
+  const handelToggleLanguges = useCallback((val: "ar" | "en") => {
+    setDir(val === "ar" ? "rtl" : "ltr");
+  }, []);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

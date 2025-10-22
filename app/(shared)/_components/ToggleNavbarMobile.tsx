@@ -36,8 +36,8 @@ function ToggleNavbarMobile<A extends {}>({ links }: Props<link, A>) {
             onClick={() => setOpen(false)}
             className="px-4 py-2 text-gray-700 hover:bg-gray-100"
           >
-            {t("nav." + lnk.label.split(" ").join("").toLowerCase())}
-            {/* {lnk.label} */}
+            {/* {t("nav." + lnk.label.split(" ").join("").toLowerCase())} */}
+            {lnk.label}
           </Link>
         ))}
       </DropdownMenuContent>

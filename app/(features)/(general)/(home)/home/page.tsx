@@ -1,7 +1,8 @@
+"use client";
 import React, { Suspense } from "react";
-
 import dynamic from "next/dynamic";
 import { Loader } from "@/app/(shared)/_components";
+import "@/lib/i18n";
 const Categories = dynamic(() => import("../../_components/Categories"));
 const Features = dynamic(() => import("../../_components/Features"));
 const HeroSection = dynamic(() => import("../../_components/HeroSection"));

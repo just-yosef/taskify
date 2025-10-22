@@ -1,7 +1,7 @@
-"use client";
-import "@/lib/i18n";
+import { redirect } from "next/navigation";
+
 const page = () => {
-  return <div>page</div>;
+  return redirect("/home");
 };
 
 export default page;

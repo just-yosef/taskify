@@ -13,7 +13,8 @@ const Logout = ({ isPending = false, handelFn }: Props) => {
 
   return (
     <Button onClick={handelFn} disabled={isPending} variant="destructive">
-      <LogOut /> {isPending ? `${t("nav.loggingout")}` : `${t("nav.logout")}`}
+      <LogOut /> {isPending ? `${"Logging out.."}` : `Log out`}
+      {/* || t("nav.loggingout")  t("nav.logout")*/}
     </Button>
   );
 };

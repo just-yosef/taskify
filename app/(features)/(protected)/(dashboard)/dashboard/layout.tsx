@@ -1,7 +1,5 @@
 import { decodedUser } from "@/app/(shared)/helpers";
-import Header from "../../(shared)/_components/Header";
 import { Metadata } from "next";
-import { BodyContainer } from "@/app/(shared)/_components";
 export const metadata: Metadata = { title: "لوحة التحكم" };
 const layout = async ({
   children,
