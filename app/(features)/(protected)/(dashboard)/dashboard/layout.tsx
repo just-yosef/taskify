@@ -11,9 +11,11 @@ const layout = async ({
   freelancer: React.ReactNode;
 }) => {
   const mode: "client" | "freelancer" = (await decodedUser()).role!;
+
   return (
     <>
-      {mode === "client" ? client : freelancer}
+      {client}
+      {/* {mode === "client" ? client : freelancer} */}
       {children}
     </>
   );

@@ -21,6 +21,7 @@ interface IUser extends Document {
   createdAt: Date;
   updatedAt: Date;
   lastLogin?: Date;
+  totalSpend: number;
 }
 export interface User {
   fullName: string;
@@ -40,6 +41,7 @@ export interface User {
     linkedin: string;
     portfolio: string;
   };
+  totalSpend: number;
   isVerified: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -76,6 +78,7 @@ const userSchema = new mongoose.Schema<IUser>(
     isVerified: { type: Boolean, default: false },
     createdAt: { type: Date, default: Date.now },
     lastLogin: Date,
+    totalSpend: { type: Number, default: 0 },
   },
   { timestamps: true }
 );

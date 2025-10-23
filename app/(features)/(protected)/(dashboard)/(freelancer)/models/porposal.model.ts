@@ -12,6 +12,11 @@ const ProposalSchema = new Schema(
       ref: "User",
       required: true,
     },
+    clientId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
     coverLetter: {
       type: String,
       required: true,

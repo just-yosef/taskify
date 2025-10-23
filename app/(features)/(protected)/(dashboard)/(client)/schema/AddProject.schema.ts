@@ -7,4 +7,5 @@ export const projectSchema = z.object({
   budgetMax: z.coerce.number().min(1, "Maximum budget required"),
   duration: z.string().optional(),
   category: z.string().optional(),
+  clientId: z.string(),
 });

@@ -30,9 +30,10 @@ export async function POST(req: Request) {
   try {
     await connectDB();
     const body = (await req.json()) as ProjectType;
-    const { title, description, clientId } = body;
-    console.log(body);
 
+    const { title, description, clientId } = body;
+
+    console.log(body);
     if (!title || !description || !clientId) {
       return NextResponse.json(
         { error: "Missing required fields" },
