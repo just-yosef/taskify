@@ -1,6 +1,7 @@
-import { AxiosResponse } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 import {
   AuthResponse,
+  IUser,
   SigninInput,
   SignupFormData,
   SignupInput,
@@ -22,4 +23,12 @@ export const signup = async (
 ): Promise<SignupInput> => {
   const loginResonse = await api.post("/signup", credentials);
   return loginResonse.data;
+};
+
+export const getUserById = async (id: string): Promise<IUser> => {
+  try {
+    return (await api.get(`/users/${id}`)).data;
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
 };

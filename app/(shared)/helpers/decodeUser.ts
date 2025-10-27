@@ -1,7 +1,9 @@
 import { getCookie } from "@/app/(api)/(helpers)";
 import { User } from "@/app/(features)/(users)/models";
 
-export async function decodeUserFromToken() {
-  const user = (await getCookie("user")) as string;
-  return JSON.parse(user) as User & { _id: string };
+export async function decodeUserFromToken(): Promise<
+  (User & { _id: string }) | null
+> {
+  const user = await getCookie("user");
+  return user ? JSON.parse(user) : null;
 }

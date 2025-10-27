@@ -1,7 +1,9 @@
 import ProjectItem from "./ProjectItem";
 import { getProjectById } from "../service";
 import EmptyStateResource from "./EmptyStateResource";
+import { getUserId } from "@/app/(shared)/helpers";
 const ProjectsContainer = async () => {
+  // const userId = getUserId()
   const projects = await getProjectById("68f8e9b15e089c79700816a9");
   return (
     <>

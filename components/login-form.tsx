@@ -33,7 +33,8 @@ export function LoginForm({
   async function handleLoginAction(formData: FormData) {
     transition(async () => {
       try {
-        await loginAction(formData);
+        const data = await loginAction(formData);
+        localStorage.setItem("userId", data?.id!);
         router.push("/dashboard");
       } catch (error) {
         console.log(error);

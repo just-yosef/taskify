@@ -1,11 +1,10 @@
 "use client";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
+import { useLanguageStore } from "../(general)/(localization)/_store";
 export default function layout({ children }: { children: ReactNode }) {
-  const queryClient = new QueryClient();
-  return (
-    <QueryClientProvider client={queryClient}>
-      <>{children}</>
-    </QueryClientProvider>
-  );
+  const { language, setLanguage } = useLanguageStore();
+  useEffect(() => {
+    document.dir = language === "ar" ? "rtl" : "ltr";
+  }, [language]);
+  return <>{children}</>;
 }

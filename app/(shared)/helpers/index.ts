@@ -1,3 +1,2 @@
-export { getCookie } from "./getCookieByName";
-export { IsLoggedIn } from "./IsLoggedIn";
-export { decodeUserFromToken as decodedUser } from "./decodeUser";
+export { getCookie } from "@/app/(api)/(helpers)";
+export { getUserId } from "./getUserId";

@@ -14,8 +14,9 @@ import {
 } from "lucide-react";
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { decodedUser } from "@/app/(shared)/helpers";
 import { cn } from "@/lib/utils";
+import { decodedUser } from "@/app/(shared)/helpers/server";
+import { IUser } from "@/app/(features)/(general)/types";
 const UserInfo = async () => {
   const user = await decodedUser();
   return (
@@ -23,15 +24,17 @@ const UserInfo = async () => {
       <div className="min-h-[250px] flex items-center justify-center my-10">
         <div className="flex flex-col gap-0.5 items-center">
           <User className="sm:size-24 size-20" opacity="30%" />
-          <h4 className="font-semibold font-[rubicRegular]">{user.fullName}</h4>
+          <h4 className="font-semibold font-[rubicRegular]">
+            {user?.fullName}
+          </h4>
           <div className="flex gap-1">
             <Badge variant="blue">
               <User2 size={25} />
-              {user.role === "freelancer" ? "New Saller" : "New Client"}
+              {user?.role === "freelancer" ? "New Saller" : "New Client"}
             </Badge>
             <Badge variant="outline">
               <Locate />
-              {user.profile?.location}
+              {user?.profile?.location}
             </Badge>
             <Badge variant="outline" className="bg-yellow-300">
               <Star />
@@ -40,11 +43,11 @@ const UserInfo = async () => {
             <Badge
               variant="outline"
               className={cn(
-                user.isVerified ? "bg-green-700" : "bg-red-700",
+                user?.isVerified ? "bg-green-700" : "bg-red-700",
                 "text-white"
               )}
             >
-              {user.isVerified ? (
+              {user?.isVerified ? (
                 <>
                   <Check size={22} />
                   Verifyed
@@ -58,7 +61,7 @@ const UserInfo = async () => {
             </Badge>
           </div>
           <Badge variant="outline" className="mt-1">
-            {user.profile?.title}
+            {user?.profile?.title}
           </Badge>
           <p className="text-muted-foreground">
             no bio yet
@@ -66,9 +69,9 @@ const UserInfo = async () => {
               <Edit size={8} />
             </Button>
           </p>
-          {Object.keys(user.socialLinks).length ? (
+          {Object.keys(user?.socialLinks as {}).length ? (
             <div className="flex items-center gap-2 my-2">
-              {Object.keys(user.socialLinks).map((socialItem) => {
+              {Object.keys(user?.socialLinks as {}).map((socialItem) => {
                 return (
                   <Button variant="secondary" key={socialItem} asChild>
                     {/* @ts-ignore */}

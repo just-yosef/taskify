@@ -1,8 +1,8 @@
 import React from "react";
-import ProjectItem from "../../(shared)/_components/ProjectItem";
 import EmptyStateResource from "./EmptyStateResource";
 import { Button } from "@/components/ui/button";
 import { Project } from "../../(shared)/types";
+import { ProjectItem } from "../../(client)/_components";
 interface Props {
   projects: Project[];
 }
@@ -11,7 +11,7 @@ const OpenProjects: React.FC<Props> = ({ projects }: Props) => {
     <>
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {projects.slice(0, 3).map((project: Project, index) => (
-          <ProjectItem key={project?.id} project={project} />
+          <ProjectItem key={project?._id} project={project} />
         ))}
       </section>
       {!projects.length && <EmptyStateResource title="Project" />}

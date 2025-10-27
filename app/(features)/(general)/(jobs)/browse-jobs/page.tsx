@@ -1,11 +1,7 @@
 import { RecentJobs } from "../_components";
 
 const page = () => {
-  return (
-    <>
-      <RecentJobs  />
-    </>
-  );
+  return <RecentJobs />;
 };
 
 export default page;

@@ -1,7 +1,5 @@
 import React from "react";
 import StatCard from "./StatCard";
-import { Project } from "../types";
-import { stats } from "../../(client)/constants";
 
 interface StatItem {
   title: string;
@@ -9,8 +7,6 @@ interface StatItem {
 }
 
 interface StatsGridProps {
-  // stats: Project[];
-  // stats: number[];
   stats: {
     postedJobs: number;
     totalSpend: string;
@@ -30,6 +26,8 @@ export async function StatsGrid({
   //     </div>
   //   );
   // }
+  console.log("asdasd");
+  
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
       {["Posted Jobs", "New Offers", "Freelancers", "Total Spend"].map(

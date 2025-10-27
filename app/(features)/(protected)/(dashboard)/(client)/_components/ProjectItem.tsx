@@ -63,7 +63,6 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
         </p>
         <p>{project.duration}</p>
       </CardContent>
-
       {showButton && (
         <CardFooter>
           <Button variant="teal" size="sm" className="mt-1">

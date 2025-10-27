@@ -6,8 +6,8 @@ export async function GET() {
   try {
     await connectDB();
     const proposals = await ProposalModel.find().populate(
-      "projectId freelancerId"
-    );
+      "freelancerId"
+    ).populate("projectId");
     return NextResponse.json(proposals, { status: 200 });
   } catch (error) {
     console.error("Error fetching proposals:", error);
@@ -22,7 +22,9 @@ export async function POST(req: Request) {
   try {
     await connectDB();
     const body = await req.json();
+    
     const newProposal = await ProposalModel.create(body);
+    console.log(body, newProposal);
     return NextResponse.json(newProposal, { status: 201 });
   } catch (error) {
     console.error("Error creating proposal:", error);

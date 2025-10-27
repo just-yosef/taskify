@@ -1,4 +1,5 @@
 "use client";
+import { useLanguageStore } from "@/app/(features)/(general)/(localization)/_store";
 import { useDirection } from "@/app/(shared)/hooks";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,9 +12,9 @@ import { Check, Languages } from "lucide-react";
 import { useCallback } from "react";
 
 const ToggleLanguge = () => {
-  const { dir, setDir } = useDirection();
+  const langugeStore = useLanguageStore();
   const handelToggleLanguges = useCallback((val: "ar" | "en") => {
-    setDir(val === "ar" ? "rtl" : "ltr");
+    langugeStore.setLanguage(val);
   }, []);
   return (
     <DropdownMenu>
@@ -24,10 +25,10 @@ const ToggleLanguge = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="mt-3 border-teal">
         <DropdownMenuItem onClick={() => handelToggleLanguges("ar")}>
-          Arabic {dir === "rtl" && <Check />}
+          Arabic {langugeStore.language === "ar" && <Check />}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => handelToggleLanguges("en")}>
-          English {dir === "ltr" && <Check />}
+          English {langugeStore.language === "en" && <Check />}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

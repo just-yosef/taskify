@@ -1,20 +1,22 @@
+import { UserModel } from "@/app/(features)/(users)/models";
 import mongoose, { Schema, model, models } from "mongoose";
+import { ProjectModel } from "../../(client)/model";
 
 const ProposalSchema = new Schema(
   {
     projectId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Project",
+      ref: ProjectModel,
       required: true,
     },
     freelancerId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: UserModel,
       required: true,
     },
     clientId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: UserModel,
       required: true,
     },
     coverLetter: {

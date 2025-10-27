@@ -4,13 +4,10 @@ import {
   TitleSection,
 } from "@/app/(shared)/_components";
 import Link from "next/link";
-import React from "react";
 import { getProjects } from "@/app/(features)/(protected)/(dashboard)/(client)/service";
-import { notFound } from "next/navigation";
 
 const RecentJobs = async () => {
   const data = await getProjects();
- 
   return (
     <>
       <TitleSection text="Recent Jobs" />
