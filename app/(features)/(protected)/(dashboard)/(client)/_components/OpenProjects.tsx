@@ -1,6 +1,6 @@
 import { AddNewProject, ProjectsContainer } from ".";
 
-async function OpenProjects() {
+function OpenProjects() {
   return (
     <section className="relative min-h-[200px] ">
       <AddNewProject />

@@ -6,9 +6,12 @@ interface Props {
   client: ReactNode;
   freelancer: ReactNode;
 }
-const layout = async ({ children, client, freelancer }: Props) => {
+const layout = ({ children, client, freelancer }: Props) => {
   return (
     <>
+      <head>
+        <title>حسابي</title>
+      </head>
       {/* {role === "client" ? client : freelancer} */}
       {children}
     </>

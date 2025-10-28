@@ -3,6 +3,8 @@ import { TitleSection } from "@/app/(shared)/_components";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Clock, Tag } from "lucide-react";
+import JobPorposals from "./JobPorposals";
+import AboutClient from "./AboutClient";
 interface Props {
   projectId: string;
 }
@@ -39,6 +41,8 @@ const JobPage = async ({ projectId }: Props) => {
           </Badge>
         </section>
       </section>
+      <JobPorposals projectId={projectId}  />
+      <AboutClient projectId={project.clientId} />
     </>
   );
 };

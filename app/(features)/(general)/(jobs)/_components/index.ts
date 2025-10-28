@@ -1,6 +1,6 @@
+import AboutClient from "./AboutClient";
 import JobPage from "./JobPage";
 import JobPorposals from "./JobPorposals";
 import PorposalItem from "./PorposalItem";
 import RecentJobs from "./RecentJobs";
-
-export { RecentJobs, JobPage, JobPorposals, PorposalItem };
+export { RecentJobs, JobPage, JobPorposals, PorposalItem, AboutClient };

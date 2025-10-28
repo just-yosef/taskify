@@ -12,15 +12,15 @@ import { decodeUserFromToken } from "@/app/(shared)/helpers/decodeUser";
 const page = async () => {
   // Will Be Minimize to one function
   const user = await decodeUserFromToken();
-  const clientProjects = await getProjectById(user._id);
-  const clientOffers = await getClientOffers(user._id);
+  const clientProjects = await getProjectById(user?._id);
+  const clientOffers = await getClientOffers(user?._id);
   return (
     <>
       <TitleSection text="Overview" />
       <StatsGrid
         stats={{
           postedJobs: clientProjects.length,
-          totalSpend: `${user.totalSpend}$`,
+          totalSpend: `${user?.totalSpend}$`,
           freelancers: 3,
           newOffers: clientOffers.data.proposals.length,
         }}
