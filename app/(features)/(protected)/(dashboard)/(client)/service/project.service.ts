@@ -2,6 +2,7 @@ import { api } from "@/app/(features)/(general)/constants";
 import { ProjectInput } from "../types";
 import { Project } from "@/app/(shared)/types";
 import { Poropsal } from "../../../(shared)/types";
+import { getCookie } from "@/app/(api)/(helpers)";
 
 const getProjects = async (): Promise<Project[] | undefined> => {
   try {

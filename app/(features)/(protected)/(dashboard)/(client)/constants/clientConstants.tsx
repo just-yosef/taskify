@@ -25,6 +25,7 @@ export const clientNavLinks: TopBarLinksArray = [
     url: "/dashboard",
     icon: House,
     type: "primary_nav",
+    translationKey: "dashboard",
   },
   {
     label_ar: "الإشعارات",
@@ -35,6 +36,7 @@ export const clientNavLinks: TopBarLinksArray = [
     count_key: "notifications_count",
     type: "utility_indicator",
     is_dropdown: true,
+    translationKey: "notifications",
   },
   {
     label_ar: "الرسائل",
@@ -45,6 +47,7 @@ export const clientNavLinks: TopBarLinksArray = [
     count_key: "messages_count",
     type: "utility_indicator",
     is_dropdown: true,
+    translationKey: "messages",
   },
   {
     label_ar: "الرصيد",
@@ -53,6 +56,7 @@ export const clientNavLinks: TopBarLinksArray = [
     icon: Wallet,
     value_key: "current_balance",
     type: "financial",
+    translationKey: "wallet",
   },
   {
     label_ar: "الإعدادات",
@@ -61,6 +65,7 @@ export const clientNavLinks: TopBarLinksArray = [
     icon: Settings,
     is_dropdown: true,
     type: "profile_menu",
+    translationKey: "settings",
   },
   {
     label_ar: "اضف طلب مشروع",

@@ -1,4 +1,4 @@
-import { Project } from "../../(shared)/types/project";
+import { Project } from "@/app/(shared)/types";
 
 export interface Offer {
   id: number;

@@ -12,11 +12,12 @@ export async function loginAction(formData: FormData) {
       process.env.JWT_SECRET!,
       { expiresIn: "7d" }
     );
-    (await cookies()).set("user", JSON.stringify(res.user));
-    (await cookies()).set("token", token, {
+    const cookiesOptions = {
       httpOnly: true,
-      maxAge: 7 * 24 * 60 * 60, 
-    });
+      maxAge: 7 * 24 * 60 * 60,
+    };
+    (await cookies()).set("user", JSON.stringify(res.user), cookiesOptions);
+    (await cookies()).set("token", token, cookiesOptions);
     return { id: res.user._id };
   } catch (error: any) {
     console.log(error.message);

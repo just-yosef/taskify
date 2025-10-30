@@ -7,10 +7,10 @@ import EmptyStateResource from "./EmptyStateResource";
 import OfferDetails from "./OfferDetails";
 import OpenProjects from "./OpenProjects";
 import ProjectItem from "./ProjectItem";
+import Projects from "./Projects";
 import ProjectsContainer from "./ProjectsContainer";
 import StatsGrid from "./StatsCard";
 import UserActions from "./UserActions";
-
 export {
   StatsGrid,
   ClientOffers,
@@ -24,4 +24,5 @@ export {
   UserActions,
   AddNewProjectForm,
   ProjectsContainer,
+  Projects,
 };

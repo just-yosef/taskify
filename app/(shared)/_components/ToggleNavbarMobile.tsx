@@ -8,14 +8,12 @@ import {
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
 type link = { href: string | undefined; label: string };
 interface Props<T extends link, K extends object> {
   links: (T & K)[];
 }
 function ToggleNavbarMobile<A extends {}>({ links }: Props<link, A>) {
   const [open, setOpen] = useState(false);
-  const { t } = useTranslation();
   return (
     <DropdownMenu onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>

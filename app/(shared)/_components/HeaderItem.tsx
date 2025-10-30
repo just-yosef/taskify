@@ -9,9 +9,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import i18next from "i18next";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import React, { Suspense } from "react";
-import { useTranslation } from "react-i18next";
 interface Props {
   item: Partial<NavLink>;
   hiddenMobile?: boolean;
@@ -19,8 +19,8 @@ interface Props {
 }
 
 const HeaderItem = ({ item, hiddenMobile, className }: Props) => {
-  const { t } = useTranslation();
-
+  const t = useTranslations("nav");
+  const local = useLocale();
   return (
     <Button
       key={item.label_en}
@@ -32,8 +32,7 @@ const HeaderItem = ({ item, hiddenMobile, className }: Props) => {
       {item.url ? (
         <Link href={{ pathname: item.url }}>
           {item.icon ? <item.icon size={18} /> : null}
-          {/* {t(`nav.${item.label_en?.toLowerCase()}`)} */}
-          {item.label_en}
+          {t(`${item.translationKey}`)}
         </Link>
       ) : (
         <DropdownMenu>
@@ -56,12 +55,13 @@ const HeaderItem = ({ item, hiddenMobile, className }: Props) => {
                 />
               ) : null}
               {item.icon ? <item.icon size={18} /> : null}
-              {/* {item.is_dropdown && t(`nav.${item.label_en!.toLowerCase()}`)} */}
-              {item.label_en}
+              {item.translationKey && (
+                <span className="max-sm:hidden">{t(item.translationKey!)}</span>
+              )}
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent
-            align="end"
+            align={local === "ar" ? "start" : "end"}
             className={cn(
               "relative max-w-[350px] min-h-[100px] max-h-[350px] pt-0 pb-4 border-teal !border-[1px] px-0 mt-3",
               className

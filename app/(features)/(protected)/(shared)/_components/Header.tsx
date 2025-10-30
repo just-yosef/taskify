@@ -39,6 +39,7 @@ const Header = ({
             component: <Messages />,
             icon: MessageCircle,
             notifications: 12,
+            translationKey: "messages",
           }}
         />
         <HeaderItem
@@ -49,6 +50,7 @@ const Header = ({
             component: <Notifications />,
             icon: Bell,
             notifications: 0,
+            translationKey: "notifications",
           }}
         />
         <UserActions />

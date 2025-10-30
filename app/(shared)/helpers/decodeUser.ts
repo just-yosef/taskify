@@ -5,5 +5,6 @@ export async function decodeUserFromToken(): Promise<
   (User & { _id: string }) | null
 > {
   const user = await getCookie("user");
-  return user ? JSON.parse(user) : null;
+  if (!user) return null;
+  return JSON.parse(user);
 }

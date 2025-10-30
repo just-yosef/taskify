@@ -16,8 +16,6 @@ const JobPorposals = async ({ projectId }: Props) => {
     : !data.porposals.some(
         (porposal) => porposal.freelancerId._id === currentUser!._id
       );
-  console.log(isAccessToPostPorposal);
-
   return (
     <>
       <TitleSection text={`Porposals (${data.porposals.length})`} />

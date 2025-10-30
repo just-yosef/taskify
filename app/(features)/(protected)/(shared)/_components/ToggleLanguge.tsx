@@ -1,6 +1,6 @@
 "use client";
+import { changeLanguge } from "@/app/(features)/(general)/(localization)/(actions)";
 import { useLanguageStore } from "@/app/(features)/(general)/(localization)/_store";
-import { useDirection } from "@/app/(shared)/hooks";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -10,10 +10,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Check, Languages } from "lucide-react";
 import { useCallback } from "react";
-
 const ToggleLanguge = () => {
   const langugeStore = useLanguageStore();
-  const handelToggleLanguges = useCallback((val: "ar" | "en") => {
+  const handelToggleLanguges = useCallback(async (val: "ar" | "en") => {
+    const data = new FormData();
+    data.append("lang", val);
+    console.log(val, data.get("lang"));
+    await changeLanguge(data);
+    location.reload();
     langugeStore.setLanguage(val);
   }, []);
   return (

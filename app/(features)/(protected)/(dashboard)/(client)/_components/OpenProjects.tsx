@@ -1,3 +1,4 @@
+import { Project } from "@/app/(shared)/types";
 import { AddNewProject, ProjectsContainer } from ".";
 
 function OpenProjects() {

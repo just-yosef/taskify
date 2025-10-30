@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "about": "حول المنصة",
+    "features": "الميزات",
+    "contact": "اتصل بنا",
+    "notifications": "الإشعارات",
+    "dashboard": "لوحة التحكم",
+    "messages": "الرسائل",
+    "wallet": "المحفظة",
+    "settings": "الإعدادات",
+    "logout": "تسجيل الخروج",
+    "loggingout": "جارٍ تسجيل الخروج...",
+    "addproject": "أضف طلبًا جديدًا",
+    "myAccount": "حسابي"
+  },
+  "general": {
+    "allNotifications": "كل الإشعارات",
+    "allMessages": "كل الرسائل",
+    "categories": "المجالات",
+    "howItWorks": "كيف تعمل المنصة",
+    "features": "مميزات المنصة",
+    "whatOurUserSays": "ماذا قال مستخدمونا عنا",
+    "aboutTaskify": "عن المنصة",
+    "JointhousandsOfFreelancersAndEntrepreneurs": "انضم إلى آلاف المستقلين ورواد الأعمال"
+  },
+  "dashboard": {
+    "openProjects": "المشاريع المفتوحة",
+    "latestMessages": "أحدث الرسائل",
+    "newOffers": "العروض الجديدة",
+    "overview": "نظرة عامة"
+  }
+}

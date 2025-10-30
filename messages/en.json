@@ -1,0 +1,32 @@
+{
+    "nav": {
+        "about": "About the Platform",
+        "features": "Features",
+        "contact": "Contact Us",
+        "notifications": "Notifications",
+        "dashboard": "Dashboard",
+        "messages": "Messages",
+        "wallet": "Wallet",
+        "settings": "Settings",
+        "logout": "Log Out",
+        "loggingout": "Logging Out...",
+        "addproject": "Add New Request",
+        "myAccount": "My Account"
+    },
+    "general": {
+        "allNotifications": "All Notifications",
+        "allMessages": "All Messages",
+        "categories": "Categories",
+        "howItWorks": "How the Platform Works",
+        "features": "Platform Features",
+        "whatOurUserSays": "What Our Users Say About Us",
+        "aboutTaskify": "About the Platform",
+        "JointhousandsOfFreelancersAndEntrepreneurs": "Join Thousands of Freelancers and Entrepreneurs"
+    },
+    "dashboard": {
+        "openProjects": "Open Projects",
+        "latestMessages": "Latest Messages",
+        "newOffers": "New Offers",
+        "overview": "Overview"
+    }
+}

@@ -8,15 +8,17 @@ import { StatsGrid } from "@/app/(features)/(protected)/(dashboard)/(shared)/_co
 import { getProjectById } from "../../(client)/service";
 import { getClientOffers } from "../../(client)/service/offers.service";
 import { decodeUserFromToken } from "@/app/(shared)/helpers/decodeUser";
+import { getTranslations } from "next-intl/server";
 
 const page = async () => {
   // Will Be Minimize to one function
   const user = await decodeUserFromToken();
   const clientProjects = await getProjectById(user?._id);
   const clientOffers = await getClientOffers(user?._id);
+  const t = await getTranslations("dashboard");
   return (
     <>
-      <TitleSection text="Overview" />
+      <TitleSection text={t("overview")} />
       <StatsGrid
         stats={{
           postedJobs: clientProjects.length,
@@ -26,15 +28,15 @@ const page = async () => {
         }}
       />
       <section>
-        <TitleSection text="Open Projects" />
+        <TitleSection text={t("openProjects")} />
         <OpenProjects />
       </section>
       <section>
-        <TitleSection text="New Offers" />
+        <TitleSection text={t("newOffers")} />
         <ClientOffers />
       </section>
       <section>
-        <TitleSection text="Latest Messages" />
+        <TitleSection text={t("latestMessages")} />
         <ClientMessages />
       </section>
     </>

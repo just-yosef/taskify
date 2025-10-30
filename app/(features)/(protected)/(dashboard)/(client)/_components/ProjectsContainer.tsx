@@ -1,21 +1,16 @@
-import ProjectItem from "./ProjectItem";
-import { getProjectById } from "../service";
-import EmptyStateResource from "./EmptyStateResource";
-import { getUserId } from "@/app/(shared)/helpers";
-const ProjectsContainer = async () => {
-  // const userId = getUserId()
-  const projects = await getProjectById("68f8e9b15e089c79700816a9");
+"use client";
+import { Project } from "@/app/(shared)/types";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Projects from "./Projects";
+interface Props {
+  projects: Project[];
+}
+const ProjectsContainer = () => {
+  const queryClient = new QueryClient();
   return (
-    <>
-      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-2">
-        {projects?.map((project) => (
-          <ProjectItem key={project?.duration} project={project} />
-        ))}
-      </section>
-      {!projects?.length && (
-        <EmptyStateResource showAction={false} title="No Projects For You" />
-      )}
-    </>
+    <QueryClientProvider client={queryClient}>
+      <Projects />
+    </QueryClientProvider>
   );
 };
 

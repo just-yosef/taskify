@@ -15,10 +15,9 @@ import {
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { decodedUser } from "@/app/(shared)/helpers/server";
-import { IUser } from "@/app/(features)/(general)/types";
+import { decodeUserFromToken } from "@/app/(shared)/helpers/decodeUser";
 const UserInfo = async () => {
-  const user = await decodedUser();
+  const user = await decodeUserFromToken();
   return (
     <>
       <div className="min-h-[250px] flex items-center justify-center my-10">
@@ -69,7 +68,7 @@ const UserInfo = async () => {
               <Edit size={8} />
             </Button>
           </p>
-          {Object.keys(user?.socialLinks as {}).length ? (
+          {Object.keys((user?.socialLinks as {}) || {}).length ? (
             <div className="flex items-center gap-2 my-2">
               {Object.keys(user?.socialLinks as {}).map((socialItem) => {
                 return (

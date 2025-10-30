@@ -16,6 +16,7 @@ export interface NavLink {
   style?: string;
   component?: React.ReactNode;
   notifications?: number | undefined;
+  translationKey?: string
 }
 
 export type TopBarLinksArray = NavLink[];
