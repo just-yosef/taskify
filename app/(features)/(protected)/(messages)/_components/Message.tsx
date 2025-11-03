@@ -2,10 +2,14 @@ import { MoreButton } from "@/app/(shared)/_components";
 import { Button } from "@/components/ui/button";
 import { Check, Clock, Trash } from "lucide-react";
 import { MessageContent } from "../types";
+import Link from "next/link";
 
-const Message = ({ senderName, title, createdAt }: MessageContent) => {
+const Message = ({ senderName, title, createdAt, _id }: MessageContent) => {
   return (
-    <div className="flex gap-3 p-4 hover:bg-muted rounded-b-none rounded-lg border-transparent border-[1px] border-b-accent">
+    <Link
+      href={`/messages/${_id}`}
+      className="flex gap-3 p-4 hover:bg-muted rounded-b-none rounded-lg border-transparent border-[1px] border-b-accent"
+    >
       <span className="size-8 rounded-full bg-blue" />
       <div className="flex justify-between w-full">
         <div className="flex flex-col">
@@ -31,7 +35,7 @@ const Message = ({ senderName, title, createdAt }: MessageContent) => {
           </MoreButton>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
