@@ -12,7 +12,6 @@ import {
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { Checkbox } from "@/components/ui/checkbox";
-import { changeLanguge } from "@/app/(features)/(general)/(localization)/(actions)";
 import { useLanguageStore } from "@/app/(features)/(general)/(localization)/_store";
 import { cn } from "@/lib/utils";
 
@@ -42,7 +41,7 @@ export default function NewChatDialog() {
         <Button
           variant="teal"
           className={cn(
-            "flex",
+            "flex w-fit ",
             useLanguageStore().language === "ar" ? "!mr-auto" : "!ml-auto"
           )}
         >
@@ -54,18 +53,17 @@ export default function NewChatDialog() {
         <DialogHeader>
           <DialogTitle>Start New Chat</DialogTitle>
         </DialogHeader>
-
         <div className="space-y-3 mt-4">
-          <div>
+          <>
             <label className="block text-sm font-medium mb-1">Chat Name</label>
             <Input
               placeholder="Enter chat name (optional)"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-          </div>
+          </>
 
-          <div>
+          <>
             <label className="block text-sm font-medium mb-2">
               Select Members
             </label>
@@ -94,7 +92,7 @@ export default function NewChatDialog() {
                 </section>
               ))}
             </div>
-          </div>
+          </>
 
           <Button
             className="w-full mt-4"

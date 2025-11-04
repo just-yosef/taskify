@@ -1,10 +1,11 @@
 import React from "react";
-
-const layout = async ({ children }: { children: React.ReactNode }) => {
-  //   const mode: "client" | "freelancer" = (await decodedUser()).role!;
+import ChatPage from "../_components/ChatPage";
+import { Metadata } from "next";
+export const metadata: Metadata = { title: "All Messages" };
+const layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      {children}
+      <ChatPage>{children}</ChatPage>
     </>
   );
 };

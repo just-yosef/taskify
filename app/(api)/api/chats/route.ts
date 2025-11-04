@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { connectDB } from "@/lib";
 import { Chat } from "@/app/(features)/(protected)/(messages)/models/chat.model";
 import { Message } from "@/app/(features)/(protected)/(messages)/models/message.model";
+
 export async function GET(req: Request) {
   try {
     await connectDB();
@@ -16,10 +17,17 @@ export async function GET(req: Request) {
       );
     }
 
-    const chats = await Chat.find({ members: userId })
+    const chats = await Chat.find({ members: { $in: [userId] } })
       .populate("members", "name email imgProfile")
       .populate("lastMessage")
       .sort({ updatedAt: -1 });
+
+    if (!chats || chats.length === 0) {
+      return NextResponse.json(
+        { message: "No chats found for this user.", chats: [] },
+        { status: 200 }
+      );
+    }
 
     return NextResponse.json({ chats }, { status: 200 });
   } catch (error: any) {

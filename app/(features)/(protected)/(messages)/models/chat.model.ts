@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import { IChat } from "../types/chat";
-
+import User from "@/app/(features)/(users)/models/user.model";
 const ChatSchema = new Schema<IChat>(
   {
     name: {
@@ -14,7 +14,7 @@ const ChatSchema = new Schema<IChat>(
     members: [
       {
         type: Schema.Types.ObjectId,
-        ref: "User",
+        ref: User,
         required: true,
       },
     ],
@@ -22,9 +22,10 @@ const ChatSchema = new Schema<IChat>(
       type: Schema.Types.ObjectId,
       ref: "Message",
     },
-    groupAdmin: {
+    createdBy: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: User,
+      required: [true, "Auther Is Required"],
     },
   },
   { timestamps: true }
