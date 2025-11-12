@@ -1,3 +1,4 @@
+import { IUser } from "@/app/(features)/(general)/types";
 import { Document, Types } from "mongoose";
 export interface Message {
   chat: Types.ObjectId;
@@ -7,11 +8,13 @@ export interface Message {
   createdAt: Date;
   receiver: Types.ObjectId;
   updatedAt: Date;
+  _id: string
+  isDeleted?: boolean
 }
 export interface Chat {
   name?: string;
   isGroup: boolean;
-  members: Types.ObjectId[];
+  members: IUser[];
   lastMessage?: Types.ObjectId;
   groupAdmin?: Types.ObjectId;
   createdAt: Date;
@@ -26,6 +29,7 @@ export interface IMessage extends Document {
   createdAt: Date;
   receiver: Types.ObjectId;
   updatedAt: Date;
+  isDeleted?: boolean
 }
 
 export interface IChat extends Document {

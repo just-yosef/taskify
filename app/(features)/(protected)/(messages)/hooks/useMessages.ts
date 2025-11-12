@@ -10,15 +10,15 @@ export function useMessages(chatId?: string) {
     queryKey: ["messages", chatId],
     queryFn: () => messageService.getMessages(chatId),
     enabled: !!chatId,
-    staleTime: 60 * 1000,
+    // staleTime: 60 * 1000,
   });
 
   const sendMessage = useMutation({
     mutationFn: (payload: MessagePayload) =>
       messageService.sendMessage(payload),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["messages", chatId] });
-    },
+    // onSuccess: () => {
+    //   queryClient.invalidateQueries({ queryKey: ["messages", chatId] });
+    // },
   });
 
   return {

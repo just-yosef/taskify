@@ -1,6 +1,6 @@
 "use client";
 import profileImage from "@/app/(shared)/assets/4c3d75aa967003e4bee5b269ee3c6332.webp";
-import { useState } from "react";
+import { useState, startTransition, useEffect, FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -12,12 +12,22 @@ import {
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useLanguageStore } from "@/app/(features)/(general)/(localization)/_store";
-import { cn } from "@/lib/utils";
-
+import { createChatAction } from "../actions/createChat";
+import { getUsers } from "@/app/(features)/(users)/(service)/userService";
+import { IUser } from "@/app/(features)/(general)/types";
 export default function NewChatDialog() {
   const [name, setName] = useState("");
   const [selectedMembers, setSelectedMembers] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [users, setUsers] = useState<IUser[]>();
+  useEffect(() => {
+    async function fetchUsers() {
+      const data = await getUsers();
+      setUsers(data);
+    }
+    fetchUsers();
+  }, []);
+  console.log(users);
 
   const fakeUsers = [
     { id: "u1", name: "Ahmed" },
@@ -25,51 +35,60 @@ export default function NewChatDialog() {
     { id: "u3", name: "Omar" },
     { id: "u4", name: "Layla" },
   ];
-
-  const handleSubmit = () => {
-    console.log({
-      name,
-      members: selectedMembers,
-      isGroup: selectedMembers.length > 1,
-    });
-    alert("Chat created (UI only)");
+  const handleSubmit = async (e: FormEvent) => {
+    try {
+      e.preventDefault();
+      setLoading(true);
+      console.log(selectedMembers);
+      startTransition(async () => {
+        const form = new FormData();
+        form.append("name", name);
+        form.append("members", JSON.stringify(selectedMembers || []));
+        form.append("isGroup", String(selectedMembers.length > 1));
+        form.append("createdBy", localStorage.getItem("userId") || "");
+        await createChatAction(form);
+        alert("Chat created successfully!");
+        setName("");
+        setSelectedMembers([]);
+      });
+    } catch (err: any) {
+      alert(err.message || "Failed to create chat");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button
-          variant="teal"
-          className={cn(
-            "flex w-fit ",
-            useLanguageStore().language === "ar" ? "!mr-auto" : "!ml-auto"
-          )}
-        >
+        <Button variant="teal" className="flex w-fit !ml-auto">
           + New Chat
         </Button>
       </DialogTrigger>
-
       <DialogContent className="max-w-md">
         <DialogHeader>
           <DialogTitle>Start New Chat</DialogTitle>
         </DialogHeader>
-        <div className="space-y-3 mt-4">
-          <>
+        <form onSubmit={handleSubmit} className="space-y-3 mt-4">
+          <div>
             <label className="block text-sm font-medium mb-1">Chat Name</label>
             <Input
               placeholder="Enter chat name (optional)"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-          </>
+          </div>
 
-          <>
+          <div>
             <label className="block text-sm font-medium mb-2">
               Select Members
             </label>
             <div className="flex flex-col gap-3 max-h-[200px] overflow-y-scroll border-teal p-2 rounded-lg">
-              {fakeUsers.map((user) => (
-                <section className="flex gap-3 w-full pl-3 items-center">
+              {users?.map((user) => (
+                <section
+                  key={user._id}
+                  className="flex gap-3 w-full pl-3 items-center"
+                >
                   <Image
                     width={50}
                     height={50}
@@ -78,13 +97,14 @@ export default function NewChatDialog() {
                     className="rounded-full"
                   />
                   <div className="flex justify-between w-full">
-                    {user.name}
+                    {user.fullName}
                     <Checkbox
-                      onClick={() =>
+                      checked={selectedMembers.includes(user._id)}
+                      onCheckedChange={() =>
                         setSelectedMembers((prev) =>
-                          prev.includes(user.id)
-                            ? prev.filter((id) => id !== user.id)
-                            : [...prev, user.id]
+                          prev.includes(user._id)
+                            ? prev.filter((id) => id !== user._id)
+                            : [...prev, user._id]
                         )
                       }
                     />
@@ -92,17 +112,17 @@ export default function NewChatDialog() {
                 </section>
               ))}
             </div>
-          </>
+          </div>
 
           <Button
             className="w-full mt-4"
             variant="borderTeal"
             onClick={handleSubmit}
-            disabled={!selectedMembers.length}
+            disabled={!selectedMembers.length || loading}
           >
-            Create Chat
+            {loading ? "Creating..." : "Create Chat"}
           </Button>
-        </div>
+        </form>
       </DialogContent>
     </Dialog>
   );

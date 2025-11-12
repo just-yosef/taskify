@@ -18,8 +18,7 @@ export async function GET(req: Request) {
     }
 
     const chats = await Chat.find({ members: { $in: [userId] } })
-      .populate("members", "name email imgProfile")
-      .populate("lastMessage")
+      .populate("members")
       .sort({ updatedAt: -1 });
 
     if (!chats || chats.length === 0) {
@@ -42,7 +41,7 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   try {
     await connectDB();
-    const { name, members, isGroup, groupAdmin } = await req.json();
+    const { name, members, isGroup, groupAdmin, createdBy } = await req.json();
 
     if (!members || members.length < 2) {
       return NextResponse.json(
@@ -63,17 +62,17 @@ export async function POST(req: Request) {
     }
 
     const chat = await Chat.create({
-      name: isGroup ? name : undefined,
+      name,
       isGroup,
       members,
       groupAdmin: isGroup ? groupAdmin : undefined,
+      createdBy,
     });
 
     const populatedChat = await chat.populate(
       "members",
       "name email imgProfile"
     );
-
     return NextResponse.json({ chat: populatedChat }, { status: 201 });
   } catch (error: any) {
     console.error("Error creating chat:", error);

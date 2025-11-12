@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { ResponseCookie } from "next/dist/compiled/@edge-runtime/cookies";
-import { NextResponse } from "next/server";
+import type { NextResponse } from "next/server";
 
 export const getCookie = async <T = string>(key: string) =>
   (await cookies()).get(key)?.value as T;

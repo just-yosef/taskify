@@ -47,7 +47,7 @@ const MoreButton = ({
       <DropdownMenuContent
         align="end"
         className={cn(
-          "flex flex-col gap-1 z-10 relative min-w-[130px] bg-white p-2 border-blue rounded-lg",
+          "flex flex-col z-10 relative min-w-[130px] bg-white px-2 border-blue rounded-lg py-1",
           variantContent ? `border-${variantContent}` : "border-teal"
         )}
       >

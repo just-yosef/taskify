@@ -2,40 +2,41 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Send } from "lucide-react";
 import React, { RefObject, useEffect, useState } from "react";
-interface Message {
-  id: string;
-  sender: string;
-  content: string;
-  time: string;
-  isMine?: boolean;
-  avatar?: string;
-}
+import { Message } from "../types/chat";
+import { Socket } from "socket.io-client";
+
 interface Props {
   ref: RefObject<HTMLDivElement | null>;
-  setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
   messages: Message[];
+  socket: Socket;
+  sender: string;
+  reciver: string;
+  chatId: string;
 }
-const SendMessageArea = ({ ref, messages, setMessages }: Props) => {
+const SendMessageArea = ({
+  ref,
+  messages,
+  socket,
+  chatId,
+  reciver,
+  sender,
+}: Props) => {
   useEffect(() => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
-
   const [newMsg, setNewMsg] = useState("");
   const handleSend = () => {
     if (!newMsg.trim()) return;
-    setMessages((prev) => [
-      ...prev,
+    socket?.emit(
+      "send-message",
       {
-        id: Date.now().toString(),
-        sender: "Me",
         content: newMsg,
-        time: new Date().toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit",
-        }),
-        isMine: true,
+        sender,
+        receiver: reciver,
+        chat: chatId,
       },
-    ]);
+      chatId
+    );
     setNewMsg("");
   };
   return (
@@ -47,11 +48,11 @@ const SendMessageArea = ({ ref, messages, setMessages }: Props) => {
         onKeyDown={(e) => e.key === "Enter" && handleSend()}
       />
       <Button
-        variant="blue"
+        variant="teal"
         onClick={handleSend}
-        className="flex items-center gap-1"
+        className="flex items-center mt-0"
       >
-        <Send className="w-4 h-4" /> إرسال
+        <Send />
       </Button>
     </section>
   );

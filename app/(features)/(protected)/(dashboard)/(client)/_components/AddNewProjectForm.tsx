@@ -5,12 +5,19 @@ import { Button } from "@/components/ui/button";
 import { addProjectAction } from "../actions/addproject";
 import { toast } from "sonner";
 import { PendingFormLabel, Toast } from "@/app/(shared)/_components";
-import { useTransition } from "react";
+import { useMemo, useState, useTransition } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+} from "@/components/ui/select";
 interface Props {
   clientName: string;
 }
 export default function AddNewProjectForm({ clientName }: Props) {
   const [isPending, Transition] = useTransition();
+  const [category, setCategory] = useState<string>("");
   const handelSubmitAction = (formData: FormData) => {
     Transition(async () => {
       try {
@@ -25,6 +32,44 @@ export default function AddNewProjectForm({ clientName }: Props) {
       }
     });
   };
+  const projectCategories = useMemo(
+    () => [
+      "Web Development",
+      "Mobile App Development",
+      "UI/UX Design",
+      "Graphic Design",
+      "Logo & Branding",
+      "Writing & Translation",
+      "Video Editing & Animation",
+      "Digital Marketing",
+      "SEO (Search Engine Optimization)",
+      "Social Media Management",
+      "Data Entry & Admin Support",
+      "Virtual Assistant",
+      "Software Development",
+      "Game Development",
+      "E-commerce Development",
+      "WordPress & CMS",
+      "Blockchain & Crypto",
+      "AI & Machine Learning",
+      "Data Science & Analytics",
+      "Cybersecurity",
+      "DevOps & Cloud",
+      "Product Management",
+      "Business & Finance Consulting",
+      "Legal Services",
+      "Architecture & Interior Design",
+      "Engineering & CAD",
+      "Education & E-learning",
+      "Customer Support",
+      "Sales & Lead Generation",
+      "Music & Audio Production",
+      "3D Modeling & Rendering",
+      "AR/VR Development",
+    ],
+    []
+  );
+
   return (
     <form action={handelSubmitAction} className="flex flex-col gap-3">
       <input type="hidden" name="clientName" value={clientName} />
@@ -46,6 +91,19 @@ export default function AddNewProjectForm({ clientName }: Props) {
           required
         />
       </div>
+      <Select onValueChange={setCategory} value={category}>
+        <SelectTrigger className="w-full">
+          {" "}
+          {category ? category.replace("_", " ") : "Choose Category"}
+        </SelectTrigger>
+        <SelectContent>
+          {projectCategories.map((item) => (
+            <SelectItem value={item.split(" ").join("_")} key={item}>
+              {item}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
       <div className="flex gap-2 ">
         <div className="w-1/2 ">
           <Label htmlFor="budgetMin" className="my-2">

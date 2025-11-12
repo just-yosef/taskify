@@ -50,7 +50,6 @@ const Porposals = () => {
         "سأقوم بتحليل الكلمات المفتاحية وتحسين أداء الموقع لمحركات البحث.",
     },
   ];
-
   return (
     <>
       <TitleSection text="Porposals" />
