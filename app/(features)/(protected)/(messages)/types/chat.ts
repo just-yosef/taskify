@@ -41,3 +41,32 @@ export interface IChat extends Document {
   createdAt: Date;
   updatedAt: Date;
 }
+
+
+// Chat Content
+
+export interface ChatSettingsProps {
+  isOpen: boolean;
+  onClose: () => void;
+  chatName?: string;
+  onDeleteChat?: () => void;
+}
+
+export interface ChatInfoProps {
+  chatName: string;
+  chatImage?: string;
+  lastSeen?: string;
+  isGroup?: boolean;
+  description?: string;
+}
+export interface ChatNotificationsProps {
+  notificationsEnabled: boolean;
+  onToggle: (enabled: boolean) => void;
+  muteDuration?: string; 
+}
+export interface ChatMediaProps {
+  photosCount: number;
+  filesCount: number;
+  onViewPhotos?: () => void;
+  onViewFiles?: () => void;
+}

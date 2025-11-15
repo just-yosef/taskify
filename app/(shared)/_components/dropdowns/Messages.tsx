@@ -7,7 +7,6 @@ const Messages = () => {
   return (
     <>
       <h3 className="border-b-solid sticky -top-0 left-0 z-[999] bg-white p-3 py-1 font-[rubicMedium] border-b-teal-500 border-2 border-transparent mb-3 pb-2">
-        {/* {t("messages")} */}
         Messages
         <span className="float-end">({messages.length})</span>
       </h3>

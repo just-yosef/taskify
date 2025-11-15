@@ -210,7 +210,7 @@ ChatPageContent.Settings = function ChatSettings({
             </Button>
           </div>
           <ChatInfo isGroup chatName="asdasdas" />
-          <ChatNotifications notificationsEnabled />
+          {/* <ChatNotifications  notificationsEnabled /> */}
           <ChatMedia filesCount={12} photosCount={2} />
           {/* <div className="space-y-6">
               <div>

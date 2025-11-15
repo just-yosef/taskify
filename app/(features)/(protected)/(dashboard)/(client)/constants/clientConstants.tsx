@@ -6,6 +6,7 @@ import {
   Wallet,
   Settings,
   Plus,
+  DollarSign,
 } from "lucide-react";
 import { Offer } from "../types";
 
@@ -40,23 +41,23 @@ export const clientNavLinks: TopBarLinksArray = [
   },
   {
     label_ar: "الرسائل",
-    label_en: "Messages",
+    label_en: "",
     // url: "/messages",
     component: <MessagesContent />,
     icon: MessageCircle,
     count_key: "messages_count",
     type: "utility_indicator",
-    is_dropdown: true,
+    is_dropdown: false,
     translationKey: "messages",
   },
   {
     label_ar: "الرصيد",
-    label_en: "Wallet",
-    url: "/wallet",
-    icon: Wallet,
+    label_en: "Pricing",
+    url: "/pricing",
+    icon: DollarSign,
     value_key: "current_balance",
     type: "financial",
-    translationKey: "wallet",
+    translationKey: "pricing",
   },
   {
     label_ar: "الإعدادات",

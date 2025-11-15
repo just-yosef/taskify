@@ -19,7 +19,7 @@ export const useSocketStore = create<SocketState>((set, get) => ({
     connect: (userId: string) => {
         if (get().socket) return;
 
-        const socket = io("http://localhost:5000", {
+        const socket = io("https://e-learning-server-beta.vercel.app", {
             withCredentials: true,
             transports: ["websocket"],
             reconnection: true,

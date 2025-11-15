@@ -55,7 +55,7 @@ const HeaderItem = ({ item, hiddenMobile, className }: Props) => {
                 />
               ) : null}
               {item.icon ? <item.icon size={18} /> : null}
-              {item.translationKey && (
+              {item.translationKey && item.is_dropdown && (
                 <span className="max-sm:hidden">{t(item.translationKey!)}</span>
               )}
             </Button>

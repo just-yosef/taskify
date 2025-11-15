@@ -22,10 +22,8 @@ export async function PATCH(req: Request, { params }: Params) {
   try {
     const data: Partial<IUser> = await req.json();
     await connectDB();
-
     const updatedUser = await UserModel.findByIdAndUpdate(params.id, data, { new: true }).select("-password");
     if (!updatedUser) return NextResponse.json({ error: "User not found" }, { status: 404 });
-
     return NextResponse.json({ message: "User updated", user: updatedUser });
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });

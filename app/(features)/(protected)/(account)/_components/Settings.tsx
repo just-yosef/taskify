@@ -14,13 +14,21 @@ const Settings = () => {
 
 export default Settings;
 
-export function EditSection({ children }: { children: React.ReactNode }) {
+export function EditSection({
+  children,
+  isEdited = true,
+}: {
+  children: React.ReactNode;
+  isEdited?: boolean;
+}) {
   return (
     <div className="p-2 border-teal !border-[1px] rounded-lg mb-2 flex items-center justify-between flex-wrap">
       {children}
-      <Button className="ml-auto" variant="borderTeal">
-        <Edit />
-      </Button>
+      {isEdited && (
+        <Button className="ml-auto" variant="borderTeal">
+          <Edit />
+        </Button>
+      )}
     </div>
   );
 }

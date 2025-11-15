@@ -22,6 +22,7 @@ export interface IUser extends Document {
   updatedAt: Date;
   lastLogin?: Date;
   totalSpend: number;
+  // plans:
 }
 export interface User {
   fullName: string;

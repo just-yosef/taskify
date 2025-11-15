@@ -39,6 +39,9 @@ const FreelancerSettings = () => {
               </Badge>
             ))}
           </EditSection>
+          <EditSection isEdited={false}>
+            Stripe Account: <Badge variant="outline">cu_213124124ascf</Badge>
+          </EditSection>
         </GridContainer>
       </section>
       <PortfolioSection />
