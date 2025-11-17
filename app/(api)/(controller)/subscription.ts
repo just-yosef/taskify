@@ -19,9 +19,9 @@ export const createNewSubscription = async ({ priceId, userId, plan }: Body) => 
             mode: "subscription",
             metadata: {
                 plan,
+                userId
             },
         });
-        // https://taskify-five-psi.vercel.app
         return subscription;
     } catch (error: any) {
         console.log(error);

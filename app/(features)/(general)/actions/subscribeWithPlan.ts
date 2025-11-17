@@ -5,13 +5,14 @@ import Stripe from "stripe";
 type plansTypes = "basic" | "pro" | "premium"
 export async function subscribePlan(form: FormData) {
     try {
-
         const user = await getCookie("user");
         const plan = (form.get("plan")) as plansTypes;
         const userId = JSON.parse(user)?._id
         const priceId: string = plan === "pro" ? process.env.STRIPE_PLAN_PRO_PRICE_ID! : plan === "premium" ? process.env.STRIPE_PLAN_PREMIUM_PRICE_ID! : ""
+        console.log({ priceId, userId, plan });
+
         const newPlan: AxiosResponse<Stripe.Response<Stripe.Checkout.Session>> = await axios.post("https://e-learning-server-beta.vercel.app/subscribe", { priceId, userId, plan });
-        return newPlan.data
+        return newPlan?.data
     } catch (error) {
         console.log(error);
     }
