@@ -1,109 +1,87 @@
+"use client";
 import { GridContainer, GridItem } from "../../(shared)/_components";
-import { TitleSection } from "@/app/(shared)/_components";
-import { Proposal } from "../types";
+import { Loader, TitleSection } from "@/app/(shared)/_components";
 import { BadgeDollarSign, Clock2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useGetPorposals } from "../hooks/useGetPorposals";
+import { useDeleteProposal } from "../hooks/useDeletePorposal";
+import { IProposal } from "../models/porposal.model";
 
 const Porposals = () => {
-  const proposals: Proposal[] = [
-    {
-      id: 1,
-      projectTitle: "تصميم واجهة تطبيق تعليمي",
-      freelancerName: "محمد خالد",
-      price: 350,
-      duration: 7,
-      status: "pending",
-      submittedAt: "2025-10-10",
-      message:
-        "سأقوم بتصميم واجهة احترافية للتطبيق باستخدام Figma وأسلوب حديث متجاوب.",
-    },
-    {
-      id: 2,
-      projectTitle: "موقع تجارة إلكترونية",
-      freelancerName: "سارة علي",
-      price: 1200,
-      duration: 14,
-      status: "accepted",
-      submittedAt: "2025-10-09",
-      message: "سأنفذ المشروع باستخدام Next.js وTailwind مع لوحة تحكم مخصصة.",
-    },
-    {
-      id: 3,
-      projectTitle: "نظام إدارة مهام للشركات",
-      freelancerName: "أحمد يوسف",
-      price: 800,
-      duration: 10,
-      status: "rejected",
-      submittedAt: "2025-10-08",
-      message:
-        "النظام سيحتوي على لوحة تحكم متقدمة وواجهة مستخدم بسيطة باستخدام React.",
-    },
-    {
-      id: 4,
-      projectTitle: "تحسين SEO لموقع خدمات",
-      freelancerName: "منة إبراهيم",
-      price: 250,
-      duration: 5,
-      status: "pending",
-      submittedAt: "2025-10-11",
-      message:
-        "سأقوم بتحليل الكلمات المفتاحية وتحسين أداء الموقع لمحركات البحث.",
-    },
-  ];
+  const { data: proposals, isLoading } = useGetPorposals();
   return (
     <>
       <TitleSection text="Porposals" />
+      {isLoading && <Loader isChild={false} />}
       <GridContainer distance="wd">
-        {proposals.map(
-          ({
-            projectTitle,
-            status,
-            price,
-            id,
-            duration,
-            message,
-            submittedAt,
-          }) => (
-            <GridItem
-              actions={
-                <>
-                  <Button variant="destructive" size="sm">
-                    Delete
-                  </Button>
-                  <Button variant="emerald" size="sm" className="ml-1">
-                    Edit
-                  </Button>
-                </>
-              }
-              title={projectTitle}
-              status={status}
-              cardContent={
-                <>
-                  <p> {message} </p>
-                  <div className="mt-4">
-                    <p className="text-sm text-gray-500 flex gap-2">
-                      <BadgeDollarSign size={24} className="text-green-600" />
-                      Budget: <b>{price}$</b>
-                    </p>
-                    <span className="text-sm text-gray-500 flex gap-2 mt-1 ml-0">
-                      <Clock2 className="text-peach" size={22} />
-                      Duration: <b>{duration} Days</b>
-                    </span>
-                  </div>
-                  <p>
-                    تم التقديم يوم
-                    <b className="mx-2">{submittedAt}</b>
-                  </p>
-                </>
-              }
-              variant="sky"
-              key={id}
-            />
-          )
-        )}
+        {proposals?.map((porposal) => (
+          <PorposalItem {...porposal} />
+        ))}
       </GridContainer>
     </>
   );
 };
 
 export default Porposals;
+export function PorposalItem({
+  projectId,
+  status,
+  coverLetter,
+  amount,
+  duration,
+  _id,
+  createdAt,
+}: Pick<
+  IProposal,
+  | "projectId"
+  | "status"
+  | "coverLetter"
+  | "amount"
+  | "duration"
+  | "_id"
+  | "createdAt"
+>) {
+  const { mutate, isPending } = useDeleteProposal(_id as string);
+  return (
+    <GridItem
+      actions={
+        <section className="flex gap-2">
+          <Button
+            disabled={isPending}
+            onClick={() => mutate()}
+            variant="destructive"
+            size="sm"
+          >
+            {isPending ? "Deleting" : "Delete"}
+          </Button>
+          <Button variant="emerald" size="sm" className="ml-1">
+            Edit
+          </Button>
+        </section>
+      }
+      title={projectId?.title}
+      status={status}
+      cardContent={
+        <>
+          <p> {coverLetter} </p>
+          <div className="mt-4">
+            <p className="text-sm text-gray-500 flex gap-2">
+              <BadgeDollarSign size={24} className="text-green-600" />
+              Budget: <b>{amount}$</b>
+            </p>
+            <span className="text-sm text-gray-500 flex gap-2 mt-1 ml-0">
+              <Clock2 className="text-peach" size={22} />
+              Duration: <b>{duration} Days</b>
+            </span>
+          </div>
+          <p>
+            تم التقديم يوم
+            <b className="mx-2">{createdAt.toString()}</b>
+          </p>
+        </>
+      }
+      variant="sky"
+      key={projectId?._id}
+    />
+  );
+}

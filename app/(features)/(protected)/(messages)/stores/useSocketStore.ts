@@ -18,8 +18,7 @@ export const useSocketStore = create<SocketState>((set, get) => ({
 
     connect: (userId: string) => {
         if (get().socket) return;
-
-        const socket = io("https://e-learning-server-beta.vercel.app", {
+        const socket = io("https://taskify-five-psi.vercel.app", {
             withCredentials: true,
             transports: ["websocket"],
             reconnection: true,

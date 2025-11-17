@@ -35,7 +35,8 @@ export async function POST(req: Request) {
 export async function GET() {
   try {
     await connectDB();
-    const users = await UserModel.find().select("-password");
+    const users = await UserModel.find()
+    .select("-password");
     return NextResponse.json(users);
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });

@@ -22,7 +22,7 @@ export function EditSection({
   isEdited?: boolean;
 }) {
   return (
-    <div className="p-2 border-teal !border-[1px] rounded-lg mb-2 flex items-center justify-between flex-wrap">
+    <div className="p-2 border-teal !border-[1px] rounded-lg mb-2 flex flex-col justify-between flex-wrap ">
       {children}
       {isEdited && (
         <Button className="ml-auto" variant="borderTeal">

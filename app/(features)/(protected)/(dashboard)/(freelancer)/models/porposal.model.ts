@@ -1,8 +1,20 @@
 import { UserModel } from "@/app/(features)/(users)/models";
-import mongoose, { Schema, model, models } from "mongoose";
+import mongoose, { Schema, Types, model, models } from "mongoose";
 import { ProjectModel } from "../../(client)/model";
-
-const ProposalSchema = new Schema(
+import { Project } from "@/app/(shared)/types";
+import { Document } from "mongoose";
+export interface IProposal extends Document {
+  projectId: Project;
+  freelancerId: Types.ObjectId;
+  clientId: Types.ObjectId;
+  coverLetter: string;
+  amount: number;
+  duration: string;
+  createdAt: Date;
+  updatedAt: Date
+  status: "pending" | "accepted" | "rejected";
+}
+const ProposalSchema = new Schema<IProposal>(
   {
     projectId: {
       type: mongoose.Schema.Types.ObjectId,

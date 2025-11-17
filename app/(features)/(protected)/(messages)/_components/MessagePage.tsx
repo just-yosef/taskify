@@ -28,6 +28,7 @@ export default function MessagePage() {
   useEffect(() => {
     socketStore?.connect(sender);
   }, []);
+  console.log(socketStore.onlineUsers);
 
   useEffect(() => {
     if (!socket) return;
@@ -41,12 +42,11 @@ export default function MessagePage() {
     socket?.emit("new-client-connection", { userId: sender });
 
     return () => {
-      socketStore.disconnect();
-      socket?.off("connect");
+      // socketStore.disconnect();
       socket?.off("online-users");
       socket?.off("send-message-success");
     };
-  }, [socketStore.socket]);
+  }, [socketStore.socket, messageId]);
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     paramStore.setParamId(messageId);

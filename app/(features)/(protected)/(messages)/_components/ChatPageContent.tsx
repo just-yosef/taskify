@@ -64,7 +64,7 @@ ChatPageContent.Message = function ({
         }
       );
     },
-    [socket]
+    [socket, editedText]
   );
 
   useEffect(() => {
@@ -74,7 +74,7 @@ ChatPageContent.Message = function ({
       socket?.off("update-message-success");
       socket?.off("delete-message-success");
     };
-  }, [socket]);
+  }, [socket, editedText]);
   const handleCancel = () => {
     setEditedText(msg.content);
     setIsEditing(false);

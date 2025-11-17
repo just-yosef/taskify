@@ -1,7 +1,7 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 interface Suscription {
   userId: mongoose.Types.ObjectId;
-  plan: string;
+  plan: "basic" | "pro" | "premium";
   stripeSubscriptionId: string;
   status: "active" | "past_due" | "canceled" | "unpaid" | "trialing";
   currentPeriodStart: Date;

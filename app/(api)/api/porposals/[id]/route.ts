@@ -12,13 +12,11 @@ export async function GET(
     const proposal = await ProposalModel.findById(id).populate(
       "projectId freelancerId"
     );
-
     if (!proposal)
       return NextResponse.json(
         { error: "Proposal not found" },
         { status: 404 }
       );
-
     return NextResponse.json(proposal, { status: 200 });
   } catch (error) {
     console.error("Error fetching proposal:", error);
@@ -59,7 +57,7 @@ export async function PATCH(
 }
 
 export async function DELETE(
-  req: NextRequest,
+  _: NextRequest,
   context: { params: { id: string } }
 ) {
   try {
