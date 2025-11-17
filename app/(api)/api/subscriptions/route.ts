@@ -1,6 +1,7 @@
 import Subscription from "@/app/(features)/(general)/(pricing)/models/Subscription.model";
 import { connectDB } from "@/lib";
 import { NextRequest, NextResponse } from "next/server";
+import Stripe from "stripe";
 export const config = {
     api: {
         bodyParser: true,
@@ -26,25 +27,47 @@ export async function GET(req: NextRequest) {
     }
 }
 
-export async function POST(req: NextRequest) {
-    await connectDB();
 
+export async function POST(req: Request) {
     try {
         const body = await req.json();
+        const { userId, plan, stripeSubscriptionId } = body;
 
-        const subscription = await Subscription.create({
-            userId: body.userId,
-            plan: body.plan,
-            stripeSubscriptionId: body.stripeSubscriptionId,
-            status: body.status || "active",
-            currentPeriodStart: new Date(body.currentPeriodStart),
-            currentPeriodEnd: new Date(body.currentPeriodEnd),
-            cancelAtPeriodEnd: body.cancelAtPeriodEnd || false,
+        if (!userId || !plan || !stripeSubscriptionId) {
+            return NextResponse.json(
+                { error: "Missing required fields" },
+                { status: 400 }
+            );
+        }
+
+        await connectDB();
+
+        const stripe = new Stripe(process.env.STRIPE_SECRET!, {
+            apiVersion: "2025-10-29.clover",
         });
 
-        return NextResponse.json(subscription, { status: 201 });
+        const stripeSub = await stripe.subscriptions.retrieve(
+            stripeSubscriptionId as string
+        );
+
+        const newSubscription = await Subscription.create({
+            userId,
+            plan,
+            stripeSubscriptionId,
+            status: stripeSub.status,
+            currentPeriodStart: new Date(stripeSub?.ended_at * 1000),
+            currentPeriodEnd: new Date(stripeSub.start_date * 1000),
+            cancelAtPeriodEnd: stripeSub.cancel_at_period_end,
+        });
+
+        return NextResponse.json(newSubscription, { status: 201 });
+
     } catch (err: any) {
-        return NextResponse.json({ error: err.message }, { status: 500 });
+        console.error("Create Subscription Error:", err);
+        return NextResponse.json(
+            { error: err.message || "Internal Server Error" },
+            { status: 500 }
+        );
     }
 }
 
