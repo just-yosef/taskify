@@ -46,6 +46,7 @@ export function PlanItem({ plan }: { plan: PricingPlan }) {
         const form = new FormData();
         form.append("plan", plan.id);
         const url = (await subscribePlan(form))?.url!;
+        console.log(url);
         location.assign(url);
       } catch (error) {
         console.log(error);

@@ -10,16 +10,13 @@ export const config = {
 
 export async function GET(req: NextRequest) {
     await connectDB();
-
     try {
         const { searchParams } = new URL(req.url);
         const userId = searchParams.get("userId");
         const planId = searchParams.get("planId");
-
         const filter: any = {};
         if (userId) filter.userId = userId;
         if (planId) filter.planId = planId;
-
         const subscriptions = await Subscription.find(filter);
         return NextResponse.json(subscriptions);
     } catch (err: any) {
@@ -32,16 +29,13 @@ export async function POST(req: Request) {
     try {
         const body = await req.json();
         const { userId, plan, stripeSubscriptionId } = body;
-
         if (!userId || !plan || !stripeSubscriptionId) {
             return NextResponse.json(
                 { error: "Missing required fields" },
                 { status: 400 }
             );
         }
-
         await connectDB();
-
         const stripe = new Stripe(process.env.STRIPE_SECRET!, {
             apiVersion: "2025-10-29.clover",
         });
@@ -55,7 +49,7 @@ export async function POST(req: Request) {
             plan,
             stripeSubscriptionId,
             status: stripeSub.status,
-            currentPeriodStart: new Date(stripeSub?.ended_at * 1000),
+            currentPeriodStart: new Date(stripeSub?.ended_at! * 1000),
             currentPeriodEnd: new Date(stripeSub.start_date * 1000),
             cancelAtPeriodEnd: stripeSub.cancel_at_period_end,
         });
