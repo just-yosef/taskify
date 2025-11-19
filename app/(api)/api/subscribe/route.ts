@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createNewSubscription } from "../../(controller)/subscription";
+import { stripe } from "../../constants/stripe";
 
 export async function POST(req: Request) {
   try {
@@ -11,6 +12,7 @@ export async function POST(req: Request) {
         { status: 400 }
       );
     }
+
     const subscription = await createNewSubscription({ priceId, userId, plan });
     return NextResponse.json(subscription, { status: 201 });
   } catch (error) {

@@ -21,11 +21,12 @@ import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bell, Palette } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Toast } from "@/app/(shared)/_components";
 
 export default function ChatPageContent() {
   return <div></div>;
 }
-ChatPageContent.Message = function ({
+ChatPageContent.Message = memo(function ({
   message: msg,
   onDelete,
   socket,
@@ -40,6 +41,7 @@ ChatPageContent.Message = function ({
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(msg.content);
   const [isSelected, setIsSelected] = useState(false);
+  const [lastUpdatedMsg, setLastUpdatedMsg] = useState<Message | null>(null);
   const paramStore = useParamStore();
   const handleSave = useCallback(() => {
     if (msg.content === editedText) return;
@@ -52,7 +54,7 @@ ChatPageContent.Message = function ({
     socket?.emit("update-message", payload);
     setIsEditing(false);
     setIsSelected(false);
-  }, [isSelected]);
+  }, [isSelected, editedText]);
   const updateQueryClient = useCallback(
     (updatedMsg: Message) => {
       updateQueryCache<Message[]>(
@@ -68,13 +70,26 @@ ChatPageContent.Message = function ({
   );
 
   useEffect(() => {
-    socket?.on("update-message-success", updateQueryClient);
+    socket.on("update-message-success", (msg) => {
+      setLastUpdatedMsg(msg);
+      setEditedText(lastUpdatedMsg?.content!);
+
+      toast.custom(() => (
+        <Toast message="New Message Updated" status="success" />
+      ));
+    });
     socket?.on("delete-message-success", updateQueryClient);
     return () => {
       socket?.off("update-message-success");
       socket?.off("delete-message-success");
     };
-  }, [socket, editedText]);
+  }, [socket]);
+  // Remove Heighlight From Message
+  useEffect(() => {
+    if (!lastUpdatedMsg) return;
+    const timeout = setTimeout(() => setLastUpdatedMsg(null), 2000);
+    return () => clearTimeout(timeout);
+  }, [lastUpdatedMsg]);
   const handleCancel = () => {
     setEditedText(msg.content);
     setIsEditing(false);
@@ -93,9 +108,13 @@ ChatPageContent.Message = function ({
 
   return (
     <div
-      className={`relative flex w-full flex-col ${
+      className={`relative flex w-full transition flex-col p-2 rounded-lg ${
         isMessageIsMine ? "justify-end" : "justify-start"
-      }`}
+      } ${cn(
+        lastUpdatedMsg?._id === msg?._id
+          ? "bg-teal-soft p-2 border-teal rounded-lg"
+          : ""
+      )}`}
     >
       {msg.isDeleted ? (
         <i className={cn(isMessageIsMine ? "ml-auto" : "mr-auto")}>
@@ -133,7 +152,7 @@ ChatPageContent.Message = function ({
               </div>
             ) : (
               <>
-                <p>{msg.content}</p>
+                <p>{!editedText ? msg.content : editedText}</p>
                 <span
                   className={`text-[11px] block mt-1 ${
                     isMessageIsMine ? "text-gray-100" : "text-gray-500"
@@ -148,8 +167,7 @@ ChatPageContent.Message = function ({
             <>
               {msg.updatedAt !== msg.createdAt && (
                 <span className={cn(isMessageIsMine ? "ml-auto" : "mr-auto")}>
-                  {" "}
-                  رساله معدلة{" "}
+                  رساله معدلة
                 </span>
               )}
               <div className="flex flex-col gap-2">
@@ -181,7 +199,7 @@ ChatPageContent.Message = function ({
       )}
     </div>
   );
-};
+});
 ChatPageContent.Settings = function ChatSettings({
   isOpen = true,
   onClose,

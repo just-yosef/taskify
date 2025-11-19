@@ -2,15 +2,11 @@ import Subscription from "@/app/(features)/(general)/(pricing)/models/Subscripti
 import { connectDB } from "@/lib";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-export const config = {
-    api: {
-        bodyParser: true,
-    },
-};
+
 
 export async function GET(req: NextRequest) {
-    await connectDB();
     try {
+        await connectDB();
         const { searchParams } = new URL(req.url);
         const userId = searchParams.get("userId");
         const planId = searchParams.get("planId");
@@ -28,8 +24,8 @@ export async function GET(req: NextRequest) {
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { userId, plan, stripeSubscriptionId } = body;
-        if (!userId || !plan || !stripeSubscriptionId) {
+        const { userId, plan, stripeSubscriptionId, currentPeriodStart, currentPeriodEnd } = body;
+        if (!userId || !plan || !stripeSubscriptionId || !currentPeriodEnd || !currentPeriodStart) {
             return NextResponse.json(
                 { error: "Missing required fields" },
                 { status: 400 }
@@ -49,8 +45,8 @@ export async function POST(req: Request) {
             plan,
             stripeSubscriptionId,
             status: stripeSub.status,
-            currentPeriodStart: new Date(stripeSub?.ended_at! * 1000),
-            currentPeriodEnd: new Date(stripeSub.start_date * 1000),
+            currentPeriodStart,
+            currentPeriodEnd,
             cancelAtPeriodEnd: stripeSub.cancel_at_period_end,
         });
 

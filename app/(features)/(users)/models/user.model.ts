@@ -22,6 +22,7 @@ export interface IUser extends Document {
   updatedAt: Date;
   lastLogin?: Date;
   totalSpend: number;
+  stripeCustomerId: string | null
   // plans:
 }
 export interface User {
@@ -80,6 +81,7 @@ const userSchema = new mongoose.Schema<IUser>(
     createdAt: { type: Date, default: Date.now },
     lastLogin: Date,
     totalSpend: { type: Number, default: 0 },
+    stripeCustomerId: { type: String || null, default: null }
   },
   { timestamps: true }
 );

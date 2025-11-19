@@ -1,23 +1,17 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-import axios from "axios";
 import { api } from "@/app/(features)/(general)/constants";
 
-export const config = {
-    api: {
-        bodyParser: false,
-    },
-};
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
     const stripe = new Stripe(process.env.STRIPE_SECRET!, {
         apiVersion: "2025-10-29.clover",
     });
+
     let event;
-    let body;
+    const body = await req.text();
 
     try {
-        body = await req.text();
-        const signature = req.headers.get("stripe-signature") as any;
+        const signature = req.headers.get("stripe-signature")!;
         event = stripe.webhooks.constructEvent(
             body,
             signature,
@@ -30,21 +24,29 @@ export async function POST(req: Request) {
 
     if (event.type === "checkout.session.completed") {
         const session = event.data.object;
-        const stripeSubscriptionId = session.subscription;
+        const stripeSubscriptionId = session.subscription as string;
         const userId = session.client_reference_id;
         const planId = session.metadata?.plan;
+        if (!stripeSubscriptionId || !userId || !planId) {
+            console.error("Missing important data in the session object.");
+            return new NextResponse("Missing data", { status: 400 });
+        }
 
         try {
-            await api.post(
-                "/subscriptions",
-                {
-                    userId,
-                    plan: planId,
-                    stripeSubscriptionId,
-                }
-            );
+            const stripeSub = (await stripe.subscriptions.retrieve(stripeSubscriptionId));
+            // update customer id in user db if not found
+            console.log(stripeSubscriptionId, userId, planId);
+
+            await api.post("/subscriptions", {
+                userId,
+                plan: planId,
+                stripeSubscriptionId,
+                currentPeriodStart: stripeSub.items.data[0].current_period_start,
+                currentPeriodEnd: stripeSub.items.data[0].current_period_end
+            });
         } catch (error) {
             console.error("Error posting subscription:", error);
+            return new NextResponse("Error posting subscription", { status: 500 });
         }
     }
 

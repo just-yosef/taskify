@@ -18,7 +18,7 @@ export const useSocketStore = create<SocketState>((set, get) => ({
 
     connect: (userId: string) => {
         if (get().socket) return;
-        const socket = io("https://taskify-five-psi.vercel.app", {
+        const socket = io("http://localhost:5000", {
             withCredentials: true,
             transports: ["websocket"],
             reconnection: true,

@@ -1,8 +1,6 @@
 import axios from "axios";
 
-const baseURL = process.env.BASE_URL
-  ? `${process.env.BASE_URL}/api`
-  : "http://localhost:3000/api";
+const baseURL = "https://taskify-five-psi.vercel.app/api"
 
 export const api = axios.create({
   baseURL,

@@ -1,7 +1,11 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { FormEvent, useCallback, useTransition } from "react";
+import { FormEvent, useCallback, useMemo, useTransition } from "react";
 import { subscribePlan } from "../actions";
+import { useSubscribtions } from "../(pricing)/(hooks)/useSubscriptions";
+import { Loader } from "@/app/(shared)/_components";
+import { ISubscription } from "../(pricing)/models/Subscription.model";
+import { Check } from "lucide-react";
 export interface PricingPlan {
   id: "basic" | "pro" | "premium";
   title: string;
@@ -15,6 +19,14 @@ interface Props {
   plans: PricingPlan[];
 }
 export default function PricingSection({ plans }: Props) {
+  const { data, isLoading } = useSubscribtions();
+  console.log(data);
+  const proSubs = useMemo(() => {
+    return data?.filter((item) => item.plan === "pro");
+  }, [data]);
+  const premiumSubs = useMemo(() => {
+    return data?.filter((item) => item.plan === "premium");
+  }, [data]);
   return (
     <section className="py-5 font-[rubicMedium]">
       <div className="mx-auto w-full max-w-2xl px-4 sm:px-6 lg:max-w-7xl">
@@ -27,40 +39,55 @@ export default function PricingSection({ plans }: Props) {
             Suspendisse lorem odio sit amet libero facilisis.
           </p>
         </div>
-        <div className="mx-auto mt-12 grid gap-8 lg:grid-cols-3">
-          {plans.map((plan) => (
-            <PlanItem key={plan.description} plan={plan} />
-          ))}
-        </div>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <div className="mx-auto mt-12 grid gap-8 lg:grid-cols-3">
+            {plans.map((plan) => (
+              <PlanItem
+                subscribtion={plan.id === "pro" ? proSubs : premiumSubs}
+                key={plan.description}
+                plan={plan}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
 }
 
-export function PlanItem({ plan }: { plan: PricingPlan }) {
+export function PlanItem({
+  plan,
+  subscribtion,
+}: {
+  plan: PricingPlan;
+  subscribtion: ISubscription[] | undefined;
+}) {
   const [isPending, startTransition] = useTransition();
+  const subscribeaPlan = async () => {
+    try {
+      const form = new FormData();
+      form.append("plan", plan.id);
+      const url = (await subscribePlan(form))?.url!;
+      console.log(url);
+      location.assign(url);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const handelSubscription = useCallback(async (e: FormEvent) => {
     e.preventDefault();
-    startTransition(async () => {
-      try {
-        const form = new FormData();
-        form.append("plan", plan.id);
-        const url = (await subscribePlan(form))?.url!;
-        console.log(url);
-        location.assign(url);
-      } catch (error) {
-        console.log(error);
-      }
-    });
+    startTransition(subscribeaPlan);
   }, []);
-
+  console.log(subscribtion, localStorage.getItem("userId")!);
   return (
     <form
       onSubmit={handelSubscription}
       className="bg-card rounded-2xl border shadow-xs border-teal"
     >
       <input name="plan" type="hidden" value={plan.id} />
-      <div className="p-8 h-full flex flex-col justify-between">
+      <div className="p-8 pb-4 h-full flex flex-col justify-between">
         <section>
           <div className="space-y-2">
             <h3 className="text-xl/snug font-semibold tracking-tight text-teal">
@@ -97,7 +124,12 @@ export function PlanItem({ plan }: { plan: PricingPlan }) {
             ))}
           </ul>
         </section>
-        {plan.id === "basic" ? null : (
+        {plan.id === "basic" ? null : subscribtion?.[0]?.userId ===
+          localStorage.getItem("userId")! ? (
+          <div className="p-2 rounded-md text-center flex items-center justify-center mt-5  bg-green-100 text-green-600 gap-2">
+            subscribed <Check />
+          </div>
+        ) : (
           <Button
             onClick={handelSubscription}
             size="lg"

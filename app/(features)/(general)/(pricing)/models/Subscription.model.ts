@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 interface Suscription {
-  userId: mongoose.Types.ObjectId;
+  userId: string;
   plan: "basic" | "pro" | "premium";
   stripeSubscriptionId: string;
   status: "active" | "past_due" | "canceled" | "unpaid" | "trialing";
@@ -14,7 +14,7 @@ export type ISubscription = Suscription & Document
 
 const SubscriptionSchema: Schema<ISubscription> = new Schema(
   {
-    userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    userId: { type: String, required: true },
     plan: { type: String, required: true },
     stripeSubscriptionId: { type: String, required: true },
     status: {
