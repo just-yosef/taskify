@@ -20,13 +20,13 @@ interface Props {
 }
 export default function PricingSection({ plans }: Props) {
   const { data, isLoading } = useSubscribtions();
-  console.log(data);
   const proSubs = useMemo(() => {
     return data?.filter((item) => item.plan === "pro");
   }, [data]);
-  const premiumSubs = useMemo(() => {
-    return data?.filter((item) => item.plan === "premium");
-  }, [data]);
+  const premiumSubs = useMemo(
+    () => data?.filter((item) => item.plan === "premium"),
+    [data]
+  );
   return (
     <section className="py-5 font-[rubicMedium]">
       <div className="mx-auto w-full max-w-2xl px-4 sm:px-6 lg:max-w-7xl">
@@ -34,7 +34,7 @@ export default function PricingSection({ plans }: Props) {
           <h2 className="text-4xl/tight font-bold tracking-tight !font-[rubicBold]">
             Choose your plan
           </h2>
-          <p className="text-muted-foreground mt-4 text-lg/8">
+          <p className="text-muted-foreground mt-4 text-lg/8 leading-[20px]">
             Sed eu quam id quam tristique pharetra a at tortor veil dolarto.
             Suspendisse lorem odio sit amet libero facilisis.
           </p>
@@ -70,7 +70,6 @@ export function PlanItem({
       const form = new FormData();
       form.append("plan", plan.id);
       const url = (await subscribePlan(form))?.url!;
-      console.log(url);
       location.assign(url);
     } catch (error) {
       console.log(error);
@@ -80,7 +79,6 @@ export function PlanItem({
     e.preventDefault();
     startTransition(subscribeaPlan);
   }, []);
-  console.log(subscribtion, localStorage.getItem("userId")!);
   return (
     <form
       onSubmit={handelSubscription}
@@ -103,32 +101,12 @@ export function PlanItem({
             </span>
             <span className="text-muted-foreground ml-1">/ month</span>
           </div>
-          <ul className="mt-8 space-y-4 text-sm">
-            {plan.features.map((feature, i) => (
-              <li key={i} className="text-muted-foreground flex items-center">
-                <svg
-                  className="mr-4 h-4 w-4 text-green-700"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-                <span>{feature}</span>
-              </li>
-            ))}
-          </ul>
+          <PlanItem.FeaturesList list={plan.features} />
         </section>
-        {plan.id === "basic" ? null : subscribtion?.[0]?.userId ===
-          localStorage.getItem("userId")! ? (
-          <div className="p-2 rounded-md text-center flex items-center justify-center mt-5  bg-green-100 text-green-600 gap-2">
-            subscribed <Check />
-          </div>
+        {plan.id === "basic" ? null : subscribtion?.filter(
+            (item) => item.userId === localStorage.getItem("userId")
+          ).length ? (
+          <PlanItem.SubscribedButton />
         ) : (
           <Button
             onClick={handelSubscription}
@@ -143,4 +121,53 @@ export function PlanItem({
       </div>
     </form>
   );
+}
+
+PlanItem.FeaturesList = function ({ list }: { list: string[] }) {
+  return (
+    <ul className="mt-4 space-y-2 text-sm">
+      {list.map((feature, i) => (
+        <li key={i} className="text-muted-foreground flex items-center">
+          <Check
+            className="mr-4 text-green-700 flex min-w-3 min-h-3"
+            size={14}
+          />
+          <span>{feature}</span>
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+PlanItem.SubscribedButton = function () {
+  return (
+    <div className="p-2 rounded-md text-center flex items-center justify-center mt-5  bg-green-100 text-green-600 gap-2">
+      subscribed <Check />
+    </div>
+  );
+};
+
+PlanItem.SubmitionButton = function ({
+  handelSubscription,
+  isPending,
+  plan,
+}: SubmitionProps) {
+  return (
+    <>
+      <Button
+        onClick={handelSubscription}
+        size="lg"
+        disabled={isPending}
+        variant="borderTeal"
+        className="mt-4 w-full"
+      >
+        {isPending ? "Processing" : `Purchase ${plan.title}`}
+      </Button>
+    </>
+  );
+};
+interface SubmitionProps {
+  plan: PricingPlan;
+  isPending: boolean;
+  handelSubscription: (e: FormEvent<Element>) => Promise<void>;
 }

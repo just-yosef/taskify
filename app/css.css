@@ -1,23 +1,59 @@
 @font-face {
-    font-family: 'rubicLight';
-    src: url('../public/assets/fonts/Rubik-Light.ttf');
-    font-weight: 300;
+  font-family: "rubicLight";
+  src: url("../public/assets/fonts/Rubik-Light.ttf");
+  font-weight: 300;
 }
 
 @font-face {
-    font-family: 'rubicRegular';
-    src: url('../public/assets/fonts/Rubik-Regular.ttf');
-    font-weight: 400;
+  font-family: "rubicRegular";
+  src: url("../public/assets/fonts/Rubik-Regular.ttf");
+  font-weight: 400;
 }
 
 @font-face {
-    font-family: 'rubicMedium';
-    src: url('../public/assets/fonts/Rubik-Medium.ttf');
-    font-weight: 500;
+  font-family: "rubicMedium";
+  src: url("../public/assets/fonts/Rubik-Medium.ttf");
+  font-weight: 500;
 }
 
 @font-face {
-    font-family: 'rubicBold';
-    src: url('../public/assets/fonts/Rubik-Bold.ttf');
-    font-weight: 700;
+  font-family: "rubicBold";
+  src: url("../public/assets/fonts/Rubik-Bold.ttf");
+  font-weight: 700;
 }
+
+/* Hover */
+.hover-teal-soft {
+  &:hover {
+    background: var(--bg-teal-soft);
+    color: var(--color-teal);
+  }
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  border-radius: 10px
+}
+.hover-sky-soft {
+  &:hover {
+    background: var(--bg-sky-soft);
+    color: var(--color-sky);
+  }
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+}
+.hover-peach-soft {
+  &:hover {
+    background: var(--bg-peach-soft);
+    color: var(--color-peach);
+  }
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+}
+.hover-blue-soft {
+  &:hover {
+    background: var(--bg-blue-soft);
+    color: var(--color-blue);
+  }
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+}
+/* Hover */

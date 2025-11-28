@@ -26,15 +26,14 @@ function ToggleNavbarMobile<A extends {}>({ links }: Props<link, A>) {
           {open ? <X /> : <Menu />}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="flex flex-col gap-2 w-[450px] mr-2 lg:hidden border-teal !border-[1px] z-[99990000] relative ">
+      <DropdownMenuContent className="flex flex-col gap-1 w-[450px] mr-2 lg:hidden border-teal !border-[1px] z-[99990000] relative ">
         {links.map((lnk) => (
           <Link
             key={lnk.href}
             href={{ pathname: lnk.href }}
             onClick={() => setOpen(false)}
-            className="px-4 py-2 text-gray-700 hover:bg-gray-100"
+            className="px-4 py-2 text-gray-700 hover-teal-soft"
           >
-            {/* {t("nav." + lnk.label.split(" ").join("").toLowerCase())} */}
             {lnk.label}
           </Link>
         ))}

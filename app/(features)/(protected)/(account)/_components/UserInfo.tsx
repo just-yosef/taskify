@@ -20,7 +20,7 @@ const UserInfo = async () => {
   const user = await decodeUserFromToken();
   return (
     <>
-      <div className="min-h-[250px] flex items-center justify-center my-10">
+      <div className="min-h-[250px] flex items-center justify-center py-10">
         <div className="flex flex-col gap-0.5 items-center">
           <User className="sm:size-24 size-20" opacity="30%" />
           <h4 className="font-semibold font-[rubicRegular]">

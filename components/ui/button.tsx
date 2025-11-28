@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap rounded-md text-sm font-medium transition-all font-[rubicRegular] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none  aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive capitalize mt-2",
+  "inline-flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap rounded-md text-sm font-medium transition-all font-[rubicRegular] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none  aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive capitalize mt-2 duration-300",
 
   {
     variants: {
@@ -22,7 +22,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         teal: "bg-[#008080] text-white hover:bg-[#006666]",
         borderTeal:
-          "border-[#008080] border text-[#008080] hover:bg-[#006666] hover:text-white",
+          "border-[#008080] border text-[#008080] hover:bg-[var(--bg-teal-soft)] hover:text-[var(--color-teal)] text-black",
         sky: "bg-[#7da1f5] text-white hover:bg-[#6b90e6]",
         rose: "bg-[#db5461] text-white hover:bg-[#c0414e]",
         peach: "bg-[#fea271] text-white hover:bg-[#f68a4d]",

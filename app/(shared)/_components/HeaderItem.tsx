@@ -27,21 +27,31 @@ const HeaderItem = ({ item, hiddenMobile, className }: Props) => {
       asChild
       variant="borderTeal"
       size="sm"
-      className={cn(hiddenMobile ? "lg:hidden" : "", "font-[rubicRegular]")}
+      data-title={t(item.translationKey!)}
+      className={cn(
+        hiddenMobile ? "lg:hidden" : "",
+        "font-[rubicRegular] text-teal",
+        "font-[rubicRegular] relative",
+        "after:absolute after:bg-[var(--color-teal-soft)] after:px-3 after:py-1 after:opacity-0 after:-bottom-10 after:rounded-md hover:after:opacity-[1] hover:after:-bottom-14 after:content-[attr(data-title)] after:h-fit after:pointer-events-none after:text-[var(--color-teal)] after:border after:border-teal "
+      )}
     >
       {item.url ? (
-        <Link href={{ pathname: item.url }}>
-          {item.icon ? <item.icon size={18} /> : null}
-          {t(`${item.translationKey}`)}
-        </Link>
+        <Button asChild variant="borderTeal">
+          <Link href={{ pathname: item.url }}>
+            {item.icon ? <item.icon size={18} /> : null}
+          </Link>
+        </Button>
       ) : (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
+              data-title={t(item.translationKey!)}
               variant="borderTeal"
               className={cn(
                 hiddenMobile ? "lg:hidden" : "",
-                "font-[rubicRegular] relative"
+                "font-[rubicRegular] relative",
+                "after:absolute after:bg-[var(--color-teal-soft)] after:px-3 after:py-1 after:opacity-0 after:-bottom-10 after:rounded-md hover:after:opacity-[1] hover:after:-bottom-14 after:content-[attr(data-title)] after:h-fit after:pointer-events-none after:text-[var(--color-teal)] after:border after:border-teal",
+                "max-sm:after:hidden"
               )}
             >
               {item.notifications ? (
@@ -54,10 +64,7 @@ const HeaderItem = ({ item, hiddenMobile, className }: Props) => {
                   )}
                 />
               ) : null}
-              {item.icon ? <item.icon size={18} /> : null}
-              {item.translationKey && item.is_dropdown && (
-                <span className="max-sm:hidden">{t(item.translationKey!)}</span>
-              )}
+              {item.icon ? <item.icon className="text-teal" /> : null}
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent

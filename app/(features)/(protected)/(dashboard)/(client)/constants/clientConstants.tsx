@@ -7,6 +7,7 @@ import {
   Settings,
   Plus,
   DollarSign,
+  User,
 } from "lucide-react";
 import { Offer } from "../types";
 
@@ -41,7 +42,7 @@ export const clientNavLinks: TopBarLinksArray = [
   },
   {
     label_ar: "الرسائل",
-    label_en: "",
+    label_en: "Messages",
     // url: "/messages",
     component: <MessagesContent />,
     icon: MessageCircle,
@@ -69,12 +70,13 @@ export const clientNavLinks: TopBarLinksArray = [
     translationKey: "settings",
   },
   {
-    label_ar: "اضف طلب مشروع",
-    label_en: "Add Project",
-    url: "/post-job",
-    type: "action_button",
-    style: "button_primary",
-    icon: Plus,
+    label_ar: "",
+    label_en: "My Account",
+    url: "/account",
+    type: "account_page",
+    style: "button_teal",
+    translationKey: "myAccount",
+    icon: User,
   },
 ];
 export const offers: Offer[] = [

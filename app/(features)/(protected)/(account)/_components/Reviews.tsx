@@ -16,7 +16,7 @@ type Review = {
 const Reviews = () => {
   return (
     <>
-      <TitleSection text="Portfolio" />
+      <TitleSection text="Reviews" />
       <GridContainer>
         {fakeReviews.map((el) => (
           <ReviewItem review={el} key={el.id} />
@@ -32,8 +32,8 @@ export function ReviewItem({ review }: { review: Review }) {
   const { clientName, clientAvatar, rating, comment, projectTitle, date } =
     review;
   return (
-    <Card className="border-blue">
-      <CardHeader className="flex flex-row items-center gap-3 pb-2">
+    <Card className="border-teal py-4">
+      <CardHeader className="flex flex-row items-center gap-3 border-b border-b-[var(--color-teal)]">
         <img
           src={clientAvatar}
           alt={clientName}

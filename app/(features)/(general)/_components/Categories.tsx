@@ -1,8 +1,8 @@
 import { GridContainer, TitleSection } from "@/app/(shared)/_components";
 import React from "react";
 import { categories } from "../constants";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
+import CardGridItem from "@/app/(shared)/_components/CardGridItem";
 
 const Categories = () => {
   return (
@@ -11,19 +11,9 @@ const Categories = () => {
       <GridContainer>
         {categories.map((cat) => (
           <Link href={`/category/${cat.id}`}>
-            <Card key={cat.title} className="border-rose">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 ">
-                  <span className="size-10 bg-rose-200 rounded-full flex justify-center items-center text-rose">
-                    {<cat.icon size={18} />}
-                  </span>
-                  <h3 className="text-rose">{cat.title}</h3>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="-mt-4">
-                <div className="flex h-[220px] bg-rose-50 rounded-lg" />
-              </CardContent>
-            </Card>
+            <CardGridItem icon={<cat.icon />} title={cat.title}>
+              <CardGridItem.PlacholderImage />
+            </CardGridItem>
           </Link>
         ))}
       </GridContainer>

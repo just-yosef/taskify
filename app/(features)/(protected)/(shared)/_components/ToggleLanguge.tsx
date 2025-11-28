@@ -15,7 +15,6 @@ const ToggleLanguge = () => {
   const handelToggleLanguges = useCallback(async (val: "ar" | "en") => {
     const data = new FormData();
     data.append("lang", val);
-    console.log(val, data.get("lang"));
     await changeLanguge(data);
     location.reload();
     langugeStore.setLanguage(val);
@@ -28,10 +27,16 @@ const ToggleLanguge = () => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="mt-3 border-teal">
-        <DropdownMenuItem onClick={() => handelToggleLanguges("ar")}>
+        <DropdownMenuItem
+          className="hover-teal-soft"
+          onClick={() => handelToggleLanguges("ar")}
+        >
           Arabic {langugeStore.language === "ar" && <Check />}
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => handelToggleLanguges("en")}>
+        <DropdownMenuItem
+          className="hover-teal-soft"
+          onClick={() => handelToggleLanguges("en")}
+        >
           English {langugeStore.language === "en" && <Check />}
         </DropdownMenuItem>
       </DropdownMenuContent>
