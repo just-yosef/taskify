@@ -1,6 +1,6 @@
 import { PricingPlan } from "../_components/PricingPage";
 
-const clientPlans = [
+const clientPlans: PricingPlan[] = [
     {
         id: "basic",
         title: "Basic",

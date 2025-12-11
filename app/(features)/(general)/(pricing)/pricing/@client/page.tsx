@@ -1,4 +1,3 @@
-import React from "react";
 import PricingSection from "../../../_components/PricingPage";
 import { clientPlans } from "../../../constants/pricing";
 

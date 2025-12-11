@@ -1,7 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tag } from "lucide-react";
-import React, { type JSX } from "react";
 
 interface Item {
   title: string;

@@ -6,8 +6,9 @@ import { useSubscribtions } from "../(pricing)/(hooks)/useSubscriptions";
 import { Loader } from "@/app/(shared)/_components";
 import { ISubscription } from "../(pricing)/models/Subscription.model";
 import { Check } from "lucide-react";
+type PlanType = "basic" | "pro" | "premium";
 export interface PricingPlan {
-  id: "basic" | "pro" | "premium";
+  id: PlanType;
   title: string;
   description: string;
   price: number;

@@ -344,7 +344,6 @@ body {
   border: var(--border-width) solid
     color-mix(in srgb, var(--color-peach) 25%, transparent);
 }
-
 .container-body {
   @apply max-lg:p-[10px] py-3 px-[7vw];
 }

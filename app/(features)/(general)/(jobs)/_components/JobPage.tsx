@@ -13,27 +13,33 @@ const JobPage = async ({ projectId }: Props) => {
   return (
     <>
       <TitleSection text="Project" />
-      <section className="bg-[#fff] p-3 border-teal rounded-md">
+      <section className="bg-white p-3 border-teal rounded-md">
         <section className="flex items-center justify-between ">
           <h3 className="font-semibold">طلب: {project.title} </h3>
           <Badge variant="blue">{project.status} </Badge>
         </section>
         <Separator className="mt-3" />
+        {/* Job Details */}
         <h4 className="mt-3">Details</h4>
         <section className="bg-[#eee] mt-2 p-2 sm:p-4">
           <p> {project.description} </p>
         </section>
+        {/* Job Budget */}
+
         <h4 className="mt-3"> Budget </h4>
         <section className="bg-[#eee] mt-2 p-2 sm:p-4 gap-2 flex items-center">
           From <Badge variant="outline">{project.budgetMin}</Badge> to
           <Badge variant="outline"> {project.budgetMax}</Badge>
         </section>
+        {/* Job Duration */}
+
         <h4 className="mt-3"> Duration </h4>
         <section className="bg-[#eee] mt-2 p-2 sm:p-4 gap-2 flex items-center">
           <Badge variant="outline">
             <Clock /> {project.duration || "Not specified"}
           </Badge>
         </section>
+        {/* Job Category */}
         <h4 className="mt-3"> category </h4>
         <section className="bg-[#eee] mt-2 p-2 sm:p-4 gap-2 flex items-center">
           <Badge variant="outline">
@@ -41,7 +47,7 @@ const JobPage = async ({ projectId }: Props) => {
           </Badge>
         </section>
       </section>
-      <JobPorposals projectId={projectId}  />
+      <JobPorposals projectId={projectId} />
       <AboutClient projectId={project.clientId} />
     </>
   );

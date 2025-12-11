@@ -18,16 +18,13 @@ import { Input } from "@/components/ui/input";
 import { PendingFormLabel } from "@/app/(shared)/_components";
 import { loginAction } from "@/app/(features)/(general)/(signin)/(actions)";
 import { useTransition } from "react";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Info } from "lucide-react";
-
-export function LoginForm({
-  switchMode,
-  className,
-}: {
+interface Prpos {
   switchMode: () => void;
   className?: string;
-}) {
+}
+export function LoginForm({ switchMode, className }: Prpos) {
   const [isPending, transition] = useTransition();
   const router = useRouter();
   async function handleLoginAction(formData: FormData) {
