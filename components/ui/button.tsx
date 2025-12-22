@@ -22,7 +22,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         teal: "bg-[#008080] text-white hover:bg-[#006666]",
         borderTeal:
-          "border-[#008080] border text-[#008080] hover:bg-[var(--bg-teal-soft)] hover:text-[var(--color-teal)] text-black",
+          "border-[#008080] border hover:bg-[var(--bg-teal-soft)] text-teal ",
         sky: "bg-[#7da1f5] text-white hover:bg-[#6b90e6]",
         rose: "bg-[#db5461] text-white hover:bg-[#c0414e]",
         peach: "bg-[#fea271] text-white hover:bg-[#f68a4d]",

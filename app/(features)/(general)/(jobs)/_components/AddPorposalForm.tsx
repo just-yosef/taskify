@@ -6,10 +6,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { useParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { createProposal } from "../service/porposals.service";
-import { useEffect } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useProject } from "../hooks";
 import { Loader, Toast } from "@/app/(shared)/_components";
 import { toast } from "sonner";
+import { useLoggedInUser } from "@/app/(features)/(protected)/(shared)/hooks";
 type ProposalFormData = {
   coverLetter: string;
   amount: number;
@@ -17,6 +18,8 @@ type ProposalFormData = {
   clientId: string;
 };
 
+import { calculcatePoints } from "../helpers/calculatePoints";
+import { AlertWarning } from "@/app/(shared)/_components/AlertWarning";
 export default function AddNewProposalForm({
   projectId,
 }: {
@@ -27,7 +30,6 @@ export default function AddNewProposalForm({
     handleSubmit,
     formState: { errors, isSubmitting },
     setValue,
-    getValues
   } = useForm<ProposalFormData>();
   const { id } = useParams<{ id: string }>();
   const freelancerId = localStorage.getItem("userId")!;
@@ -35,7 +37,8 @@ export default function AddNewProposalForm({
   useEffect(() => {
     if (data?.clientId) setValue("clientId", data.clientId);
   }, [data, setValue]);
-
+  const { data: loggedInUser, isLoading: isLoadingLoggedInUser } =
+    useLoggedInUser(freelancerId || undefined);
   const onSubmit = async (data: ProposalFormData) => {
     try {
       await createProposal({
@@ -54,6 +57,11 @@ export default function AddNewProposalForm({
       console.log(err);
     }
   };
+  const calcPts = useCallback(calculcatePoints, [projectId]);
+  const hasSatisfiesPoints = useMemo(
+    () => loggedInUser!?.points > calcPts(data?.budgetMin!, data?.budgetMax!),
+    [data?.budgetMax, data?.budgetMin, projectId]
+  );
 
   return (
     <form
@@ -65,64 +73,73 @@ export default function AddNewProposalForm({
         "relative"
       )}
     >
-      <>
-        {isLoading && <Loader />}
-        <div>
-          <Textarea
-            placeholder="Write your cover letter..."
-            {...register("coverLetter", {
-              required: "Cover letter is required",
-            })}
-          />
-          {errors.coverLetter && (
-            <p className="text-red-500 text-xs mt-1">
-              {errors.coverLetter.message}
-            </p>
-          )}
-        </div>
-        <Input
-          type="hidden"
-          {...register("clientId", {
-            value: data?.clientId,
-            min: { value: 1, message: "Amount must be at least $1" },
-          })}
-        />
-        <div>
+      {!hasSatisfiesPoints ? (
+        <AlertWarning description="Your Points Does Not Satisfies Re quired Points To Apply For This Job!" />
+      ) : (
+        <>
+          {isLoading && <Loader />}
+          <div>
+            <Textarea
+              placeholder="Write your cover letter..."
+              {...register("coverLetter", {
+                required: "Cover letter is required",
+              })}
+            />
+            {errors.coverLetter && (
+              <p className="text-red-500 text-xs mt-1">
+                {errors.coverLetter.message}
+              </p>
+            )}
+          </div>
           <Input
-            type="number"
-            placeholder="Amount (USD)"
-            {...register("amount", {
-              required: "Amount is required",
+            type="hidden"
+            {...register("clientId", {
+              value: data?.clientId,
               min: { value: 1, message: "Amount must be at least $1" },
-              validate: (val) =>
-                val < data?.budgetMin! || val > data?.budgetMax! ? false : true,
             })}
           />
+          <div>
+            <Input
+              type="number"
+              placeholder="Amount (USD)"
+              {...register("amount", {
+                required: "Amount is required",
+                min: { value: 1, message: "Amount must be at least $1" },
+                validate: (val) =>
+                  val < data?.budgetMin! || val > data?.budgetMax!
+                    ? false
+                    : true,
+              })}
+            />
 
-          {errors.amount && (
-            <p className="text-red-500 text-xs mt-1">{errors.amount.message}</p>
-          )}
-        </div>
-        <div>
-          <Input
-            placeholder="Duration (e.g. 2 weeks)"
-            {...register("duration", { required: "Duration is required" })}
-          />
-          {errors.duration && (
-            <p className="text-red-500 text-xs mt-1">
-              {errors.duration.message}
-            </p>
-          )}
-        </div>
-        <Button
-          type="submit"
-          variant="teal"
-          className="w-full"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? "Submitting..." : "Submit Proposal"}
-        </Button>
-      </>
+            {errors.amount && (
+              <p className="text-red-500 text-xs mt-1">
+                {errors.amount.message}
+              </p>
+            )}
+          </div>
+          <div>
+            <Input
+              placeholder="Duration (e.g. 2 weeks)"
+              {...register("duration", { required: "Duration is required" })}
+            />
+            {errors.duration && (
+              <p className="text-red-500 text-xs mt-1">
+                {errors.duration.message}
+              </p>
+            )}
+          </div>
+          <Button
+            type="submit"
+            variant="teal"
+            className="w-full"
+            disabled={!hasSatisfiesPoints || isSubmitting}
+          >
+            {isSubmitting ? "Submitting..." : "Submit Proposal"}
+          </Button>
+        </>
+      )}
+      {/* {loggedInUser?.points <  } */}
     </form>
   );
 }

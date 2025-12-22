@@ -8,6 +8,7 @@ import {
   Plus,
   DollarSign,
   User,
+  BriefcaseBusiness,
 } from "lucide-react";
 import { Offer } from "../types";
 
@@ -30,6 +31,15 @@ export const clientNavLinks: TopBarLinksArray = [
     translationKey: "dashboard",
   },
   {
+    label_ar: "",
+    label_en: "Projects",
+    url: "/projects",
+    type: "account_page",
+    style: "button_teal",
+    translationKey: "projects",
+    icon: BriefcaseBusiness,
+  },
+  {
     label_ar: "الإشعارات",
     label_en: "Notifications",
     // url: "/notifications",
@@ -40,6 +50,7 @@ export const clientNavLinks: TopBarLinksArray = [
     is_dropdown: true,
     translationKey: "notifications",
   },
+
   {
     label_ar: "الرسائل",
     label_en: "Messages",

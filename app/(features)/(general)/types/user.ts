@@ -9,6 +9,7 @@ export interface IUser {
   isVerified?: boolean;
   createdAt?: Date;
   lastLogin?: Date;
+  points: number
 }
 export type userRoles = "client" | "freelancer";
 export interface SocialLinks {

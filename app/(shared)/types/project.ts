@@ -1,14 +1,14 @@
 export interface Project {
-  _id?: string;
+  _id: string;
   title: string;
   description: string;
-  budgetMin?: number;
-  budgetMax?: number;
+  budgetMin: number;
+  budgetMax: number;
   duration?: string;
   category?: string;
   status: ProjectStatus;
   clientId: string;
-  createdAt: Date | string;
+  createdAt: string;
   clientName: string;
   variant?: ProjectStatus;
 }

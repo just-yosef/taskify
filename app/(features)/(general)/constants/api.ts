@@ -1,6 +1,6 @@
 import axios from "axios";
-
-const baseURL = "https://taskify-five-psi.vercel.app/api"
+// @ts-ignore
+const baseURL = "http://localhost:3000/api" || "https://taskify-five-psi.vercel.app/api"
 
 export const api = axios.create({
   baseURL,

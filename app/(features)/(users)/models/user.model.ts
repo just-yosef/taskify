@@ -23,6 +23,7 @@ export interface IUser extends Document {
   lastLogin?: Date;
   totalSpend: number;
   stripeCustomerId: string | null
+  points: number
   // plans:
 }
 export interface User {
@@ -48,6 +49,8 @@ export interface User {
   createdAt: Date;
   updatedAt: Date;
   lastLogin?: Date;
+  points: number
+
 }
 const userSchema = new mongoose.Schema<IUser>(
   {
@@ -78,17 +81,14 @@ const userSchema = new mongoose.Schema<IUser>(
       _id: false,
     },
     isVerified: { type: Boolean, default: false },
-    createdAt: { type: Date, default: Date.now },
-    lastLogin: Date,
+    createdAt: { type: Date, default: Date.now() },
+    lastLogin: { type: Date },
     totalSpend: { type: Number, default: 0 },
-    stripeCustomerId: { type: String || null, default: null }
+    stripeCustomerId: { type: String || null, default: null },
+    points: { type: Number, default: 0 }
   },
   { timestamps: true }
 );
 
-// userSchema.pre<Query<IUser, IUser>>(/find/, function (next) {
-//     this.select("-password")
-//     next()
-// })
 export default mongoose.models.User ||
   mongoose.model<IUser>("User", userSchema);

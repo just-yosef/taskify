@@ -12,8 +12,6 @@ import { Notifications } from "../../(dashboard)/(freelancer)/_components";
 import ToggleNavbarMobile from "@/app/(shared)/_components/ToggleNavbarMobile";
 import { freelancerLinks } from "../../(dashboard)/(freelancer)/constants";
 import ToggleLanguge from "./ToggleLanguge";
-import { NavLink } from "@/app/(shared)/types";
-import { MyAccount } from "../../(dashboard)/(shared)/_components/dropdowns";
 
 const Header = ({
   userType = "freelancer",

@@ -1,9 +1,11 @@
 import { getProposalsByProject } from "@/app/(features)/(protected)/(dashboard)/(client)/service/project.service";
 import { PorposalItem } from "./index";
-import { TitleSection } from "@/app/(shared)/_components";
-import AddNewPorposals from "./AddNewPorposals";
-import { groupProposalsByProjectId } from "../helpers";
+import { Loader, TitleSection } from "@/app/(shared)/_components";
 import { decodeUserFromToken } from "@/app/(shared)/helpers/server";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+import { isAccessToPostPorposal as checkIsValidToPost } from "../helpers/proposals";
+const AddNewPorposals = dynamic(() => import("./AddNewPorposals"));
 interface Props {
   projectId: string;
 }
@@ -11,15 +13,14 @@ const JobPorposals = async ({ projectId }: Props) => {
   const currentUser = await decodeUserFromToken();
   const data = await getProposalsByProject(projectId);
   const isAccess = data.porposals[0]?.clientId === currentUser?._id || true;
-  const isAccessToPostPorposal = !data.porposals.length
-    ? true
-    : !data.porposals.some(
-        (porposal) => porposal.freelancerId._id === currentUser!._id
-      );
+  const isAccessToPostPorposal = checkIsValidToPost(
+    data.porposals,
+    currentUser?._id || ""
+  );
+
   return (
     <>
       <TitleSection text={`Porposals (${data.porposals.length})`} />
-      <h4 className="mt-5 mb-3"> </h4>
       <section className="border-teal p-3 py-5 rounded-sm">
         {data.porposals.length ? (
           data.porposals.map((porposal) => (
@@ -33,7 +34,11 @@ const JobPorposals = async ({ projectId }: Props) => {
           <h3 className="text-center text-teal">No Porposals Yet</h3>
         )}
       </section>
-      {isAccessToPostPorposal && <AddNewPorposals projectId={projectId} />}
+      {isAccessToPostPorposal && (
+        <Suspense fallback={<Loader isChild />}>
+          <AddNewPorposals projectId={projectId} />
+        </Suspense>
+      )}
     </>
   );
 };

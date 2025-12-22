@@ -27,10 +27,6 @@ export default function AddNewProposal({ projectId }: { projectId: string }) {
           <AddNewProposalForm projectId={projectId} />
         </DialogContent>
       </Dialog>
-      {/* <section className="p-4">
-        <h3 className="pb-3 font-semibold">Add New Proposal</h3>
-        <Separator />
-      </section> */}
     </QueryClientProvider>
   );
 }

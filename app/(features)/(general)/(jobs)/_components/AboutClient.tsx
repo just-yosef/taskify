@@ -22,7 +22,6 @@ const AboutClient = async ({ projectId }: Props) => {
             <h3 className="font-semibold"> {client?.fullName} </h3>
             <Badge variant="outline" className="font-semibold text-sky-700">
               <ProjectorIcon />
-              {/* {getClientLevelBySpend(client!)} */}
             </Badge>
           </div>
         </section>
