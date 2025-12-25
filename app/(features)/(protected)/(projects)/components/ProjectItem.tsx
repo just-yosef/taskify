@@ -21,7 +21,7 @@ const ProjectItem = ({
   return (
     <Link
       href={`/projects/${projectId}`}
-      className="flex items-center gap-2 mt-3 p-5 bg-[#f7f7f7] rounded-lg"
+      className="flex items-center gap-2 mt-3 p-5 bg-teal-soft rounded-lg"
     >
       <Image
         alt="poster"

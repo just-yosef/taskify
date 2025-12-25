@@ -11,7 +11,7 @@ const FilterProjects = () => {
   const router = useRouter();
   const sp = useSearchParams();
   return (
-    <div className="p-5 bg-[#f7f7f7] rounded-lg sticky top-[80px] ">
+    <div className="p-5 bg-teal-soft rounded-lg sticky top-[90px] ">
       <h3 className="font-semibold">Filter Projects</h3>
       <section className="mt-5">
         <SearchField router={router} searchParams={sp} />

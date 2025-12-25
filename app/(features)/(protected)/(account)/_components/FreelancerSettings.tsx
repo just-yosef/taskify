@@ -8,7 +8,7 @@ import { PortfolioSection, Reviews } from "./index";
 const FreelancerSettings = () => {
   return (
     <>
-      <section className="pl-10">
+      <>
         <TitleSection text="Account Information" />
         <GridContainer distance="sm">
           <EditSection>
@@ -43,7 +43,7 @@ const FreelancerSettings = () => {
             Stripe Account: <Badge variant="outline">cu_213124124ascf</Badge>
           </EditSection>
         </GridContainer>
-      </section>
+      </>
       <PortfolioSection />
       <Reviews />
     </>

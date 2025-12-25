@@ -11,7 +11,6 @@ export async function subscribePlan(form: FormData) {
         const userId = JSON.parse(user)?._id
         const priceId: string = plan === "pro" ? process.env.STRIPE_PLAN_PRO_PRICE_ID! : plan === "premium" ? process.env.STRIPE_PLAN_PREMIUM_PRICE_ID! : ""
         const newPlan: AxiosResponse<Stripe.Response<Stripe.Checkout.Session>> = await axios.post("https://taskify-five-psi.vercel.app/api/subscribe", { priceId, userId, plan });
-        // const stripeSub = await stripe.subscriptions.retrieve("sub_1SUvdPREoLhRJKQLwEWDGC1k")
         return newPlan?.data
     } catch (error) {
         console.log(error);

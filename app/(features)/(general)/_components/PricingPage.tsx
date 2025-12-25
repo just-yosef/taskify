@@ -28,6 +28,7 @@ export default function PricingSection({ plans }: Props) {
     () => data?.filter((item) => item.plan === "premium"),
     [data]
   );
+  console.log(proSubs);
   return (
     <section className="py-5 font-[rubicMedium]">
       <div className="mx-auto w-full max-w-2xl px-4 sm:px-6 lg:max-w-7xl">

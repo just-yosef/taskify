@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { createNewSubscription } from "../../(controller)/subscription";
-import { stripe } from "../../constants/stripe";
 
 export async function POST(req: Request) {
   try {

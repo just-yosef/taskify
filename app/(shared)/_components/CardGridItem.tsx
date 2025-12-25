@@ -1,5 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import { Tag } from "lucide-react";
 
 interface Item {
@@ -30,9 +31,18 @@ CardGridItem.Title = ({ title, icon }: Pick<Item, "title" | "icon">) => {
     </CardHeader>
   );
 };
-
-CardGridItem.PlacholderImage = () => {
-  return <div className="flex h-[200px] bg-teal-soft rounded-xl mb-4" />;
+interface ImgProps {
+  size?: "sm" | "md" | "lg";
+}
+CardGridItem.PlacholderImage = ({ size }: ImgProps) => {
+  return (
+    <div
+      className={cn(
+        `flex h-[200px] bg-teal-soft rounded-xl mb-4`,
+        size === "lg" ? "h-[250px]" : ""
+      )}
+    />
+  );
 };
 
 CardGridItem.Tags = ({ tags }: Pick<Item, "tags">) => {

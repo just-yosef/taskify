@@ -5,7 +5,7 @@ import ProjectItem from "./ProjectItem";
 const Projects = async () => {
   const projects = await getProjects();
   return (
-    <section className="flex gap-1 ">
+    <section className="flex gap-3">
       <div className="w-[80%]">
         {projects?.map((project) => (
           <ProjectItem
@@ -16,7 +16,7 @@ const Projects = async () => {
           />
         ))}
       </div>
-      <div className="w-1/5 mt-3">
+      <div className="w-1/4 mt-3">
         <FilterProjects />
       </div>
     </section>
