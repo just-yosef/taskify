@@ -1,8 +1,13 @@
 import React from "react";
-import { Settings } from "../../_components";
-
-const page = () => {
-  return <Settings />;
-};
+const Settings = dynamic(
+  () => import("../../_components").then((mod) => mod.Settings),
+  {
+    loading() {
+      return <>Loading..</>;
+    },
+  }
+);
+import dynamic from "next/dynamic";
+const page = () => <Settings />;
 
 export default page;

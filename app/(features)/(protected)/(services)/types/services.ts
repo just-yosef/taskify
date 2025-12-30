@@ -1,6 +1,7 @@
 import { Types } from "mongoose";
 
 export interface Service {
+    _id: string
     userId: Types.ObjectId;
     title: string;
     slug: string;

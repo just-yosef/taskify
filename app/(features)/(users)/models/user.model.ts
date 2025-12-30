@@ -24,6 +24,7 @@ export interface IUser extends Document {
   totalSpend: number;
   stripeCustomerId: string | null
   points: number
+  stripeAccountStatus: boolean
   // plans:
 }
 export interface User {
@@ -85,7 +86,8 @@ const userSchema = new mongoose.Schema<IUser>(
     lastLogin: { type: Date },
     totalSpend: { type: Number, default: 0 },
     stripeCustomerId: { type: String || null, default: null },
-    points: { type: Number, default: 0 }
+    points: { type: Number, default: 0 },
+    stripeAccountStatus: { type: Boolean, default: false, }
   },
   { timestamps: true }
 );

@@ -4,7 +4,7 @@ import { Stripe } from "stripe";
 export async function POST() {
   try {
     const stripe = new Stripe(process.env.STRIPE_SECRET!, {
-      apiVersion: "2025-09-30.clover",
+      apiVersion: "2025-12-15.clover",
     });
     const account = await stripe.accounts.create({
       type: "express",

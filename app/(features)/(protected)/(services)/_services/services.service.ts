@@ -15,3 +15,6 @@ export const getServicesByUserId = async (userId: string): Promise<ServiceRespon
     }
     return (await api.get(`/services?userId=${userId}`)).data
 };
+export const getServiceById = async (id: string) => {
+    return await fetch(`http://localhost:3000/services/${id}`, { cache: "force-cache" }).then(res => res.json())
+};

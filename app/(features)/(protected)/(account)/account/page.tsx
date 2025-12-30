@@ -1,11 +1,11 @@
-import React from "react";
-import { Settings, UserInfo } from "../_components";
+"use client";
+import { useRedirectRoute } from "@/app/(shared)/hooks/useCheckPathName";
+import { PathnameContext } from "next/dist/shared/lib/hooks-client-context.shared-runtime";
+import { redirect, usePathname } from "next/navigation";
+import React, { useEffect } from "react";
 const page = () => {
-  return (
-    <>
-      {/* <UserInfo />
-      <Settings /> */}
-    </>
-  );
+  const { isNeedRedirect } = useRedirectRoute("account");
+  if (isNeedRedirect) return redirect("/account/services");
+  return <></>;
 };
 export default page;
