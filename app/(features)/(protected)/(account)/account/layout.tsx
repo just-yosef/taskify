@@ -1,8 +1,7 @@
 // "use client";
-import { ReactNode } from "react";
 // import "@/lib/i18n";
 import AccountTabs from "../_components/AccountTabs";
-import { Settings, UserInfo } from "../_components";
+import { UserInfo } from "../_components";
 
 const layout = async ({
   children,

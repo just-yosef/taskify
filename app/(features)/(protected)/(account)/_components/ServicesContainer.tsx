@@ -12,6 +12,7 @@ import ErrorHandler from "@/app/(shared)/_components/ErrorHandlerComponent";
 
 const ServicesContainer = async () => {
   const user = await decodeUserFromToken();
+  throw Error("asdasd")
   const userServices = await getServicesByUserId(user!._id);
   return (
     <>
@@ -40,8 +41,19 @@ const ServicesContainer = async () => {
           </GridContainer>
         </ErrorHandler>
       )}
+      <AddService />
     </>
   );
 };
 
 export default ServicesContainer;
+
+function AddService() {
+  return (
+    <AddServiceDialog>
+      <DialogTrigger asChild>
+        <Button variant="teal">Add New Service</Button>
+      </DialogTrigger>
+    </AddServiceDialog>
+  );
+}

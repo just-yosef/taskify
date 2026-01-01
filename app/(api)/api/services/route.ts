@@ -7,6 +7,8 @@ export async function POST(req: NextRequest) {
     try {
         await connectDB();
         const body = await req.json();
+        
+        console.log(body, "BODY");
         const { userId, title, slug, description, category, pricing, deliveryTime, status } = body;
         if (!userId || !title || !description || !category || !pricing || !deliveryTime) {
             return NextResponse.json(

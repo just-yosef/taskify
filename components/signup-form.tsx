@@ -29,8 +29,6 @@ export function SignupForm({ switchMode }: { switchMode: () => void }) {
   const { mutate, isPending } = useMutation({
     mutationFn: signup,
   });
-  console.log(getValues());
-
   const { confirmPassword, email, fullName, password, role } = formState.errors;
   const onSubmit = (data: SignupFormValues) => mutate(data);
   return (

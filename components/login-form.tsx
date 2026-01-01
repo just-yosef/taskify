@@ -15,11 +15,12 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { PendingFormLabel } from "@/app/(shared)/_components";
+import { PendingFormLabel, Toast } from "@/app/(shared)/_components";
 import { loginAction } from "@/app/(features)/(general)/(signin)/(actions)";
 import { useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Info } from "lucide-react";
+import { toast } from "sonner";
 interface Prpos {
   switchMode: () => void;
   className?: string;
@@ -32,8 +33,14 @@ export function LoginForm({ switchMode, className }: Prpos) {
       try {
         const data = await loginAction(formData);
         localStorage.setItem("userId", data?.id!);
+        toast.custom(() => (
+          <Toast message="Login To Your Account Successfull" status="success" />
+        ));
         router.push("/dashboard");
       } catch (error) {
+        toast.custom(() => (
+          <Toast message="Faild To Login To Your Account" status="error" />
+        ));
         console.log(error);
       }
     });
