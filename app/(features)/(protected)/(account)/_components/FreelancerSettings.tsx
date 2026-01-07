@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { DollarSign, Tag } from "lucide-react";
 import { GridContainer, TitleSection } from "@/app/(shared)/_components";
 import { PortfolioSection, Reviews } from "./index";
+import { Button } from "@/components/ui/button";
 
 const FreelancerSettings = () => {
   return (
@@ -21,7 +22,7 @@ const FreelancerSettings = () => {
             Job Title: <Badge variant="outline">Freelancer Web Developer</Badge>
           </EditSection>
           <EditSection>
-            Hour Rate: <DollarSign size={18} className="text-green-500" />{" "}
+            Hour Rate: <DollarSign size={18} className="text-green-500" />
             <b>10</b>
           </EditSection>
           <EditSection>
@@ -40,7 +41,10 @@ const FreelancerSettings = () => {
             ))}
           </EditSection>
           <EditSection isEdited={false}>
-            Stripe Account: <Badge variant="outline">cu_213124124ascf</Badge>
+            Create Escrow Account To be able to send/recive money:
+            <Button variant="teal">
+              Create Account <DollarSign />
+            </Button>
           </EditSection>
         </GridContainer>
       </>

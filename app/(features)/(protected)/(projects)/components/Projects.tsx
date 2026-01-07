@@ -1,9 +1,16 @@
 import { getProjects } from "../../(dashboard)/(client)/service";
 import FilterProjects from "./FilterProjects";
 import ProjectItem from "./ProjectItem";
-
-const Projects = async () => {
+type PageProps = {
+  searchParams: {
+    search?: string;
+    categories?: string;
+  };
+};
+const Projects = async ({ searchParams }: PageProps) => {
   const projects = await getProjects();
+  console.log(searchParams.categories?.split(","), "Page Params");
+  console.log(projects);
   return (
     <section className="flex gap-3">
       <div className="w-[80%]">

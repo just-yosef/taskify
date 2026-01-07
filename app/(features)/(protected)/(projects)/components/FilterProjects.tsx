@@ -53,8 +53,12 @@ function SearchField({ router, searchParams: sp }: P) {
 }
 
 function Categories({ router, searchParams: sp }: P) {
-  const [selectedCategories, setSelectedCategories] = useState<Set<string>>();
-  const addSearchParams = useCallback(handleAddingSearch, [selectedCategories]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const addSearchParams = useCallback(handleAddingSearch, [
+    selectedCategories,
+    sp,
+  ]);
+  console.log(selectedCategories);
 
   return (
     <>
@@ -64,18 +68,27 @@ function Categories({ router, searchParams: sp }: P) {
           onClick={(e) => {
             const val = (e.currentTarget.children[0] as HTMLInputElement)
               ?.value;
+            console.log(val);
             setSelectedCategories((prev) => {
-              const updatedSet = new Set(prev);
-              if (updatedSet?.has(val)) updatedSet.delete(val);
-              else updatedSet.add(val);
+              const value = val.toLowerCase();
+
+              const updated = prev.includes(value)
+                ? prev.filter((el) => el !== value)
+                : [...prev, value];
+
               addSearchParams({
-                query: updatedSet?.values().toArray().join(", "),
+                query: updated.join(","),
                 queryKey: "categories",
                 router,
                 searchParams: sp,
               });
-              return updatedSet;
+
+              return updated;
             });
+            // if (selectedCategories?.includes(val.toLowerCase()))
+            //   selectedCategories.filter((el) => el !== val.toLowerCase());
+            // else prev?.push(val);
+            // return prev;
           }}
           htmlFor={el.id}
           className="mb-3"

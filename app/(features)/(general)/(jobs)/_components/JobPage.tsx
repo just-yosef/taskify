@@ -20,6 +20,11 @@ const PaymentMethods = dynamic(
   () =>
     import("@/app/(features)/(protected)/(projects)/components/PaymentMethods")
 );
+const AvilableMethods = dynamic(
+  () =>
+    import("@/app/(features)/(protected)/(projects)/components/AvilableMethods")
+);
+
 const JobPage = async ({ projectId }: Props) => {
   const currentUser = await decodeUserFromToken();
   const data = await getProposalsByProject(projectId);
@@ -92,6 +97,7 @@ const JobPage = async ({ projectId }: Props) => {
         <div className="sm:flex-1">
           <Suspense fallback={<Loader isChild />}>
             <PaymentMethods />
+            <AvilableMethods />
           </Suspense>
         </div>
       </div>

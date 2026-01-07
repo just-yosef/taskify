@@ -2,8 +2,13 @@ import { TitleSection } from "@/app/(shared)/_components";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Projects from "./Projects";
-
-const ProjectsPage = () => {
+type PageProps = {
+  searchParams:{
+    search?: string;
+    categories?: string;
+  };
+};
+const ProjectsPage = ({ searchParams }: PageProps) => {
   return (
     <>
       <>
@@ -13,7 +18,7 @@ const ProjectsPage = () => {
         </section>
         <Separator />
       </>
-      <Projects />
+      <Projects searchParams={searchParams} />
     </>
   );
 };

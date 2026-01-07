@@ -7,12 +7,10 @@ import { AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import AddServiceDialog from "./AddServiceDialog";
 import { DialogTrigger } from "@/components/ui/dialog";
-import ErrorComponent from "@/app/(shared)/_components/ErrorComponent";
 import ErrorHandler from "@/app/(shared)/_components/ErrorHandlerComponent";
 
 const ServicesContainer = async () => {
   const user = await decodeUserFromToken();
-  throw Error("asdasd")
   const userServices = await getServicesByUserId(user!._id);
   return (
     <>
@@ -28,17 +26,38 @@ const ServicesContainer = async () => {
         </div>
       ) : (
         <ErrorHandler fallback="Failed To Load Your Services, Please Try Again">
-          <GridContainer className="px-5">
-            {userServices.services.map((service) => (
-              <ServiceCardItem
-                _id={service._id}
-                rating={service.rating}
-                title={service.title}
-                category={service.category}
-                price={service.pricing.basePrice}
-              />
-            ))}
-          </GridContainer>
+          {userServices.services.length > 3 ? (
+            <>
+              <GridContainer className="px-5">
+                {userServices.services.slice(0, 3).map((service) => (
+                  <ServiceCardItem
+                    _id={service._id}
+                    rating={service.rating}
+                    title={service.title}
+                    category={service.category}
+                    price={service.pricing.basePrice}
+                  />
+                ))}
+              </GridContainer>
+              <Button variant="teal" className="w-fit mx-auto flex">
+                Explopre More Services
+              </Button>
+            </>
+          ) : (
+            <>
+              <GridContainer className="px-5">
+                {userServices.services.map((service) => (
+                  <ServiceCardItem
+                    _id={service._id}
+                    rating={service.rating}
+                    title={service.title}
+                    category={service.category}
+                    price={service.pricing.basePrice}
+                  />
+                ))}
+              </GridContainer>
+            </>
+          )}
         </ErrorHandler>
       )}
       <AddService />

@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         hostname: "randomuser.me",
         pathname: "/api/portraits/**",
       },
+      {
+        protocol: "https",
+        hostname: "staging.fawaterk.com",
+        pathname: "/clients/payment_options/**",
+      },
     ],
   },
   eslint: {
@@ -18,6 +23,5 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
 };
-
 const withNextIntl = createNextIntlPlugin();
 export default withNextIntl(nextConfig);

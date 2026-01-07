@@ -13,7 +13,14 @@ const ServicesContainer = dynamic(
 
 const page = () => {
   return (
-    <ErrorHandler fallback={<ErrorComponent description="service has an error occur while render it" message="Happent Error" />}>
+    <ErrorHandler
+      fallback={
+        <ErrorComponent
+          description="service has an error occur while render it"
+          message="Happent Error"
+        />
+      }
+    >
       <TitleSection text="Services" />
       <ServicesContainer />
     </ErrorHandler>
