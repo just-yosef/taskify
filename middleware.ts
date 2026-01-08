@@ -34,13 +34,8 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL("/dashboard", request.url));
     }
 
-    if (!isLoggedin && pathname !== "/signin") {
-      return NextResponse.redirect(new URL("/signin", request.url));
-    }
   }
-
   const response = NextResponse.next();
-
   if (pathname.startsWith("/api")) {
     const origin = request.headers.get("origin") || "*";
     response.headers.set("Access-Control-Allow-Origin", origin);
@@ -51,5 +46,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/account/:path*", "/api/:path*", "/signin", "/messages",],
+  matcher: ["/dashboard/:path*", "/account/:path*", "/api/:path*", "/signin", "/messages", "/pricing"],
 };
