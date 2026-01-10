@@ -1,12 +1,13 @@
 import { cn } from "@/lib/utils";
 import PaymentButton from "./PaymentButton";
+import { CartItem } from "../_types";
 
 export interface PaymentMethod {
   paymentId: number;
   name_en: string;
   name_ar: string;
   redirect: string;
-  logo: string;
+  logo?: string;
 }
 interface PaymentMethods {
   data: PaymentMethod[];
@@ -40,8 +41,11 @@ const PaymentMethods = async () => {
           </div>
         </div>
         {redirectedMethods.map((method) => (
-          <PaymentButton {...method} />
+          <PaymentButton payment={method} />
         ))}
+        <p className="mt-3 text-center text-gray-400">
+          Mobile Wallets Comming Soon..
+        </p>
       </div>
     </section>
   );

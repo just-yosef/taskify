@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import posterImg from "@/public/assets/imgs/poster.jpeg";
+import posterImg from "@/public/assets/imgs/brave_screenshot_dashboard10-.surge.sh (1).png";
 import Link from "next/link";
 import { TimerIcon } from "lucide-react";
 import { timeAgo } from "@/app/(shared)/helpers";
@@ -25,7 +25,7 @@ const ProjectItem = ({
     >
       <Image
         alt="poster"
-        className="rounded-full"
+        className="rounded-full object-cover"
         width={60}
         height={60}
         src={posterImg}

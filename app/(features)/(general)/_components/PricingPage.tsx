@@ -36,10 +36,6 @@ export default function PricingSection({ plans }: Props) {
           <h2 className="text-4xl/tight font-bold tracking-tight !font-[rubicBold]">
             Choose your plan
           </h2>
-          <p className="text-muted-foreground mt-4 text-lg/8 leading-[20px]">
-            Sed eu quam id quam tristique pharetra a at tortor veil dolarto.
-            Suspendisse lorem odio sit amet libero facilisis.
-          </p>
         </div>
         {isLoading ? (
           <Loader />

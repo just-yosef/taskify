@@ -20,6 +20,8 @@ type ProposalFormData = {
 
 import { calculcatePoints } from "../helpers/calculatePoints";
 import { AlertWarning } from "@/app/(shared)/_components/AlertWarning";
+import PointsPricing from "./PointsPricing";
+import Link from "next/link";
 export default function AddNewProposalForm({
   projectId,
 }: {
@@ -74,7 +76,14 @@ export default function AddNewProposalForm({
       )}
     >
       {!hasSatisfiesPoints ? (
-        <AlertWarning description="Your Points Does Not Satisfies Re quired Points To Apply For This Job!" />
+        <>
+          <AlertWarning description="Your Points Does Not Satisfies Re quired Points To Apply For This Job!" />
+          <Button type="button" variant="teal">
+            <Link href={{ pathname: "/pricing" }}>
+              Buy Points To Apply For This Job
+            </Link>
+          </Button>
+        </>
       ) : (
         <>
           {isLoading && <Loader />}

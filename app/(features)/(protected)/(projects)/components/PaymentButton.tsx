@@ -4,16 +4,25 @@ import Image from "next/image";
 import React, { useCallback, useTransition } from "react";
 import { type PaymentMethod } from "./PaymentMethods";
 import { processPayment } from "../(actions)/processPayment";
-const PaymentButton = (payment: PaymentMethod) => {
+import { Banknote } from "lucide-react";
+import { CreatePaymentPayload } from "../_types";
+interface Props {
+  payment: PaymentMethod;
+  label?: string;
+  paymentDetails?: Partial<CreatePaymentPayload>;
+}
+const PaymentButton = ({ payment, label, paymentDetails }: Props) => {
   const [isPending, startTransitions] = useTransition();
   const handelPay = useCallback(
     async () =>
       startTransitions(async () => {
         const data = await processPayment({
           ...payment,
-          cartTotal: "2000",
-          cartItems: [{ name: "a", price: "1000", quantity: "2" }],
-          customer: {
+          cartTotal: paymentDetails?.cartTotal || "2000",
+          cartItems: paymentDetails?.cartItems || [
+            { name: "a", price: "1000", quantity: "2" },
+          ],
+          customer: paymentDetails?.customer || {
             first_name: "test",
             last_name: "test",
             email: "test@test.test",
@@ -33,13 +42,21 @@ const PaymentButton = (payment: PaymentMethod) => {
       variant="borderTeal"
       className="flex gap-2 w-full"
     >
-      <Image
-        src={payment.logo}
-        width={50}
-        height={50}
-        alt={payment.name_en + "logo"}
-      />
-      {isPending ? "processing.." : `Pay With ${payment.name_en}`}
+      {!payment.logo ? (
+        <Banknote size={30} />
+      ) : (
+        <Image
+          src={payment.logo}
+          width={50}
+          height={50}
+          alt={payment.name_en + "logo"}
+        />
+      )}
+      {isPending
+        ? "processing.."
+        : label
+        ? label
+        : `Pay With ${payment.name_en}`}
     </Button>
   );
 };

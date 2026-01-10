@@ -13,7 +13,6 @@ import { Button } from "@/components/ui/button";
 
 export default function AddNewProposal({ projectId }: { projectId: string }) {
   const queryClient = new QueryClient();
-
   return (
     <QueryClientProvider client={queryClient}>
       <Dialog>
